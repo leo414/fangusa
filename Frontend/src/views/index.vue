@@ -1,26 +1,17 @@
-<style scoped lang="scss">
-
-</style>
-
 <template>
-<div class="index">
-  hello world
-</div>
-
+    <i-switch v-model="switch1" @on-change="change"></i-switch>
 </template>
 <script>
-import API from '../libs/api'
-
 export default {
-  created() {
-    this.$http.get(API.PrefetchLaunchImages).then(response => {
-      console.log(response)
-    }, response => {
-      // TODO
-    })
-  },
-
-  methods: {
-  }
+    data () {
+        return {
+            switch1: false
+        }
+    },
+    methods: {
+        change (status) {
+            this.$Message.info('开关状态：' + status);
+        }
+    }
 }
 </script>

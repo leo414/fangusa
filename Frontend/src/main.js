@@ -8,6 +8,7 @@ import VueResource from 'vue-resource'
 import Util from './libs/util'
 import App from './app.vue'
 import Routers from './router'
+
 import 'iview/dist/styles/iview.css'
 
 Vue.use(VueRouter)
