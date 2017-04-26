@@ -1,15 +1,13 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Hello from '@/components/Hello'
+const Hello = resolve => require(['../components/Hello.vue'], resolve)
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    }
-  ]
-})
+const routers = [
+  {
+    path: '/',
+    meta: {
+      title: 'fangusa-test'
+    },
+    name: 'Hello',
+    component: Hello
+  },
+]
+export default routers
