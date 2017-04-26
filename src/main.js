@@ -1,3 +1,5 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 
 import iView from 'iview'
@@ -5,20 +7,23 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import VueResource from 'vue-resource'
 
-import Util from './libs/util'
-import App from './app.vue'
+import App from './App'
 import Routers from './router'
+import Util from './libs/util'
 
+import  './scss/index.scss'
 import 'iview/dist/styles/iview.css'
 
-Vue.use(VueRouter)
 Vue.use(iView)
 Vue.use(VueResource)
 Vue.use(Vuex)
+Vue.use(VueRouter)
+
+Vue.config.productionTip = false
 
 Vue.http.interceptors.push(function(request, next) {
   request.method = 'GET'
-  request.headers.set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8;');
+  request.headers.set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8;')
   next()
 })
 
@@ -42,8 +47,10 @@ router.afterEach((to, from, next) => {
   window.scrollTo(0, 0)
 })
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router: router,
-  render: h => h(App)
+  router,
+  template: '<App/>',
+  components: { App }
 })

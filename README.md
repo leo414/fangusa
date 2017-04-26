@@ -1,26 +1,28 @@
-# Fangusa
+# fangusa
 
+> A web app for fangusa.
 
-## Frontend
-### Start
-```bash
-cd Frontend
+## Build Setup
 
+``` bash
 # install dependencies
 npm install
 
-# Development
+# serve with hot reload at localhost:3000
 npm start
 
-# Production(Build)
+# build for production with minification
 npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
 ```
 
 ### Technology stack
-- ES6/ES7
-- vue 2.x
-- vue-resource
-- vue-router
-- vuex
-- iview
-- Sass
+ES6/ES7
+vue 2.x
+vue-resource
+vue-router
+vuex
+iview
+Sass
