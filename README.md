@@ -19,10 +19,10 @@ npm run build --report
 ```
 
 ### Technology stack
-ES6/ES7
-vue 2.x
-vue-resource
-vue-router
-vuex
-iview
-Sass
+- ES6/ES7
+- Vue 2.x
+- Vue-resource
+- Vue-router
+- Vuex
+- Iview
+- Sass
