@@ -1,6 +1,6 @@
 # fangusa
 
-> A web for fangusa.
+> A web app for fangusa.
 
 ## Build Setup
 
@@ -18,4 +18,11 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Technology stack
+ES6/ES7
+vue 2.x
+vue-resource
+vue-router
+vuex
+iview
+Sass

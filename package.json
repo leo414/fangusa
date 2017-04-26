@@ -1,7 +1,7 @@
 {
   "name": "fangusa",
   "version": "1.0.0",
-  "description": "A web for fangusa.",
+  "description": "A web app for fangusa.",
   "author": "zaxlct",
   "private": true,
   "scripts": {
