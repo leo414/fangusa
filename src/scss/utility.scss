@@ -1,0 +1,29 @@
+@import "variables";
+@import "mixins";
+
+#app {
+  background-repeat: repeat-x;
+  background-position: center 0;
+  background-color: #fff;
+}
+
+.container {
+  width: $container_width !important;
+  margin: 0 auto;
+}
+
+.fr { float: right !important; }
+.fl { float: left !important; }
+.db { display: block; }
+.dib { display: inline-block; }
+
+.theme_color { color: $theme_color !important; }
+.black { color: #000 !important; }
+.bg_white { background: #fff !important; }
+
+.tc { text-align: center !important; }
+.tl { text-align: left !important; }
+.tr { text-align: right !important; }
+.text_ellipsis {
+  @extend %text-ellipsis;
+}
