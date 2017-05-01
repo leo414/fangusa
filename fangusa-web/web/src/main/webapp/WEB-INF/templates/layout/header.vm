@@ -1,0 +1,25 @@
+<header class="header">
+  <div class="container">
+  	<a class="se-logo"></a>
+  	<ul class="u-nav fl clear">
+  		#foreach ($link in $!fe.getLinks())
+  			<li  #if($!link.current) class="on" #end >
+	  			<a href="$link.link" #if($link.isBlank)target="_blank"#end>$!link.name</a>
+	  			#if ($!link.child && $!link.child.size() > 0)
+	  				<div class="sub-menu">
+	  					#foreach ($childLink in $link.child )
+	  						<a href="$childLink.link" #if($childLink.isBlank)target="_blank"#end>$childLink.name</a>
+	  					#end
+			        </div>
+	  			#end
+	  		</li>
+  		#end
+  	</ul>
+  	#set($currentUser = $!fe.getCurrentUser())
+  	<div class="fr">
+  		<span class="user-name">您好，<span>$!{currentUser.name}</span></span>
+  		<a href="$fe.contextRoot/logout">退出</a>
+  	</div>
+  </div>
+</header>
+<div class="se-wrapper">

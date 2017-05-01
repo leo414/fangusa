@@ -1,0 +1,17 @@
+<div class="current_position">
+    当前位置：
+    #set($linkList = $linkUtil.getBreadCrumbs($request.getServletPath(), $LINKS_PARAM_MAP))
+    #set($size = $linkList.size())
+    #if($size >= 1)
+        #foreach($index in [$size..1])
+            #set($_index = $index - 1)
+            #set($link = $linkList.get($_index))
+            #if($_index == 0)
+                <span>$link.name</span>
+            #else
+                <a href="$fe.contextRoot$link.url">$link.name</a>
+                <span>-</span>
+            #end
+        #end
+    #end
+</div>

@@ -1,0 +1,13 @@
+<div class="current_position">
+	当前位置：
+	#foreach($link in $breadcrumbs)
+		#if($link.url)
+			<a href="$link.url">$link.name</a> 
+		#else
+			$link.name
+		#end
+		#if($velocityCount<$breadcrumbs.size())
+			<span>-</span>
+		#end
+	#end
+</div>

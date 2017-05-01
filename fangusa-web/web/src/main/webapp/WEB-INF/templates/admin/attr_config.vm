@@ -1,0 +1,36 @@
+#parse("/admin/admin_header.vm")
+#parse("/admin/attr_conf_nav.vm")
+
+<table id="city_table" data-search="true" data-show-columns="false">
+    <thead>
+        <th>id</th>
+        <th>城市名称</th>
+        <th>城市编码</th>
+        <th>分公司编码</th>
+        <th>协议类型</th>
+        <th>业务类型</th>
+        <th>交易产品</th>
+        <th>分段</th>
+    </thead>
+    <tbody>
+        #foreach($!city in $cities)
+        <tr>
+            <td>$!city.id</td>
+            <td>$!cityMap.get($city.cityCode)</td>
+            <td>$!city.cityCode</td>
+            <td>$!city.branchCompany</td>
+            <td>$!city.contractType</td>
+            <td>$!city.bizType</td>
+            <td>$!city.tradeProduct</td>
+            <td>$!city.sectionType</td>
+        </tr>
+        #end
+    </tbody>
+</table>
+
+#parse("/admin/admin_footer.vm")
+<script type="text/javascript">
+    $('#city_table').bootstrapTable({
+        locale: 'zh-CN',
+    });
+</script>

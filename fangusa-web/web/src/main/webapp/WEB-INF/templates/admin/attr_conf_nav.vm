@@ -1,0 +1,4 @@
+<ul class="nav nav-tabs">
+    <li id="attr_conf_tab" role="presentation"><a href="attrConf">城市</a></li>
+    <li id="seal_conf_tab" role="presentation"><a href="sealConf">PDF/盖章</a></li>
+</ul>

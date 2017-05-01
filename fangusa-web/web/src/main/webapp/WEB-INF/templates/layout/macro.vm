@@ -1,0 +1,9 @@
+#macro(header)
+#end
+#macro(footer)
+#end
+#macro(stk)
+<title>链家网-se</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+#end

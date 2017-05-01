@@ -1,0 +1,283 @@
+#parse("/admin/admin_header.vm")
+<h1 class="page-header">合同模版配置</h1>
+<div class="row">
+    <div class="placeholder">
+        <form class="form-inline" action="configs" method="post">
+            <div class="form-group">
+                <input type="hidden" id="city_h" name="city_h" value="$!city.cityCode">
+                <input type="hidden" id="branch_h" name="branch_h" value="$!city.branchCompany">
+                <input type="hidden" id="protocol_h" name="protocol_h" value="$!city.contractType">
+                <input type="hidden" id="biz_h" name="biz_h" value="$!city.bizType">
+                <input type="hidden" id="product_h" name="product_h" value="$!city.tradeProduct">
+                <input type="hidden" id="section_h" name="section_h" value="$!city.sectionType">
+                <input type="hidden" id="key_h" name="key_h" value="$!key">
+                <label class="control-label">城市</label>
+                <select id="city" name="city" class="form-control">
+                </select>
+                <label class="control-label">分公司</label>
+                <input id="branch" class="form-control input-sm" type="text" name="branch" size="10" readonly>
+                <label class="control-label">协议类型</label>
+                <select id="protocol" name="protocol" class="form-control">
+                </select>
+                <label class="control-label">业务类型</label>
+                <select id="biz" name="biz" class="form-control">
+                </select>
+                <label class="control-label">交易产品</label>
+                <select id="product" name="product" class="form-control">
+                </select>
+                <label class="control-label">分段</label>
+                <select id="section" name="section" class="form-control">
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">查询</button>
+        </form>
+    </div>
+</div>
+
+<h3 class="sub-header">数据(#if(!$configs)0#end$!configs.size())</h3>
+#if($city)
+<a href="#" class="btn-sm" style="color:green">
+    <span class="glyphicon glyphicon-plus" id="addRow"></span>
+</a>
+<a href="#" class="btn-sm" style="color:gray">
+    <span class="glyphicon glyphicon-trash" id="delAll" "></span>
+</a>
+<a href="#" class="btn-sm" style="color:#428bca">
+    <span class="glyphicon glyphicon-floppy-save" id="saveAll"></span>
+</a>
+<a href="#" class="btn-sm" style="color:#428bca">
+    <span class="glyphicon glyphicon-export" id="export"></span>
+</a>
+#end
+
+<div>
+    <form id="config-form" class="form-inline">
+        <table id="configTable" data-search="true" data-show-columns="true">
+            <thead>
+            <th data-width="1">id</th>
+            <th data-width="100">名称</th>
+            <th data-width="100">字段名</th>
+            <th data-width="1">字段类型</th>
+            <th data-width="140">描述</th>
+            <th data-width="80">数据字典</th>
+            <th data-width="1">是否数组</th>
+            <th data-width="1">是否有效</th>
+            <th data-width="1">验证类型</th>
+            <th>验证数据</th>
+            <th data-width="80">联动节点</th>
+            <th data-width="1">联动方法</th>
+            <th data-width="80">监听值</th>
+            <th data-width="1">输入类型</th>
+            <th data-width="1">是否只读</th>
+            <th data-width="50">操作</th>
+            </thead>
+            <tbody id="configs">
+                #set($configCount=0)
+                #foreach($config in  $!configs)
+                    #set($configCount = $configCount + 1)
+                <tr>
+                    <td>
+                        <input type="hidden" name="id" value="$!config.id">
+                        <input type="hidden" name="keyword" value="$!config.key">
+                        $!config.id
+                    <td>
+                        <input class="form-control input-sm area-input" type="text" name="columnName" value=$!config.columnName>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm area-input" type="text"
+                               name="columnCode" value=$!config.columnCode>
+                    </td>
+                    <td>
+                        <select class="form-control input-sm" name="columnDataType">
+                            <option value="text" #if($config.columnDataType=='text')selected="selected"#end>字符串</option>
+                            <option value="int" #if($config.columnDataType=='int')selected="selected"#end>整数</option>
+                            <option value="decimal" #if($config.columnDataType=='decimal')selected="selected"#end>小数
+                            </option>
+                        </select></td>
+                    <td>
+                        <input class="form-control input-sm area-input" type="text"
+                               name="columnDescrption" value="$!config.columnDescrption">
+                    </td>
+                    <td>
+                        <input class="form-control input-sm area-input" type="text"
+                               name="dataDictKey" size="5" value="$!config.dataDictKey">
+                    </td>
+                    <td>
+                        <select class="form-control input-sm" name="isArray">
+                            #foreach($type in $tf)
+                                <option value="$type.value"
+                                        #if($config.isArray==$type.value)selected#end>$type.label</option>
+                            #end
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control input-sm" name="isValid">
+                            #foreach($type in $tf)
+                                <option value="$type.value"
+                                        #if($config.isValid==$type.value)selected#end>$type.label</option>
+                            #end
+                        </select>
+                    </td>
+                    <td>
+                        <select class="mselect" multiple="multiple" name="validationType">
+                            #foreach($type in $validTypes)
+                                <option value="$type"
+                                        #if($vt.collectionContain($config.validationType, $type))selected#end>$type</option>
+                            #end
+                        </select>
+                    </td>
+                    <td>
+                        <div class="area-div-normal">
+                            <textarea class="area-input-normal" type="text"
+                                      name="validatedata">$!config.validatedata</textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm area-input" size="15" type="text"
+                               name="listennode" value="$!config.listennode">
+                    </td>
+                    <td>
+                        <select class="form-control input-sm" name="listenfun">
+                            #foreach($fun in $lisfun)
+                                <option value="$fun.value" #if($vt.equals($config.listenfun, $fun.value))selected #end>$fun.label</option>
+                            #end
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm area-input" size="5" type="text"
+                               name="listenerValue" value="$!config.listenerValue">
+                    </td>
+                    <td>
+                        <select class="form-control input-sm" name="widgetType">
+                            #foreach($type in $inputTypes)
+                                <option value="$type.value"
+                                        #if($config.widgetType.equals($type.value))selected#end>$type.label</option>
+                            #end
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control input-sm" name="readonly">
+                            #foreach($type in $tf)
+                                <option value="$type.value"
+                                        #if($vt.parseInt($config.readonly)==$type.value)selected#end>$type.label</option>
+                            #end
+                        </select>
+                    </td>
+                    <td>
+                        <a href="#" class="" style="color:#428bca">
+                            <span class="glyphicon glyphicon-floppy-save" name="saveRow"></span>
+                        </a>
+                        <a href="#" class="" style="color:gray">
+                            <span class="glyphicon glyphicon-trash" name="delRow"></span>
+                        </a>
+                    </td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+    </form>
+</div>
+<div id="hiddenDiv" class="hidden">
+    <table id="hiddenTb">
+        <tr>
+            <td>
+                <input type="hidden" name="id" value="">
+            </td>
+            <td>
+                <input class="form-control input-sm area-input" type="text" name="columnName">
+            </td>
+            <td>
+                <input class="form-control input-sm area-input" type="text" name="columnCode">
+            </td>
+            <td>
+                <select class="form-control input-sm" name="columnDataType">
+                    <option value="text">字符串</option>
+                    <option value="int">整数</option>
+                    <option value="decimal">小数</option>
+                </select></td>
+            <td>
+                <input class="form-control input-sm area-input" type="text" name="columnDescrption">
+            </td>
+            <td>
+                <input class="form-control input-sm area-input" type="text" name="dataDictKey" size="5" value="-1">
+            </td>
+            <td>
+                <select class="form-control input-sm" name="isArray">
+                    #foreach($type in $tf)
+                        <option value="$type.value" #if($type.value=="0")selected#end>$type.label</option>
+                    #end
+                </select>
+            </td>
+            <td>
+                <select class="form-control input-sm" name="isValid">
+                    #foreach($type in $tf)
+                        <option value="$type.value">$type.label</option>
+                    #end
+                </select>
+            </td>
+            <td>
+                <select class="mselect" multiple="multiple" name="validationType">
+                    #foreach($type in $validTypes)
+                        <option value="$type">$type</option>
+                    #end
+                </select>
+            </td>
+            <td>
+                <div class="area-div-normal">
+                    <textarea class="area-input-normal" type="text" name="validatedata"></textarea>
+                </div>
+            </td>
+            <td>
+                <input class="form-control input-sm area-input" size="15" type="text" name="listennode">
+            </td>
+            <td>
+                <select class="form-control input-sm" name="listenfun">
+                    #foreach($fun in $lisfun)
+                        <option value="$fun.value" #if($fun.value=="")selected#end>$fun.label</option>
+                    #end
+                </select>
+            </td>
+            <td>
+                <input class="form-control input-sm area-input" size="5" type="text" name="listenerValue">
+            </td>
+            <td>
+                <select class="form-control input-sm" name="widgetType">
+                    #foreach($type in $inputTypes)
+                        <option value="$type.value" #if($type.value=="showInput")selected#end>$type.label</option>
+                    #end
+                </select>
+            </td>
+            <td>
+                <select class="form-control input-sm" name="readonly">
+                    #foreach($type in $tf)
+                        <option value="$type.value" #if($type.value=="0")selected#end>$type.label</option>
+                    #end
+                </select>
+            </td>
+            <td>
+                <a href="#" class="" style="color:#428bca">
+                    <span class="glyphicon glyphicon-floppy-save" name="saveRow""></span>
+                </a>
+                <a href="#" class="" style="color:gray">
+                    <span class="glyphicon glyphicon-trash" name="delRow"></span>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+#parse("/admin/admin_footer.vm")
+<script src="../../../static/js/config.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //设置绑定事件
+        set_orig_val();
+        bind_table_event();
+        fill_and_bind_query();
+    });
+    $('#configTable').bootstrapTable({
+        locale: 'zh-CN',
+        onAll: function () {
+            initMultipleSelect();
+        }
+    });
+</script>

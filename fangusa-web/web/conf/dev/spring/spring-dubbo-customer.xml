@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:consumer filter="cpDubboFilter" cluster="failfast"/>
+
+	<!-- 使用multicast广播注册中心暴露发现服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="${zookeeper.url}" cluster="failfast"/>
+
+    <!-- Ehr User相关服务 start -->
+    <dubbo:reference id="ehrUserFacade" interface="com.lianjia.uc.api.user.EhrUserFacade" check="false" timeout="3000" cluster="failfast" />
+    <dubbo:reference id="ehrOrgFacade" interface="com.lianjia.uc.api.org.EhrOrgFacade" check="false" timeout="3000" cluster="failfast" />
+    <dubbo:reference id="ehrPositionFacade" interface="com.lianjia.uc.api.postion.EhrPositionFacade" timeout="3000" check="false" cluster="failfast" />
+    <dubbo:reference id="ucAuthFacade" interface="com.lianjia.uc.api.auth.UcAuthFacade" check="false" timeout="3000" cluster="failfast" />
+    <dubbo:reference id="ehrEventFacade" interface="com.lianjia.uc.api.event.EhrEventFacade" check="false" timeout="3000" cluster="failfast" />
+    <dubbo:reference id="ucOrgExtInfoFacade" interface="com.lianjia.uc.api.ext.UcOrgExtInfoFacade" check="false" timeout="3000" cluster="failfast"/>
+    <dubbo:reference id="dutyMappingFacade" interface="com.lianjia.uc.api.ext.DutyMappingFacade" check="false" timeout="3000" cluster="failfast" />
+    <!-- Ehr User相关服务 end -->
+
+    <!-- 工作流平台相关 start-->
+    <dubbo:reference id="deployServiceFacade" interface="com.lianjia.workflow.api.DeployServiceFacade" check="false" timeout="3000" cluster="failfast"/>
+    <dubbo:reference id="instanceServiceFacade" interface="com.lianjia.workflow.api.InstanceServiceFacade" check="false" timeout="3000" cluster="failfast"/>
+    <dubbo:reference id="taskServiceFacade" interface="com.lianjia.workflow.api.TaskServiceFacade" check="false" timeout="3000" cluster="failfast"/>
+    <dubbo:reference id="definitionQueryFacade" interface="com.lianjia.workflow.api.DefinitionQueryFacade" check="false" timeout="3000" cluster="failfast"/>
+    <!-- 工作流平台相关 end-->
+
+    <!--dolphin相关 start -->
+    <dubbo:reference id="baseDataFacade" interface="com.lianjia.dolphin.api.BaseDataFacade" check="false" timeout="3000" />
+    <dubbo:reference check="false" timeout="3000" interface="com.lianjia.dolphin.api.ContractTypeFacade" id="contractTypeFacade" />
+    <dubbo:reference check="false" timeout="3000" interface="com.lianjia.dolphin.api.CostItemFacade" id="costItemFacade" />
+    <dubbo:reference check="false" timeout="3000" interface="com.lianjia.dolphin.api.ProductFacade" id="productFacade" />
+    <dubbo:reference check="false" timeout="3000" interface="com.lianjia.dolphin.api.TraderFacade" id="traderFacade" />
+    <dubbo:reference check="false" timeout="3000" interface="com.lianjia.dolphin.api.VerificationFacade" id="verificationFacade" />
+    <!--dolphin相关 end -->
+</beans>

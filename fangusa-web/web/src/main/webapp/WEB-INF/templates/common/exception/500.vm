@@ -1,0 +1,13 @@
+#parse("/layout/head.vm")
+<link rel="stylesheet" href="$!fe_base_url/asset/pages/common/css/error.css"/>
+#parse("/layout/headbody.vm") 
+#parse("/common/include/header.vm")
+<div class="container">
+	<div class="errorImg">
+		<img src="$!fe_base_url/asset/pages/common/img/error.png">
+		$!{code}
+		<p>$!{message}</p>
+	</div>
+</div>
+#parse("/comp/go-top.vm")
+#parse("/layout/footer.vm")

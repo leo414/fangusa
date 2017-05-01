@@ -1,0 +1,151 @@
+#parse("/admin/admin_header.vm")
+#parse("/admin/attr_conf_nav.vm")
+<div class="section div-form-horizontal">
+    <h3 class="page-header">盖章公共配置</h3>
+    <form id="common_conf_form" class="form-horizontal" action="saveCommonSealConf">
+        #foreach($conf in $commonConfList)
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">$!conf.key</label>
+
+                <div class="col-sm-5">
+                    <input type="text" key="$!conf.key" serveId="$!conf.configId" class="form-control" value="$!conf.value">
+                </div>
+            </div>
+        #end
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="common_conf_submit" type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="section">
+    <h3 class="page-header">盖章城市配置</h3>
+
+    <form class="form-inline" id="city_conf_query_form">
+        <div class="form-group">
+            <label class="control-label">城市</label>
+            <select id="city" name="city" class="form-control">
+            </select>
+            <label class="control-label">分公司</label>
+            <input id="branch" class="form-control input-sm" type="text" name="branch" size="10" readonly>
+            <label class="control-label">协议类型</label>
+            <select id="protocol" name="protocol" class="form-control">
+            </select>
+            <label class="control-label">业务类型</label>
+            <select id="biz" name="biz" class="form-control">
+            </select>
+            <label class="control-label">交易产品</label>
+            <select id="product" name="product" class="form-control">
+            </select>
+            <label class="control-label">分段</label>
+            <select id="section" name="section" class="form-control">
+            </select>
+        </div>
+        <button id="city_conf_query" type="button" class="btn btn-primary">查询</button>
+    </form>
+    <div id="city_conf" class="section div-form-horizontal">
+        <form id="city_conf_form" class="form-horizontal" action="saveCitySealConf">
+            <input type="hidden" id="city_group" name="group">
+            <div class="form-group">
+                <label for="header" class="col-sm-2 control-label">页眉文件</label>
+                <div class="col-sm-5">
+                    <input type="text" id="header" key="header" name="header" serveId="" class="form-control" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rule_num" class="col-sm-2 control-label">盖章规则号</label>
+
+                <div class="col-sm-5">
+                    <input type="text" id="rule_num" key="seal.ruleNum" name="rule_num" serveId="" class="form-control" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="page_num_begin" class="col-sm-2 control-label">页码起始位置</label>
+
+                <div class="col-sm-5">
+                    <input type="text" id="page_num_begin" key="page.num.begin" name="page_num_begin" serveId="" class="form-control" value="2">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button id="city_conf_submit" type="button" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+#parse("/admin/admin_footer.vm")
+<script src="../../../static/js/attr_conf.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        fill_and_bind_query();
+        $("#city_conf_query").click(function () {
+            $.post("citySealConf", $("#city_conf_query_form").serialize(), function (data) {
+                if(data.code==1) {
+                    var _group = data.data.group;
+                    var _header = data.data.list.header;
+                    var _rule_num = data.data.list.ruleNum;
+                    var _bigin = data.data.list.begin;
+                    $("#city_group").val(_group);
+                    if(_header!=undefined) {
+                        $("#header").val(_header.value).attr("serveId", _header.configId);
+                    } else {
+                        $("#header").val("").attr("serveId", "");
+                    }
+                    if(_header!=undefined) {
+                        $("#rule_num").val(_rule_num.value).attr("serveId", _rule_num.configId);
+                    } else {
+                        $("#rule_num").val("").attr("serveId", "");
+                    }
+                    if(_bigin!=undefined) {
+                        $("#page_num_begin").val(_bigin.value).attr("serveId", _bigin.configId);
+                    } else {
+                        $("#page_num_begin").val("").attr("serveId", "");
+                    }
+                } else {
+                    Modal.alert({msg: "数据加载失败!"});
+                }
+
+            });
+        });
+        $("#common_conf_submit").click(function() {
+            save($("#common_conf_form"));
+        });
+        $("#city_conf_submit").click(function() {
+            save($("#city_conf_form"));
+        });
+    });
+    $('#seal_table').bootstrapTable({
+        locale: 'zh-CN',
+    });
+
+    function save(el) {
+        var params = new Array();
+        var group;
+        if($(el).find("#city_group")) {
+            group = $("#city_group").val();
+        }
+        $(el).find("input[type='text']").each(function() {
+            var data = {};
+            data["id"] = $(this).attr("serveId");
+            data["key"] = $(this).attr("key");
+            data["value"] = $(this).val();
+            if(group) {
+                data["group"] = group;
+            }
+            params.push(data);
+        });
+        var json = JSON.stringify(params);
+        var url = $(el).attr("action");
+        $.post(url, {data : json}, function(data) {
+            if(data.code==1) {
+                Modal.alert({msg: "保存成功!"});
+            } else {
+                Modal.alert({msg: "保存失败!"});
+            }
+        });
+    }
+</script>

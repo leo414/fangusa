@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration package="com.lianjia.commons.log.extend">
+	<Appenders>
+		<!--sql日志 -->
+		<RollingRandomAccessFile name="sqlFile" fileName="/home/work/var/cp-goldbach/logs/sql.log" filePattern="/home/work/var/cp-goldbach/logs/%d{yyyyMMdd}/sql.log">
+			<PatternLayout>
+				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
+
+		<!-- logger.info\logger.debug\logger.trace 输出 -->
+		<RollingRandomAccessFile name="infoFile" fileName="/home/work/var/cp-goldbach/logs/info.log" filePattern="/home/work/var/cp-goldbach/logs/%d{yyyyMMdd}/info.log">
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL" />
+				<ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+			</Filters>
+			<PatternLayout>
+				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
+
+		<!-- logger.warn\logger.error 输出 -->
+		<RollingRandomAccessFile name="errorFile" fileName="/home/work/var/cp-goldbach/logs/error.log" filePattern="/home/work/var/cp-goldbach/logs/%d{yyyyMMdd}/error.log">
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+			</Filters>
+			<PatternLayout>
+				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
+
+		<!-- accessLog 输出 -->
+		<RollingRandomAccessFile name="accessFile" fileName="/home/work/var/cp-goldbach/logs/access.log" filePattern="/home/work/var/cp-goldbach/logs/%d{yyyyMMdd}/access.log">
+			<PatternLayout>
+				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
+
+		<!-- other -->
+		<RollingRandomAccessFile name="All" fileName="/home/work/var/cp-goldbach/logs/all_is_well.log" filePattern="/home/work/var/cp-goldbach/logs/%d{yyyyMMdd}/all_is_well.log">
+			<PatternLayout>
+				<Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
+	</Appenders>
+	<Loggers>
+		<!-- sql -->
+		<Logger name="com.lianjia.goldbach.dao" level="DEBUG" additivity="false">
+			<appenderRef ref="sqlFile" />
+			<appenderRef ref="All" />
+		</Logger>
+
+		<!-- access -->
+		<Logger name="com.lianjia.commons.log.RequestLoggerHandler" level="INFO" additivity="false">
+			<appenderRef ref="accessFile" />
+			<appenderRef ref="All" />
+		</Logger>
+
+		<!-- com.lianjia INFO ERROR -->
+		<Logger name="com.lianjia" level="INFO" additivity="false">
+			<appenderRef ref="errorFile" />
+			<appenderRef ref="infoFile" />
+			<appenderRef ref="All" />
+		</Logger>
+
+		<Logger name="batch.log">
+			<appenderRef ref="batchFile" />
+		</Logger>
+
+		<!-- spring \ mybatis \ velocity \ apache \ .. log -->
+		<Root level="INFO">
+			<appenderRef ref="otherFile" />
+			<appenderRef ref="All" />
+		</Root>
+	</Loggers>
+</Configuration>

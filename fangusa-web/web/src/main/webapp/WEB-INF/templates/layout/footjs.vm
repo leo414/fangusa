@@ -1,0 +1,13 @@
+##  列表交互信息
+<script type="text/javascript" src="$!fe_base_url/asset/eli.js"></script>
+<script type="text/javascript" src="$!fe_base_url/asset/common/all.js"></script>
+<script type="text/javascript">
+require.config({ 
+	baseUrl:"$!fe_base_url/asset",
+	paths:{
+		"iscroll":"../deps/iscroll/iscroll.js",
+		"iscroll-zoom":"../deps/iscroll/iscroll-zoom.js"
+	},
+	urlArgs:"?v=$!fe.getVersion()"
+});
+</script>

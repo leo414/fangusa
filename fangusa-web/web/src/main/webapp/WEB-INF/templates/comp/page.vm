@@ -1,0 +1,31 @@
+<script type="text/templae" id="jsPagerTemplate" style="display:none;">
+  <%curPage = parseInt(curPage);totalPage=parseInt(totalPage);%>
+  <%if(curPage != 1 && totalPage > 1){%>
+    <a href="javascript:;" class="actPage" act-data="currentPage=<%=curPage-1%>">上一页</a>
+  <%}%>  
+  <%if(totalPage <= 8){%>
+      <%for(var j = 1; j <= totalPage;j++){ %>
+        <a class="<%=curPage==j?'on':' actPage'%>" act-data="currentPage=<%=j%>" href="javascript:;"><%=j%></a>
+      <%}%>
+  <%}else{%>
+      <a href="javascript:;" class="<%=curPage==1?'on':' actPage'%>" act-data="currentPage=1">1</a>
+      <%if(curPage > 6){%>
+           <span>...</span>
+      <%}%>
+      <%var startPage = Math.max(curPage-3,2),endPage = Math.min(curPage+4,totalPage-1);%>
+      <%for(var j = startPage;j<= endPage;j++){%>
+        <a class="<%=curPage==j?'on':' actPage'%>" act-data="currentPage=<%=j%>" href="javascript:;"><%=j%></a>
+      <%}%>
+      <%if(curPage < totalPage-5){%>
+          <span>...</span>
+      <%}%>
+      <a class="<%=curPage==totalPage?'on':' actPage'%>" act-data="currentPage=<%=totalPage%>" href="javascript:;"><%=totalPage%></a>
+  <%}%>
+  <%if(curPage != totalPage){%>
+    <a class="actPage" act-data="currentPage=<%=curPage+1%>" href="javascript:;">下一页</a>
+  <%}%>
+  <%if(totalPage > 1){%>
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="page_skip">第</span> <input type="text" value="<%=curPage%>" class="page_txt" id="pageInput_" name="currentPage"/> <span class="page_skip">页</span> 
+  <input type="button" value="确定" class="page_btn actSetPage" />
+  <%}%>
+</script>

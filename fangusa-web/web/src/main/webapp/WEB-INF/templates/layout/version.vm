@@ -1,0 +1,15 @@
+#set($fe_version="1.0.16")
+
+#set($_product = $!fe.getProduct())
+
+#set($fe_base_url = "http://cdn.lianjia.com/se-fe/")
+
+#if ($_product == "prod")
+
+	#set($fe_base_url = "http://secdn.lianjia.com/se-fe/"+$!fe_version)
+
+#elseif($_product == "test")
+	#set($fe_base_url = "http://fe.off.lianjia.com/se-fe/$!fe_version")
+#else
+	#set($fe_base_url = "http://devcdn.lianjia.com:3000/se-fe")
+#end

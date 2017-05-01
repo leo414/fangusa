@@ -1,0 +1,65 @@
+
+<header class="header new-header">
+    <div class="container">
+        <a class="se-logo"></a>
+        <ul class="u-nav fl clear new-nav">
+            #foreach ($link in $!feNav.getLinks())
+                #if($!link.name!="消息")
+                    #if($!link.name=="首页")
+                        <input type="hidden" value="$link.link" class="indexLink"/>
+                    #end
+                    <li class="tab #if($!link.current) on #end">
+                        <a #if($link.link)href="$link.link"#end #if($link.isBlank)target="_blank"#end>$!link.name</a>
+                        #if($!link.name=="应用")
+                            #if ($!link.child && $!link.child.size() > 0)
+
+                                <ul class="son-nav clear">
+                                    #foreach ($childLink in $link.child )
+                                        <li>
+                                            <a #if($childLink.link)href="$childLink.link"#end #if($childLink.isBlank)target="_blank"#end>$childLink.name</a>
+                                            #if ($!childLink.child && $!childLink.child.size() > 0)
+                                                <ul class="three-nav">
+                                                    #foreach ($twochildLink in $childLink.child)
+                                                        <li>
+                                                            <a #if($twochildLink.link)href="$twochildLink.link"#end #if($twochildLink.isBlank)target="_blank"#end>$twochildLink.name</a>
+                                                        </li>
+                                                    #end
+                                                </ul>
+                                            #end
+                                        </li>
+                                    #end
+                                </ul>
+                            #end
+                        #end
+                    </li>
+                #else
+                    <input type="hidden" value="$link.link" class="msgLink"/>
+                #end
+            #end
+        </ul>
+        #set($currentUser = $!shiro.getPrincipal())
+        <div class="fr">
+            <!-- <a href="#" class="app-down">App下载</a> -->
+            <span class="user-name getmsg"><a href="">消息</a><em></em><span class="choosedMsg"> <span class="currentName">$currentUser.name</span><ul class="msgList"></ul><i></i></span><input type="hidden" value="$currentUser.id" class="ucId"/>#if($currentUser.isProxy)<input type="hidden" value="($currentUser.actualUserName -代客)" class="actualUserName"/>#end</span>
+            <!--<a href="#">修改密码</a><span class="split">|</span>--><a href="$!fe.contextRoot/logout" title="退出">退出</a>
+        </div>
+    </div>
+</header>
+#foreach ($link in $!feNav.getLinks())
+    #if($!link.name!="应用"&&$!link.current&&$link.child)
+    <div class="two-header">
+        <div class="container">
+            <ul class="clear">
+                #foreach ($childLink in $link.child )
+                    <li #if($!childLink.current) class="active" #end>
+                        <a #if($childLink.link)href="$childLink.link"#end #if($childLink.isBlank)target="_blank"#end>$childLink.name</a>
+                    </li>
+                #end
+            </ul>
+        </div>
+    </div>
+        #set($ifNew="true")
+    #end
+#end
+
+<div class="se-wrapper se-wrapper1 #if($ifNew=="true")new-se-wrapper#end">

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hhh.fangusa.dao.ResourceMapper">
+    <resultMap id="BaseResultMap" type="com.hhh.fangusa.model.Resource">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="contact" property="contact" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, contact, tel, address, email
+    </sql>
+    <select id="selectAllByForeignId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from goldbach_party
+        where contract_id = #{id}
+    </select>
+    <select id="selectByContractId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from goldbach_party
+        where contract_id = #{contractId}
+    </select>
+    <delete id="deleteByContractId" parameterType="java.lang.Long">
+        delete from goldbach_party
+        where contract_id = #{contractId}
+    </delete>
+    <insert id="insert" parameterType="com.lianjia.goldbach.model.Party">
+        insert into goldbach_party (id, name, contact,
+        tel, address, email
+        )
+        values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR},
+        #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="multiInsert" parameterType="java.util.List">
+        insert into goldbach_party (name, contact, tel, address, email)
+        values
+        <foreach collection="records" item="record" index="index" open="(" separator="),(" close=")">
+            #{record.name},
+            #{record.contact},
+            #{record.tel},
+            #{record.address},
+            #{record.email}
+        </foreach>
+    </insert>
+    <insert id="multiUpdate" parameterType="java.util.List">
+        replace into goldbach_party (id, name, contact, tel, address, email)
+        values
+        <foreach collection="records" item="record" index="index" open="(" separator="),(" close=")">
+            #{record.id},
+            #{record.name},
+            #{record.contact},
+            #{record.tel},
+            #{record.address},
+            #{record.email}
+        </foreach>
+    </insert>
+</mapper>

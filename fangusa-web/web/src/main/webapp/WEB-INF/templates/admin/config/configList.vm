@@ -1,0 +1,210 @@
+#parse("/layout/head.vm")
+<link rel="stylesheet" href="$!fe_base_url/asset/pages/hetong/css/list.css">
+<link rel="stylesheet" href="$!fe_base_url/deps/jquery-ui-1.11.4/jquery-ui.min.css"/>
+#parse("/layout/headbody.vm") 
+#parse("/common/include/header.vm")
+
+<div class="container" id="contractList">
+	#parse("/common/include/breadCrumb.vm")
+	<div class="screening_origin">
+		#parse("/common/include/tabs.vm")
+		<div class="sub-nav-module list-search form-control">
+			<div class="form-inline form-control-normal">
+				<form id="addForm" action="insertConfig" method="post">
+					<label class="label"> 
+						<span class="label-name">配置分类:</span>
+						<select class="small-select" name="group" id="group" validate="notNull" validatename="配置分类">
+							<option value="">全部</option>
+	                       	#foreach(${group} in ${groupList})
+	                           	<option value="${group.group}">${group.name}</option>
+	                       	#end
+						</select>
+					</label>
+					<label class="label">
+						<span class="label-name">KEY:</span>
+						<input type="text" class="small-input" name="key" id="key" validate="notNull" validatename="KEY">
+					</label>
+					<label class="label">
+						<span class="label-name">VALUE:</span>
+						<input type="text" class="small-input" name="value" id="value" validate="notNull" validatename="VALUE">
+					</label>
+					<a href="#" class="btn btn-green" onclick="addConfig()">添加</a>
+				</form>
+			</div>
+		</div>
+		<form action="/" id="searchForm" method="get">
+			<input type="hidden" name="pageNum" value="1"/>
+			<input type="hidden" name="pageSize" value="$fe.getPageSize()"/>
+			<input type="hidden" name="currentPage" value="1"/>
+			<div class="form-inline form-control-normal">
+				<label class="label"> 
+					<span class="label-name" >配置分类:</span>
+					<select class="small-select" name="group">
+						<option value="">全部</option>
+                       	#foreach(${group} in ${groupList})
+                           	<option value="${group.group}">${group.name}</option>
+                       	#end
+					</select>
+				</label> 
+				<label class="label">
+					<span class="label-name">KEY:</span>
+					<input type="text" class="small-input" name="key">
+				</label>
+				<label class="label">
+					<span class="label-name">VALUE:</span>
+					<input type="text" class="small-input" name="value">
+				</label>
+			</div>
+			<div class="btn-group form-inline">
+				<button class="btn actSearch">查询</button>
+				<button class="btn actReset">重置</button>
+			</div>
+		</form>
+	</div>
+	<div class="module-list" id="contractList">
+		<h2>
+		合同列表
+		</h2>
+		<div class="module table-module module-noshadow">
+			<div class="table-content">
+				<table class="table table-border">
+					<thead>
+						<tr>
+							<th style="width:5%">顺序</th>
+                            <th style="width:15%">分类</th>
+							<th style="width:30%">KEY</th>
+							<th style="width:40%">VALUE</th>
+							<th style="width:5%">修改</th>
+							<th style="width:5%">删除</th>
+						</tr>
+					</thead>
+					<tbody node-type="list">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/template" id="contractListTemplate">
+<%if(code == 1){%>
+<%for(var i = 0 ,len = data.list.length ; i < len ; i++){%>
+<%var config = data.list[i];%>
+<tr>
+    <td class="center">
+        <p><%=i+1%></p>
+    </td>
+    <td class="center">
+        <p><%=config.configGroupDescription%></p>
+    </td>
+    <td class="left" id="Key<%=config.configId%>">
+        <p><%=config.key%></p>
+    </td>
+    <td class="left" id="Value<%=config.configId%>">
+        <p><%=config.value%></p>
+    </td>
+    <th class="center" ><a href="#" onclick="editConfig(<%=config.configId%>, this)" >修改</a></th>
+	<th class="center" ><a href="#" onclick="deleteConfig(<%=config.configId%>)" >删除</a></th>
+</tr>
+<%}%>
+<tr>
+	<td colspan="10">
+		<div class="page-box" node-type="pageList" node-val="totalPage=<%=data.pages%>&curPage=<%=data.pageNum%>"></div>
+	</td>
+</tr>
+<%}else{%>
+<tr>
+	<td colspan="10" style="text-align:center;">
+	暂无数据
+	</td>
+</tr>
+<%}%>
+</script>
+
+#parse("/comp/page.vm") 
+#parse("/comp/go-top.vm")
+
+#parse("/layout/footjs.vm")
+<script src="$!fe_base_url/deps/jquery-ui-1.11.4/jquery-ui-cn.js"></script>
+<script>
+	require([ "pages/hetong/list" ], function(List) {
+		var list = new List({
+			el : "#contractList",
+			url : "$fe.contextRoot/config/configList/",
+			template:"#contractListTemplate",
+			method:"post",
+			data:{
+				pageNum:1,
+				pageSize:$fe.getPageSize()
+			}
+		})
+		list.init();
+	})
+	function addConfig(){
+		if(!$("#group").val()){
+			alert("配置分配不能为空");
+			return;
+		}
+		if(!$("#key").val()){
+			alert("KEY不能为空");
+			return;
+		}
+		if(!$("#value").val()){
+			alert("VALUE不能为空");
+			return;
+		}
+		var data = $("#addForm").serialize();
+		$.getJSON("$fe.contextRoot/config/insertConfig?" + data, function(d){
+			if(d.code == 0){
+				alert(d.msg);
+			}else{
+				$(".actSearch").click();
+			}
+		});
+	}
+	function deleteConfig(id){
+		if(confirm("确定删除吗？")){
+			$.getJSON("$fe.contextRoot/config/deleteConfig?id=" + id, function(d){
+				$(".actSearch").click();
+			});
+		}
+	}
+	var editConfigId = -1;
+	function editConfig(id, t){
+		if($(t).html() != "修改"){
+			return;
+		}
+		if(editConfigId != -1){
+			alert("已经存在修改！");
+			return;
+		}
+		editConfigId = id;
+		$("#Key" + id).html("<input type='text' style='width:100%; height:100%' id='IKey" + id + "' value='" + $("#Key" + id + " p").html() + "'/>");
+		$("#Value" + id).html("<input type='text' style='width:100%; height:100%' id='IValue" + id + "' value='" + $("#Value" + id + " p").html() + "'/>");
+		$(t).html("保存");
+		$(t).bind("click", updateConfig);
+	}
+	function updateConfig(){
+		if(editConfigId == -1){
+			alert("不已经存在修改！");
+			return;
+		}
+		if(!$("#IKey" + editConfigId).val()){
+			alert("KEY不能为空");
+			return;
+		}
+		if(!$("#IValue" + editConfigId).val()){
+			alert("VALUE不能为空");
+			return;
+		}
+		$.getJSON("$fe.contextRoot/config/updateConfigKeyAndValueById", 
+		{id: editConfigId, 
+		 key: $("#IKey" + editConfigId).val(),
+		 value: $("#IValue" + editConfigId).val()}, 
+		function(d){
+			$(".actSearch").click();
+		})
+		editConfigId = -1;
+	}
+</script>
+#parse("/layout/footer.vm")

@@ -1,0 +1,31 @@
+.hidden-bar {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    right: 0;
+}
+
+.display-bar {
+    position: absolute;
+    left: 0;
+    z-index: 999;
+}
+
+.hidden-el {
+    display: none;
+}
+.full-width {
+    width : 100%;
+}
+
+.bg-change {
+    background : #DFF0D8
+}
+
+.section {
+    margin-top: 30px;
+}
+
+.div-form-horizontal {
+    width : 1000px;
+}

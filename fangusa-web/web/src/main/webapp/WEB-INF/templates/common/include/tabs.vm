@@ -1,0 +1,18 @@
+<div class="choose_title_parent clear">
+#set ($linkItemList = $linkUtil.getTabLinks($request.getServletPath(), $LINKS_PARAM_MAP))
+#if($linkItemList && $linkItemList.size() >0)
+    <div class="choose_title" style="margin:0;">
+        #foreach($item in $linkItemList)
+            <a #if($item.code.equals($linkUtil.getCurrentTab($request.getServletPath())))class="active"#end
+               href="javascript:location.href='$fe.contextRoot$item.url'" >$item.name</a>
+        #end
+    </div>
+    <div class="menu-btn">
+		<!-- 针对定金经纪人 添加创建订单按钮 -->
+		#if ($linkUtil.getCurrentTab($request.getServletPath()).equals('EARNEST_AGENT_LIST')||
+			$linkUtil.getCurrentTab($request.getServletPath()).equals('INTENTION_AGENT_LIST'))
+			<a href="$fe.contextRoot/order/addSystemOrder" class="right-btn">创建订单</a>
+		#end
+	</div>
+#end
+</div>

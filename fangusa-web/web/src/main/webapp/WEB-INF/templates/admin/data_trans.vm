@@ -1,0 +1,64 @@
+#parse("/admin/admin_header.vm")
+<div id="import">
+    <h3 class="page-header">合同模版数据导入</h3>
+    <input id="input-id" type="file" class="file" data-preview-file-type="text">
+</div>
+<div id="export" class="section">
+    <h3 class="page-header">全部数据导出</h3>
+
+    <div class="btn-group" role="group" aria-label="...">
+        <a class="btn btn-primary" href="$fe.contextRoot/admin/contract/config/export/csv">csv</a>
+    </div>
+</div>
+<div id="refresh" class="section">
+    <h3 class="page-header">刷缓存</h3>
+    <div class="btn-group" role="group" aria-label="...">
+        <a id="dict_config" class="btn btn-primary" href="#">数据字典</a>
+        <a id="common_config" class="btn btn-primary" href="#">属性配置</a>
+        <a id="contract_detail_config" class="btn btn-primary" href="#">合同配置</a>
+    </div>
+</div>
+#parse("/admin/admin_footer.vm")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dict_config').click(function () {
+            $.get('$fe.contextRoot/rdtools/refreshDataDict', function (data) {
+                if (data.code == 1) {
+                    Modal.alert({msg: "刷新成功!"});
+                } else {
+                    Modal.alert({msg: "刷新失败!"});
+                }
+            });
+        });
+        $('#common_config').click(function () {
+            $.get('$fe.contextRoot/rdtools/refreshCommonConfig', function (data) {
+                if (data.code == 1) {
+                    Modal.alert({msg: "刷新成功!"});
+                } else {
+                    Modal.alert({msg: "刷新失败!"});
+                }
+            });
+        });
+        $('#contract_detail_config').click(function () {
+            $.get('refreshCache', function (data) {
+                if (data.code == 1) {
+                    Modal.alert({msg: "刷新成功!"});
+                } else {
+                    Modal.alert({msg: "刷新失败!"});
+                }
+            });
+        });
+
+    });
+    $("#input-id").fileinput({
+        language: 'zh',
+        uploadUrl: 'import',
+        allowedFileExtensions: ['csv'],
+        allowedFileTypes: ['text'],
+        previewSettings: {
+            text: {width: "500px", height: "136px"},
+        },
+        maxFileCount: 1,
+        maxFileSize: 2000,
+    });
+</script>
