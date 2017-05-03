@@ -4,21 +4,19 @@ import Vue from 'vue'
 
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
+import FastClick from 'fastclick'
 
 import App from './App'
 import Routers from './router'
 import Util from './libs/util'
 
-import  './scss/utility.scss'
-import 'iview/dist/styles/iview.css'
-
-import LoadingBar from 'iview/src/components/loading-bar'
-
+import './scss/utility.scss'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false
+FastClick.attach(document.body)
 
 // route config
 const RouterConfig = {
@@ -28,14 +26,8 @@ const RouterConfig = {
 const router = new VueRouter(RouterConfig)
 
 router.beforeEach((to, from, next) => {
-  LoadingBar.start()
   Util.title(to.meta.title)
   next()
-})
-
-router.afterEach((to, from, next) => {
-  LoadingBar.finish()
-  window.scrollTo(0, 0)
 })
 
 /* eslint-disable no-new */
