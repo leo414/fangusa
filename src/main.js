@@ -14,7 +14,6 @@ import 'iview/dist/styles/iview.css'
 
 import LoadingBar from 'iview/src/components/loading-bar'
 
-
 Vue.use(Vuex)
 Vue.use(VueRouter)
 
