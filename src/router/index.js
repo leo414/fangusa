@@ -1,13 +1,13 @@
-const Hello = resolve => require(['../components/Hello.vue'], resolve)
+const Homepage = resolve => require(['../components/homePage/index.vue'], resolve)
 
 const routers = [
   {
     path: '/',
     meta: {
-      title: 'fangusa-test'
+      title: '房天下首页'
     },
-    name: 'Hello',
-    component: Hello
+    name: 'Homepage',
+    component: Homepage
   },
 ]
 export default routers
