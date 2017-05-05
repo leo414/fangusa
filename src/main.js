@@ -35,6 +35,11 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from, next) => {
   LoadingBar.finish()
   window.scrollTo(0, 0)
+  // 谷歌统计
+  if (window.ga) {
+    window.ga('set', 'page', to.fullPath) // 你可能想根据请求参数添加其他参数，可以修改这里的 to.fullPath
+    window.ga('send', 'pageview')
+  }
 })
 
 /* eslint-disable no-new */
