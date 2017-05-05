@@ -37,15 +37,13 @@ export default {
 #banner {
   width: 100%;
   height: 500px;
-  line-height: 500px;
 }
 
 .demo-carousel {
   width: inherit;
-  height: inherit;
-  text-align: center;
-  color: #fff;
-  font-size: 20px;
-  background: #506b9e;
+  height: 500px;
+  background: url('http://placehold.it/1920x1080') center center no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 </style>
