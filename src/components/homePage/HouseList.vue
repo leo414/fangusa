@@ -67,7 +67,6 @@ export default {
 .h1 {
   padding: 20px 0;
   color: #000;
-  font-size: 32px;
 }
 
 </style>

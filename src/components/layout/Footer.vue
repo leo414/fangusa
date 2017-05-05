@@ -74,6 +74,7 @@ export default {
 .top {
   .h2 {
     margin-bottom: 10px;
+    color: #000;
   }
   .nav_list {
     li {

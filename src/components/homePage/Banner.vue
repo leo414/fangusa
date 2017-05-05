@@ -1,16 +1,16 @@
 <template lang="html">
   <Carousel id="banner" autoplay v-model="value2">
     <Carousel-item>
-      <div class="demo-carousel">1</div>
+      <div class="demo-carousel"></div>
     </Carousel-item>
     <Carousel-item>
-      <div class="demo-carousel">2</div>
+      <div class="demo-carousel"></div>
     </Carousel-item>
     <Carousel-item>
-      <div class="demo-carousel">3</div>
+      <div class="demo-carousel"></div>
     </Carousel-item>
     <Carousel-item>
-      <div class="demo-carousel">4</div>
+      <div class="demo-carousel"></div>
     </Carousel-item>
   </Carousel>
 </template>
