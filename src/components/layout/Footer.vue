@@ -1,5 +1,5 @@
 <template lang="html">
-<footer id="footer">
+<footer id="footer" class="bg_white_container">
   <div class="container">
     <Row class="top">
       <Coll span="8">
@@ -36,7 +36,7 @@
         <router-link to="#">备案信息</router-link>
       </Coll>
       <Coll span="8">
-        <router-link to="#">使用调课</router-link>
+        <router-link to="#">使用条款</router-link>
         <i class="i shugang" />
         <router-link to="#">隐私协议</router-link>
         <i class="i shugang" />
@@ -68,8 +68,6 @@ export default {
 #footer {
   margin-top: 30px;
   padding-top: 30px;
-  width: 100%;
-  height: auto;
   border-top: 14px $btn_color solid;
 }
 

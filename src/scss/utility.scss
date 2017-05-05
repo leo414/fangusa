@@ -4,12 +4,18 @@
 #app {
   background-repeat: repeat-x;
   background-position: center 0;
-  background-color: #fff;
+  background-color: $app_bg_colol;
 }
 
 .container {
   width: $container_width !important;
   margin: 0 auto;
+}
+
+.bg_white_container {
+  width: 100%;
+  height: auto;
+  background: #fff;
 }
 
 .fr { float: right !important; }

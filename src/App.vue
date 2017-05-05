@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <nav-layout />
+    <search-layout />
     <router-view></router-view>
     <footer-layout />
   </div>
@@ -9,10 +10,12 @@
 <script>
 import Nav from './components/layout/Nav.vue'
 import Footer from './components/layout/Footer.vue'
+import Search from './components/layout/Search.vue'
 export default {
   name: 'App',
   components: {
     navLayout: Nav,
+    searchLayout: Search,
     footerLayout: Footer,
   },
 }
