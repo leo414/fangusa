@@ -2,9 +2,16 @@
 @import "mixins";
 
 #app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   background-repeat: repeat-x;
   background-position: center 0;
   background-color: $app_bg_colol;
+
+  #app_content {
+    flex: 1;
+  }
 }
 
 .container {
