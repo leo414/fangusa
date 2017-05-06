@@ -18,7 +18,7 @@
       </Coll>
       <Coll class="entry" span="3">
         <router-link to="login">登录</router-link>
-        <i class="i shugang" />
+        <i class="i i-shugang" />
         <router-link to="register">注册</router-link>
       </Coll>
     </Row>

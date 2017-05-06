@@ -37,11 +37,11 @@
       </Coll>
       <Coll span="8">
         <router-link to="#">使用条款</router-link>
-        <i class="i shugang" />
+        <i class="i i-shugang" />
         <router-link to="#">隐私协议</router-link>
-        <i class="i shugang" />
+        <i class="i i-shugang" />
         <router-link to="#">关于我们</router-link>
-        <i class="i shugang" />
+        <i class="i i-shugang" />
         <router-link to="#">联系我们</router-link>
       </Coll>
       <Coll span="8" class="tr pr-30">
@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 #footer {
-  margin-top: 30px;
+  margin-top: 50px;
   padding-top: 30px;
   border-top: 14px $btn_color solid;
 }

@@ -125,6 +125,7 @@ export default {
   }
 
   .desc {
+    height: 60px;
     font-size: 12px;
     @include text-multiLine-ellipsis(3, 20px)
   }

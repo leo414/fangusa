@@ -3,10 +3,10 @@
   <div class="img_box"></div>
 
   <header class="header">
-    <i class="i date" />
+    <i class="i i-date" />
     2017-12-02
     <div class="label">
-      <i class="i tag" />
+      <i class="i i-tag" />
       <span class="theme_color">文章标签</span>
     </div>
   </header>
@@ -82,12 +82,14 @@ export default {
 
 .title {
   margin: 10px 0;
+  height: 44px;
   font-size: 18px;
   color: #000;
   @include text-multiLine-ellipsis(2, 22px)
 }
 
 .desc {
+  height: 60px;
   @include text-multiLine-ellipsis(3, 20px)
 }
 

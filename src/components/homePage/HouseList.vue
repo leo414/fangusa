@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="new_house" class="container">
     <h1 class="h1">{{title}}</h1>
-    <Carousel id="banner" autoplay v-model="value2">
+    <Carousel id="banner" v-model="value2">
       <Carousel-item>
         <Row type="flex" justify="space-between" class="code-row-bg">
           <Coll class="house" span="8">
@@ -66,7 +66,6 @@ export default {
 
 .h1 {
   padding: 20px 0;
-  color: #000;
 }
 
 .house {

@@ -7,10 +7,10 @@
         <button>搜索</button>
       </div>
       <div class="advanced_search_btn" @click="is_show_search = !is_show_search">
-        <i class="i shezhi1" />
+        <i class="i i-shezhi1" />
         <a href="javascript:;">高级搜索</a>
-        <i v-if="!is_show_search" class="i xiajiantou" />
-        <i v-else class="i shangjiantou" />
+        <i v-if="!is_show_search" class="i i-xiajiantou" />
+        <i v-else class="i i-shangjiantou" />
       </div>
     </div>
   </section>

@@ -7,6 +7,7 @@
   <router-link id="vr" to="/vr_list"></router-link>
   <ServiceList />
   <BlogList />
+  <Partner />
 </div>
 </template>
 
@@ -16,6 +17,7 @@ import HotCity from './HotCity.vue'
 import HouseList from './HouseList.vue'
 import ServiceList from './ServiceList.vue'
 import BlogList from './BlogList.vue'
+import Partner from './Partner.vue'
 export default {
   name: 'HomePage',
   components: {
@@ -24,6 +26,7 @@ export default {
     HouseList,
     ServiceList,
     BlogList,
+    Partner,
   }
 }
 </script>
