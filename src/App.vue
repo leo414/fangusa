@@ -2,7 +2,7 @@
   <div id="app">
     <nav-layout />
     <search-layout />
-    <router-view id="app_content"></router-view>
+    <router-view class="app_content"></router-view>
     <footer-layout />
   </div>
 </template>

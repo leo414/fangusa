@@ -1,3 +1,4 @@
+
 <template lang="html">
 <section id="login">
   <header class="header">
@@ -16,14 +17,13 @@
         <Icon type="android-lock" />
         <input class="ipt" type="password" placeholder="密码" />
       </section>
+
+      <section class="code box">
+        <Icon type="android-lock" />
+        <input class="ipt" type="password" placeholder="手机/邮箱 验证码" />
+      </section>
     </div>
-    <router-link to="change_pd" class="fr theme_color">忘记密码？</router-link>
-    <i-button size="large" class="login">登录</i-button>
-
-    <hr/>
-
-    <p class="desc">社交媒体账号登录</p>
-    <i-button class="we_loign"><i class="i-weixin i"></i>微信账号登录</i-button>
+    <i-button size="large" class="login">注册</i-button>
   </div>
 </section>
 </template>
@@ -33,7 +33,7 @@ import Button from 'iview/src/components/button'
 import Icon from 'iview/src/components/icon'
 
 export default {
-  name: 'Login',
+  name: 'ChangePd',
   components: {
     iButton: Button,
     Icon,
@@ -47,7 +47,7 @@ export default {
 #login {
   width: 420px;
   margin: 60px auto;
-  height: 480px;
+  height: 380px;
   background: #fff;
 }
 
@@ -104,12 +104,13 @@ export default {
       height: 50px;
       padding-left: 35px;
       border: none;
+      border-bottom: 1px #ccc solid;
       outline: none;
     }
   }
 
-  .account .ipt {
-    border-bottom: 1px #ccc solid;
+  .code .ipt {
+    border: none;
   }
 }
 
