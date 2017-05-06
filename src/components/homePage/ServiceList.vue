@@ -67,6 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../scss/mixins.scss';
+
 .h1 {
   margin: 40px 0;
   color: #000;
@@ -81,6 +83,7 @@ export default {
 }
 
 .box{
+  height: 340px;
   padding: 60px 20px 20px 20px;
   border-right: 1px #eee solid;
 
@@ -123,9 +126,12 @@ export default {
 
   .desc {
     font-size: 12px;
+    @include text-multiLine-ellipsis(3, 20px)
   }
 
   .find {
+    display: block;
+    margin-top: 15px;
     font-size: 16px;
   }
 }

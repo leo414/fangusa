@@ -6,6 +6,7 @@
   <HouseList title="学区好房" />
   <router-link id="vr" to="/vr_list"></router-link>
   <ServiceList />
+  <BlogList />
 </div>
 </template>
 
@@ -14,6 +15,7 @@ import Banner from './Banner.vue'
 import HotCity from './HotCity.vue'
 import HouseList from './HouseList.vue'
 import ServiceList from './ServiceList.vue'
+import BlogList from './BlogList.vue'
 export default {
   name: 'HomePage',
   components: {
@@ -21,6 +23,7 @@ export default {
     HotCity,
     HouseList,
     ServiceList,
+    BlogList,
   }
 }
 </script>

@@ -2,7 +2,7 @@
 
 > A web app for fangusa.
 
-## Build Setup
+### Build Setup
 
 ``` bash
 # install dependencies
@@ -21,7 +21,12 @@ npm run build --report
 ### Technology stack
 - ES6/ES7
 - Vue 2.x
-- Vue-resource
+- Jquery 3.x
 - Vuex
 - Iview
 - Sass
+
+
+### Tip
+- built files are meant to be served over an HTTP server. Opening index.html over file:// won't work.
+- "not ie <= 8"

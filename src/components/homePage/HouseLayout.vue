@@ -39,7 +39,6 @@ export default {
 @import '../../scss/variables.scss';
 
 .city_layout {
-  width: 340px;
   height: auto;
   padding: 10px;
   background: #fff;
@@ -53,7 +52,7 @@ export default {
   margin-bottom: 10px;
   width: 100%;
   height: 220px;
-  background: url('http://placehold.it/320x220') center center no-repeat;
+  background: url('http://placehold.it/300x220') center center no-repeat;
   background-size: cover;
 
   .tag {

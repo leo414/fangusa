@@ -69,4 +69,11 @@ export default {
   color: #000;
 }
 
+.house {
+  padding-right: 15px;
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
 </style>
