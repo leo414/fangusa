@@ -1,7 +1,10 @@
 const Homepage = resolve => require(['../components/homePage/index.vue'], resolve)
+
 const Login = resolve => require(['../components/entry/Login.vue'], resolve)
 const Register = resolve => require(['../components/entry/Register.vue'], resolve)
 const ChangePd = resolve => require(['../components/entry/ChangePd.vue'], resolve)
+
+const HouseDetail = resolve => require(['../components/detail/index.vue'], resolve)
 
 const routers = [
   {
@@ -32,6 +35,15 @@ const routers = [
     },
     name: 'ChangePd',
     component: ChangePd,
-  }
+  },
+
+  {
+    path: '/detail/:id',
+    meta: {
+      title: '房详情'
+    },
+    name: 'HouseDetail',
+    component: HouseDetail,
+  },
 ]
 export default routers

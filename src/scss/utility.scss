@@ -34,6 +34,8 @@
 .black { color: #000 !important; }
 .bg_white { background: #fff !important; }
 
+.pointer { cursor: pointer;}
+.u_line { text-decoration: underline; }
 .tc { text-align: center !important; }
 .tl { text-align: left !important; }
 .tr { text-align: right !important; }
@@ -41,14 +43,18 @@
   @extend %text-ellipsis;
 }
 
-.pl-30 {
-  padding-left: 30px;
-}
+.pl-30 { padding-left: 30px; }
+.pr-30 { padding-right: 30px； }
+.mt-20 { margin-top: 20px; }
+.mt-30 { margin-top: 30px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
 
-.pr-30 {
-  padding-right: 30px;
-}
-
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #000;
 }
