@@ -69,7 +69,7 @@ export default {
     width: 740px;
     float: left;
 
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: $container_width) {
       width: 100%;
     }
   }
@@ -78,7 +78,7 @@ export default {
     width: 280px;
     float: right;
 
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: $container_width) {
       display: none;
     }
   }
@@ -89,7 +89,7 @@ export default {
 }
 
 .price {
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: $container_width) {
     display: none;
   }
 }
