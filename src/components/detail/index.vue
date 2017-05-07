@@ -6,7 +6,7 @@
       <i-button size="small" class="vr"><Icon type="ios-videocam" /> VR 看房</i-button>
       <i-button size="small" class="mark"><Icon type="ios-star-outline"></Icon> 加入收藏</i-button>
       <i-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</i-button>
-      <span class="fr">
+      <span class="fr price">
         售价：$350,000（约￥50万）
       </span>
     </h1>
@@ -66,17 +66,31 @@ export default {
 
   .content_left {
     margin-right: 30px;
-    width: 750px;
+    width: 740px;
     float: left;
+
+    @media screen and (max-width: 750px) {
+      width: 100%;
+    }
   }
 
   .content_right {
-    width: 270px;
+    width: 280px;
     float: right;
+
+    @media screen and (max-width: 750px) {
+      display: none;
+    }
   }
 
   h3 {
     margin-bottom: 10px;
+  }
+}
+
+.price {
+  @media screen and (max-width: 750px) {
+    display: none;
   }
 }
 

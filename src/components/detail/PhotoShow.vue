@@ -51,7 +51,7 @@ export default {
 .photo {
   width: 100%;
   height: 400px;
-  background: url('http://placehold.it/750x400') center center no-repeat;
+  background: url('http://placehold.it/740x400') center center no-repeat;
   background-size: cover;
 }
 

@@ -62,7 +62,7 @@ export default {
 }
 
 .ivu-input-wrapper {
-  width: 230px;
+  width: 240px;
   margin-bottom: 12px;
 }
 

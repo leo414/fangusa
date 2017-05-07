@@ -17,6 +17,10 @@
 .container {
   width: $container_width !important;
   margin: 0 auto;
+
+  @media screen and (max-width: $container_width) {
+    width: 100%;
+  }
 }
 
 .bg_white_container {
