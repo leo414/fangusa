@@ -6,6 +6,9 @@ const ChangePd = resolve => require(['../components/entry/ChangePd.vue'], resolv
 
 const HouseDetail = resolve => require(['../components/detail/index.vue'], resolve)
 
+const MapSearch = resolve => require(['../components/searchResult/MapSearch.vue'], resolve)
+
+
 const routers = [
   {
     path: '/',
@@ -35,6 +38,15 @@ const routers = [
     },
     name: 'ChangePd',
     component: ChangePd,
+  },
+
+  {
+    path: '/map_search',
+    meta: {
+      title: '地图搜索房源'
+    },
+    name: 'MapSearch',
+    component: MapSearch,
   },
 
   {

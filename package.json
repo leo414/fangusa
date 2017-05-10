@@ -11,9 +11,9 @@
     "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
     "iview": "^2.0.0-rc.12",
     "jquery": "^3.2.1",
+    "mapbox-gl": "^0.37.0",
     "vue": "^2.2.6",
     "vue-router": "^2.3.1",
     "vuex": "^2.3.1"
