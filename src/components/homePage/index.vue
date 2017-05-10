@@ -1,11 +1,17 @@
 <template lang="html">
-<div>
-  hello world
-</div>
+<section id="home_page">
+  <MenuLayout />
+</section>
 </template>
 
 <script>
+import Menu from '../globalLayout/Menu.vue'
+
 export default {
+  name: 'HomePage',
+  components: {
+    MenuLayout: Menu,
+  },
 }
 </script>
 

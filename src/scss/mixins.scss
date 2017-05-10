@@ -4,7 +4,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
   word-break:break-all;
   word-wrap: normal;
 }
@@ -35,4 +34,39 @@
 
 %text_breakWord {
   @extend %text-breakWord;
+}
+
+// 滑动动画
+@mixin slide_animation ($direction) {
+  -webkit-backface-visibility: hidden;
+  backface-visibility        : hidden;
+  -webkit-transition         : -webkit-transform .2s ease-in-out;
+  transition                 : -webkit-transform .2s ease-in-out;
+  transition                 : transform .2s ease-in-out;
+  transition                 : transform .2s, -webkit-transform .2s ease-in-out;
+
+  @if $direction == 'left-right' {
+    -webkit-transform: translate(-100%, 0);
+    transform        : translate(-100%, 0);
+  }
+
+  @if $direction == 'right-left' {
+    -webkit-transform: translate(100%, 0);
+    transform        : translate(100%, 0);
+  }
+
+  @if $direction == 'top-bottom' {
+    -webkit-transform: translate(0, -100%);
+    transform        : translate(0, -100%);
+  }
+
+  @if $direction == 'bottom-top' {
+    -webkit-transform: translate(0, 100%);
+    transform        : translate(0, 100%);
+  }
+}
+
+.slide_toggle {
+  -webkit-transform: translate(0, 0) !important;
+  transform        : translate(0, 0) !important;
 }
