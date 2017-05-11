@@ -21,8 +21,7 @@ npm run build --report
 ### Technology stack
 - ES6/ES7
 - Vue 2.x
-- Vue-resource
 - Vue-router
 - Vuex
-- Iview
+- Mint UI
 - Sass

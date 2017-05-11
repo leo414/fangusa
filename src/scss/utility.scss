@@ -13,6 +13,7 @@ body {
 }
 
 #app {
+  min-height: 100vh;
   background-repeat: repeat-x;
   background-position: center 0;
   background-color: #fff;
@@ -37,6 +38,9 @@ a { text-decoration: none; }
 .text_ellipsis {
   @extend %text-ellipsis;
 }
+
+.pl10 { padding-left: 10px; }
+.pr10 { padding-right: 10px; }
 
 
 //* 蒙版组件，用于弹出框时黑色背景遮罩 body */
