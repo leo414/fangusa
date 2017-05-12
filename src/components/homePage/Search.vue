@@ -3,7 +3,7 @@
   <MenuLayout @open="is_show_filter = false" />
 
   <div class="search_box">
-    <input type="search" value="22222" />
+    <input type="search" value="" />
     <i class="i i-sousuo" />
   </div>
   <div class="btn_bar">
@@ -27,17 +27,21 @@
     </ul>
   </transition>
 
+  <!-- <FliterLayout /> -->
+
 </section>
 
 </template>
 
 <script>
 import Menu from '../globalLayout/Menu.vue'
+import Filter from './Filter.vue'
 
 export default {
   name: "Search",
   components: {
     MenuLayout: Menu,
+    FliterLayout: Filter,
   },
   data() {
     return {
@@ -45,7 +49,7 @@ export default {
     }
   },
   methods: {
-    
+
   }
 }
 </script>
