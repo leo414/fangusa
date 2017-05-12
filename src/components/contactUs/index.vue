@@ -75,7 +75,7 @@ export default {
   height: 250px;
   display: block;
   margin: 20px auto;
-}
+} 
 
 .desc {
   padding: 10px;

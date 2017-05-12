@@ -1,5 +1,5 @@
 <template>
-<section id="house_layout">
+<section class="house_layout">
   <span class="time">刚刚更新</span>
   <i class="star i i-star" />
 
@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
-#house_layout {
+.house_layout {
   width: 100%;
   height: 200px;
   margin-bottom: 2px;

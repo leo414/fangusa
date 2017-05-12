@@ -1,15 +1,25 @@
 const HomePage = resolve => require(['../components/homePage/index.vue'], resolve)
 const MarkList = resolve => require(['../components/markList/index.vue'], resolve)
 const ContactUs = resolve => require(['../components/contactUs/index.vue'], resolve)
+const HouseDetail = resolve => require(['../components/detail/index.vue'], resolve)
 
 const routers = [
   {
     path: '/',
     meta: {
-      title: 'you-test'
+      title: 'Fangusa'
     },
     name: 'HomePage',
     component: HomePage
+  },
+
+  {
+    path: '/house/:id',
+    meta: {
+      title: '房产详情'
+    },
+    name: 'HouseDetail',
+    component: HouseDetail
   },
 
   {
