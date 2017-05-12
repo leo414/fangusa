@@ -66,7 +66,7 @@ export default {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  font-size: 28px;
+  font-size: 24px;
   color: $theme_color;
 }
 

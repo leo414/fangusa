@@ -10,9 +10,10 @@
       <router-link to="/register" class="tl pl10">注册</router-link>
     </div>
     <nav class="nav">
-      <router-link to="/login">个人设置</router-link>
-      <router-link to="/login">收藏的房源</router-link>
-      <router-link to="/login">联系我们</router-link>
+      <router-link to="/">首页</router-link>
+      <router-link to="/users">个人设置</router-link>
+      <router-link to="/mark_list">收藏的房源</router-link>
+      <router-link to="/contact_us">联系我们</router-link>
     </nav>
   </section>
 </div>
@@ -56,7 +57,7 @@ export default {
   left: 0;
   top: 0;
   z-index: $z_menu_slide;
-  padding-top: 10vh;
+  padding-top: 5vh;
   background: #fff;
   text-align: center;
 }
@@ -96,7 +97,7 @@ export default {
 }
 
 .nav {
-  margin-top: 15vh;
+  margin-top: 10vh;
   width: 100%;
   height: auto;
 
