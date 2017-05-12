@@ -1,7 +1,7 @@
 <template>
 <div id="menu">
   <i @click.stop="showMenu = true;" class="i i-menu" />
-  <div @click.stop="switchMask" :class="[showMenu ? 'fade_toggle' : '', 'mask_transition']" />
+  <div v-if="showMenu" @click.stop="switchMask" :class="[showMenu ? 'fade_toggle' : '', 'mask_transition']" />
   <section :class="[showMenu ? 'slide_toggle' : '', 'menu_layout']">
     <div class="face"></div>
     <div class="entry">
@@ -29,12 +29,19 @@ export default {
       showMenu: false,
     }
   },
+  watch: {
+    showMenu(value) {
+      if(value) {
+        this.$emit('open')
+      }
+    },
+  },
   methods: {
     switchMask() {
       if(!this.showMenu) return
       this.showMenu = false
     }
-  }
+  },
 }
 </script>
 
@@ -56,10 +63,12 @@ export default {
 
 .i-menu {
   position: fixed;
-  top: 30px;
-  left: 30px;
+  top: 2px;
+  left: 2px;
+  padding: 10px;
+  color: #fff;
   z-index: $z_menu_icon;
-  font-size: 24px;
+  font-size: 32px;
 }
 
 .face {
