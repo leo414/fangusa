@@ -1,7 +1,9 @@
 <template lang="html">
 <section id="home_page">
   <Search />
-  <HouseLayout v-for="info in 10" :key="info" />
+  <div class="house_lsit">
+    <HouseLayout v-for="info in 10" :key="info" />
+  </div>
 </section>
 </template>
 
@@ -18,5 +20,8 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss" scoped>
+.house_lsit {
+  margin-top: 90px;
+}
 </style>

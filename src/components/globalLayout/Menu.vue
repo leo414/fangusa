@@ -6,7 +6,7 @@
     <div class="face"></div>
     <div class="entry">
       <router-link to="/login" class="tr pr10">登录</router-link>
-      |
+      <span>|</span>
       <router-link to="/register" class="tl pl10">注册</router-link>
     </div>
     <nav class="nav">
@@ -86,6 +86,7 @@ export default {
   line-height: 50px;
   margin-top: 20px;
   font-size: 22px;
+  color: #3a3a3a;
 
   a {
     display: inline-block;

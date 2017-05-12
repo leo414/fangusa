@@ -68,9 +68,10 @@ export default {
 }
 
 #header {
-  position: relative;
+  position: fixed;
   left: 0;
-  right: 0;
+  top: 0;
+  z-index: $z_filter;
   width: 100%;
   height: 90px;
   padding: 10px 20px;
@@ -81,7 +82,7 @@ export default {
 .search_box {
   position: relative;
   left: 0;
-  right: 0;
+  top: 0;
   width: 80vw;
   margin-left: 10vw;
   height: 36px;

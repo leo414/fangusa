@@ -53,6 +53,10 @@ export default {
 @import "../../scss/variables";
 
 .header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: $z_filter;
   width: 100%;
   height: 58px;
   padding: 10px 20px;
@@ -75,7 +79,8 @@ export default {
   height: 250px;
   display: block;
   margin: 20px auto;
-} 
+  margin-top: 78px;
+}
 
 .desc {
   padding: 10px;

@@ -13,7 +13,9 @@
     </div>
   </header>
 
-  <HouseLayout v-for="info in 10" :key="info" />
+  <div class="house_lsit">
+    <HouseLayout v-for="info in 10" :key="info" />
+  </div>
 </section>
 
 </template>
@@ -38,7 +40,15 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
+.house_lsit {
+  margin-top: 90px;
+}
+
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z_filter;
   width: 100%;
   height: 90px;
   padding: 10px 20px;
