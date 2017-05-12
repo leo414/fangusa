@@ -1,5 +1,6 @@
 const HomePage = resolve => require(['../components/homePage/index.vue'], resolve)
 const MarkList = resolve => require(['../components/markList/index.vue'], resolve)
+const ContactUs = resolve => require(['../components/contactUs/index.vue'], resolve)
 
 const routers = [
   {
@@ -18,6 +19,15 @@ const routers = [
     },
     name: 'MarkList',
     component: MarkList
+  },
+
+  {
+    path: '/contact_us',
+    meta: {
+      title: '联系我们'
+    },
+    name: 'ContactUs',
+    component: ContactUs
   },
 ]
 export default routers

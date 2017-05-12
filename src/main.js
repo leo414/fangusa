@@ -12,6 +12,12 @@ import Util from './libs/util'
 
 import './scss/utility.scss'
 
+import { Field } from 'mint-ui'
+import { Button } from 'mint-ui'
+
+Vue.component(Field.name, Field)
+Vue.component(Button.name, Button)
+
 Vue.use(Vuex)
 Vue.use(VueRouter)
 
