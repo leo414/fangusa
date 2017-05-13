@@ -26,6 +26,12 @@
         </dependency>
         <!-- velocity end -->
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.6</version>
+        </dependency>
+
         <!-- test begin -->
         <dependency>
             <groupId>org.springframework</groupId>

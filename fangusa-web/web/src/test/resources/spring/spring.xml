@@ -21,6 +21,5 @@
     <import resource="spring-mvc.xml"/>
     <import resource="spring-mybatis.xml"/>
     <import resource="spring-util.xml"/>
-    <import resource="job.xml"/>
 
 </beans>

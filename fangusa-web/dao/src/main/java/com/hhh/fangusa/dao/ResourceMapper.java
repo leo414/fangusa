@@ -1,27 +1,22 @@
 package com.hhh.fangusa.dao;
 
-import com.hhh.fangusa.model.search.ResourceSearch;
-import org.apache.ibatis.annotations.Param;
+import com.hhh.fangusa.model.Resource;
+import com.hhh.fangusa.model.ResourceExample;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 public interface ResourceMapper {
-
-    int deleteByIds(List<Long> ids);
-
-    int deleteById(Long id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Resource record);
 
-    int update(Resource record);
+    int insertSelective(Resource record);
 
-    List<Resource> select(ResourceSearch search);
+    List<Resource> selectByExample(ResourceExample example);
 
-    Resource selectById(Long id);
+    Resource selectByPrimaryKey(Long id);
 
-    int multiInsert(@Param("records") List<Resource> records);
+    int updateByPrimaryKeySelective(Resource record);
 
-    int multiUpdate(List<Resource> records);
-
+    int updateByPrimaryKey(Resource record);
 }

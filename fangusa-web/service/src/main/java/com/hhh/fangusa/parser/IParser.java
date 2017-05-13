@@ -1,10 +1,10 @@
-package com.hhh.fangusa.job;
+package com.hhh.fangusa.parser;
 
 /**
  * @Author: huodonghai
  * @Copyright (c) 2016, lianjia.com All Rights Reserved
  */
-public interface IProcess {
+public interface IParser<T> {
 
-    void proecss(String context);
+    T parse(String text);
 }

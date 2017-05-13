@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface ResourceService {
 
-    void saveOrUpdate(Resource item);
+    Resource saveOrUpdate(Resource item);
 
     Resource get(Long id);
 

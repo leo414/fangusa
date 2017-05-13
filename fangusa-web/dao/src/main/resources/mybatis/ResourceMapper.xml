@@ -1,61 +1,398 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hhh.fangusa.dao.ResourceMapper">
-    <resultMap id="BaseResultMap" type="com.hhh.fangusa.model.Resource">
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="contact" property="contact" jdbcType="VARCHAR"/>
-        <result column="tel" property="tel" jdbcType="VARCHAR"/>
-        <result column="address" property="address" jdbcType="VARCHAR"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        id, name, contact, tel, address, email
-    </sql>
-    <select id="selectAllByForeignId" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select
-        <include refid="Base_Column_List"/>
-        from goldbach_party
-        where contract_id = #{id}
-    </select>
-    <select id="selectByContractId" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select
-        <include refid="Base_Column_List"/>
-        from goldbach_party
-        where contract_id = #{contractId}
-    </select>
-    <delete id="deleteByContractId" parameterType="java.lang.Long">
-        delete from goldbach_party
-        where contract_id = #{contractId}
-    </delete>
-    <insert id="insert" parameterType="com.lianjia.goldbach.model.Party">
-        insert into goldbach_party (id, name, contact,
-        tel, address, email
-        )
-        values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR},
-        #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
-        )
-    </insert>
-    <insert id="multiInsert" parameterType="java.util.List">
-        insert into goldbach_party (name, contact, tel, address, email)
-        values
-        <foreach collection="records" item="record" index="index" open="(" separator="),(" close=")">
-            #{record.name},
-            #{record.contact},
-            #{record.tel},
-            #{record.address},
-            #{record.email}
-        </foreach>
-    </insert>
-    <insert id="multiUpdate" parameterType="java.util.List">
-        replace into goldbach_party (id, name, contact, tel, address, email)
-        values
-        <foreach collection="records" item="record" index="index" open="(" separator="),(" close=")">
-            #{record.id},
-            #{record.name},
-            #{record.contact},
-            #{record.tel},
-            #{record.address},
-            #{record.email}
-        </foreach>
-    </insert>
+<mapper namespace="com.hhh.fangusa.dao.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.hhh.fangusa.model.Resource" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="no" property="no" jdbcType="BIGINT" />
+    <result column="zid" property="zid" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="room" property="room" jdbcType="INTEGER" />
+    <result column="bath" property="bath" jdbcType="INTEGER" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="street_name" property="streetName" jdbcType="VARCHAR" />
+    <result column="county_name" property="countyName" jdbcType="VARCHAR" />
+    <result column="state_name" property="stateName" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="desc_cn" property="descCn" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="DOUBLE" />
+    <result column="carbarn" property="carbarn" jdbcType="INTEGER" />
+    <result column="vr" property="vr" jdbcType="VARCHAR" />
+    <result column="property_fee" property="propertyFee" jdbcType="VARCHAR" />
+    <result column="land_tax" property="landTax" jdbcType="VARCHAR" />
+    <result column="monthly_rent" property="monthlyRent" jdbcType="BIGINT" />
+    <result column="monthly_rent_trend" property="monthlyRentTrend" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="pics" property="pics" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, no, zid, address, room, bath, size, year, type, name, city_name, street_name,
+    county_name, state_name, price, description, desc_cn, area, carbarn, vr, property_fee,
+    land_tax, monthly_rent, monthly_rent_trend, school, pics, created_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hhh.fangusa.model.ResourceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from resource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hhh.fangusa.model.Resource" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into resource (id, no, zid, address,
+      room, bath, size, year,
+      type, name, city_name,
+      street_name, county_name, state_name,
+      price, description, desc_cn,
+      area, carbarn, vr, property_fee,
+      land_tax, monthly_rent, monthly_rent_trend,
+      school, pics, created_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{no,jdbcType=BIGINT}, #{zid,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      #{room,jdbcType=INTEGER}, #{bath,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, #{year,jdbcType=INTEGER},
+      #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR},
+      #{streetName,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, #{stateName,jdbcType=VARCHAR},
+      #{price,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, #{descCn,jdbcType=VARCHAR},
+      #{area,jdbcType=DOUBLE}, #{carbarn,jdbcType=INTEGER}, #{vr,jdbcType=VARCHAR}, #{propertyFee,jdbcType=VARCHAR},
+      #{landTax,jdbcType=VARCHAR}, #{monthlyRent,jdbcType=BIGINT}, #{monthlyRentTrend,jdbcType=VARCHAR},
+      #{school,jdbcType=VARCHAR}, #{pics,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hhh.fangusa.model.Resource" >
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="zid != null" >
+        zid,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="room != null" >
+        room,
+      </if>
+      <if test="bath != null" >
+        bath,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="streetName != null" >
+        street_name,
+      </if>
+      <if test="countyName != null" >
+        county_name,
+      </if>
+      <if test="stateName != null" >
+        state_name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="descCn != null" >
+        desc_cn,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="carbarn != null" >
+        carbarn,
+      </if>
+      <if test="vr != null" >
+        vr,
+      </if>
+      <if test="propertyFee != null" >
+        property_fee,
+      </if>
+      <if test="landTax != null" >
+        land_tax,
+      </if>
+      <if test="monthlyRent != null" >
+        monthly_rent,
+      </if>
+      <if test="monthlyRentTrend != null" >
+        monthly_rent_trend,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="pics != null" >
+        pics,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=BIGINT},
+      </if>
+      <if test="zid != null" >
+        #{zid,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        #{room,jdbcType=INTEGER},
+      </if>
+      <if test="bath != null" >
+        #{bath,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetName != null" >
+        #{streetName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null" >
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="stateName != null" >
+        #{stateName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="descCn != null" >
+        #{descCn,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="carbarn != null" >
+        #{carbarn,jdbcType=INTEGER},
+      </if>
+      <if test="vr != null" >
+        #{vr,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyFee != null" >
+        #{propertyFee,jdbcType=VARCHAR},
+      </if>
+      <if test="landTax != null" >
+        #{landTax,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyRent != null" >
+        #{monthlyRent,jdbcType=BIGINT},
+      </if>
+      <if test="monthlyRentTrend != null" >
+        #{monthlyRentTrend,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null" >
+        #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hhh.fangusa.model.Resource" >
+    update resource
+    <set >
+      <if test="no != null" >
+        no = #{no,jdbcType=BIGINT},
+      </if>
+      <if test="zid != null" >
+        zid = #{zid,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        room = #{room,jdbcType=INTEGER},
+      </if>
+      <if test="bath != null" >
+        bath = #{bath,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="streetName != null" >
+        street_name = #{streetName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null" >
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="stateName != null" >
+        state_name = #{stateName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="descCn != null" >
+        desc_cn = #{descCn,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="carbarn != null" >
+        carbarn = #{carbarn,jdbcType=INTEGER},
+      </if>
+      <if test="vr != null" >
+        vr = #{vr,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyFee != null" >
+        property_fee = #{propertyFee,jdbcType=VARCHAR},
+      </if>
+      <if test="landTax != null" >
+        land_tax = #{landTax,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyRent != null" >
+        monthly_rent = #{monthlyRent,jdbcType=BIGINT},
+      </if>
+      <if test="monthlyRentTrend != null" >
+        monthly_rent_trend = #{monthlyRentTrend,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null" >
+        pics = #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hhh.fangusa.model.Resource" >
+    update resource
+    set no = #{no,jdbcType=BIGINT},
+      zid = #{zid,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      room = #{room,jdbcType=INTEGER},
+      bath = #{bath,jdbcType=INTEGER},
+      size = #{size,jdbcType=INTEGER},
+      year = #{year,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      street_name = #{streetName,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      state_name = #{stateName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      description = #{description,jdbcType=VARCHAR},
+      desc_cn = #{descCn,jdbcType=VARCHAR},
+      area = #{area,jdbcType=DOUBLE},
+      carbarn = #{carbarn,jdbcType=INTEGER},
+      vr = #{vr,jdbcType=VARCHAR},
+      property_fee = #{propertyFee,jdbcType=VARCHAR},
+      land_tax = #{landTax,jdbcType=VARCHAR},
+      monthly_rent = #{monthlyRent,jdbcType=BIGINT},
+      monthly_rent_trend = #{monthlyRentTrend,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      pics = #{pics,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

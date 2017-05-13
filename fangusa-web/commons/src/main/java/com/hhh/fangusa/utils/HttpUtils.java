@@ -1,11 +1,33 @@
 package com.hhh.fangusa.utils;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.net.ssl.SSLContext;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class HttpUtils {
     private static final Logger logger = LoggerFactory.getLogger(HttpUtils.class);
@@ -73,7 +95,7 @@ public class HttpUtils {
         }
     }
 
-    private static String urlEncode(String url) {
+    public static String urlEncode(String url) {
         StringBuilder sb = new StringBuilder();
         String[] temp = url.split("\\?");
         if (temp.length > 1) {
@@ -144,6 +166,119 @@ public class HttpUtils {
         }
     }
 
+    public static final String getHttps(final String url, final Map<String, Object> params) {
+        StringBuilder sb = new StringBuilder("");
+
+        if (null != params && !params.isEmpty()) {
+            int i = 0;
+            for (String key : params.keySet()) {
+                if (i == 0) {
+                    sb.append("?");
+                } else {
+                    sb.append("&");
+                }
+                sb.append(key).append("=").append(params.get(key));
+                i++;
+            }
+        }
+
+        CloseableHttpClient httpClient = createSSLClientDefault();
+
+        CloseableHttpResponse response = null;
+        HttpGet get = new HttpGet(url + sb.toString());
+        String result = "";
+
+        try {
+            response = httpClient.execute(get);
+
+            if (response.getStatusLine().getStatusCode() == 200) {
+                HttpEntity entity = response.getEntity();
+                if (null != entity) {
+                    result = EntityUtils.toString(entity, "UTF-8");
+                }
+            }
+        } catch (IOException ex) {
+            logger.error(null, ex);
+        } finally {
+            if (null != response) {
+                try {
+                    EntityUtils.consume(response.getEntity());
+                } catch (IOException ex) {
+                    logger.error(null, ex);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static final String postHttps(final String url, final Map<String, Object> params) {
+        CloseableHttpClient httpClient = createSSLClientDefault();
+        HttpPost post = new HttpPost(url);
+
+        CloseableHttpResponse response = null;
+
+        if (null != params && !params.isEmpty()) {
+            List<NameValuePair> nvpList = new ArrayList<NameValuePair>();
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                NameValuePair nvp = new BasicNameValuePair(entry.getKey(), entry.getValue().toString());
+                nvpList.add(nvp);
+            }
+            post.setEntity(new UrlEncodedFormEntity(nvpList, Charset.forName("UTF-8")));
+        }
+
+        String result = "";
+
+        try {
+            response = httpClient.execute(post);
+
+            if (response.getStatusLine().getStatusCode() == 200) {
+                HttpEntity entity = response.getEntity();
+                if (null != entity) {
+                    result = EntityUtils.toString(entity, "UTF-8");
+                }
+            }
+        } catch (IOException ex) {
+            logger.error(null, ex);
+        } finally {
+            if (null != response) {
+                try {
+                    EntityUtils.consume(response.getEntity());
+                } catch (IOException ex) {
+                    logger.error(null, ex);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private static CloseableHttpClient createSSLClientDefault() {
+
+        SSLContext sslContext;
+        try {
+            sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
+                //信任所有
+                @Override
+                public boolean isTrusted(X509Certificate[] xcs, String string){
+                    return true;
+                }
+            }).build();
+
+            SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext);
+
+            return HttpClients.custom().setSSLSocketFactory(sslsf).build();
+        } catch (KeyStoreException ex) {
+            logger.error(null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            logger.error(null, ex);
+        } catch (KeyManagementException ex) {
+            logger.error(null, ex);
+        }
+
+        return HttpClients.createDefault();
+    }
+
     @SuppressWarnings("deprecation")
     public static void main(String[] args) throws IOException {
 //        String url = "http://api.accuweather.com/locations/v1/search.json?q=%s&apiKey=ff1b463d98fb47af848ea2843ec5c925&language=en-us&details=true&alias=never";
@@ -159,7 +294,7 @@ public class HttpUtils {
 //            e.printStackTrace();
 //        }
 //        String url = "http://weatherapi.market.xiaomi.com/wtr-v2/city/half?belongings=Al Hudaydah,Yemen&language=en_us&shortName=&imei=7fe171f0dcebed158232a6a81b38cac6&name=Al Hudaydah";
-//        
+//
 //        try {
 //            System.out.println(getHTMLEncode(url));
 //        } catch (ClientProtocolException e) {
@@ -170,7 +305,7 @@ public class HttpUtils {
 //            e.printStackTrace();
 //        }
 
-        System.out.println(HttpUtils.getHTMLByPOST("http://permission.d.xiaomi.net/validate?requestPath=/theme-stats/theme&serviceId=33", ""));
+        System.out.println(HttpUtils.getHttps("https://www.baidu.com", null));
 
 
 //        String imei = "85c57d63ae0bdae86fcec96adae51e47";

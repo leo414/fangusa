@@ -1,62 +1,61 @@
 package com.hhh.fangusa.model;
 
-/**
- * @Author: huodonghai
- * @Copyright (c) 2016, lianjia.com All Rights Reserved
- */
+import java.util.Date;
+
 public class Resource {
-
     private Long id;
-    private String state;
-    private String county;
-    private String zip;
-    private String street;
-    private String pics;
+
+    private Long no;
+
+    private String zid;
+
     private String address;
-    private Integer beds;
-    private Integer baths;
-    private Long area;
-    private Integer yearBuilt;
+
+    private Integer room;
+
+    private Integer bath;
+
+    private Integer size;
+
+    private Integer year;
+
     private Integer type;
-    private String city;
+
+    private String name;
+
+    private String cityName;
+
+    private String streetName;
+
+    private String countyName;
+
+    private String stateName;
+
     private Long price;
-    private String detail;
-    private Integer parking;
-    private String vrLink;
+
+    private String description;
+
+    private String descCn;
+
+    private Double area;
+
+    private Integer carbarn;
+
+    private String vr;
+
+    private String propertyFee;
+
+    private String landTax;
+
+    private Long monthlyRent;
+
+    private String monthlyRentTrend;
+
     private String school;
-    private String taxHistory;
 
-    public String getState() {
-        return state;
-    }
+    private String pics;
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
+    private Date createdTime;
 
     public Long getId() {
         return id;
@@ -66,12 +65,20 @@ public class Resource {
         this.id = id;
     }
 
-    public String getPics() {
-        return pics;
+    public Long getNo() {
+        return no;
     }
 
-    public void setPics(String pics) {
-        this.pics = pics;
+    public void setNo(Long no) {
+        this.no = no;
+    }
+
+    public String getZid() {
+        return zid;
+    }
+
+    public void setZid(String zid) {
+        this.zid = zid == null ? null : zid.trim();
     }
 
     public String getAddress() {
@@ -79,39 +86,39 @@ public class Resource {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
-    public Integer getBeds() {
-        return beds;
+    public Integer getRoom() {
+        return room;
     }
 
-    public void setBeds(Integer beds) {
-        this.beds = beds;
+    public void setRoom(Integer room) {
+        this.room = room;
     }
 
-    public Integer getBaths() {
-        return baths;
+    public Integer getBath() {
+        return bath;
     }
 
-    public void setBaths(Integer baths) {
-        this.baths = baths;
+    public void setBath(Integer bath) {
+        this.bath = bath;
     }
 
-    public Long getArea() {
-        return area;
+    public Integer getSize() {
+        return size;
     }
 
-    public void setArea(Long area) {
-        this.area = area;
+    public void setSize(Integer size) {
+        this.size = size;
     }
 
-    public Integer getYearBuilt() {
-        return yearBuilt;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setYearBuilt(Integer yearBuilt) {
-        this.yearBuilt = yearBuilt;
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public Integer getType() {
@@ -122,12 +129,44 @@ public class Resource {
         this.type = type;
     }
 
-    public String getCity() {
-        return city;
+    public String getName() {
+        return name;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName == null ? null : cityName.trim();
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName == null ? null : streetName.trim();
+    }
+
+    public String getCountyName() {
+        return countyName;
+    }
+
+    public void setCountyName(String countyName) {
+        this.countyName = countyName == null ? null : countyName.trim();
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName == null ? null : stateName.trim();
     }
 
     public Long getPrice() {
@@ -138,28 +177,76 @@ public class Resource {
         this.price = price;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
-    public Integer getParking() {
-        return parking;
+    public String getDescCn() {
+        return descCn;
     }
 
-    public void setParking(Integer parking) {
-        this.parking = parking;
+    public void setDescCn(String descCn) {
+        this.descCn = descCn == null ? null : descCn.trim();
     }
 
-    public String getVrLink() {
-        return vrLink;
+    public Double getArea() {
+        return area;
     }
 
-    public void setVrLink(String vrLink) {
-        this.vrLink = vrLink;
+    public void setArea(Double area) {
+        this.area = area;
+    }
+
+    public Integer getCarbarn() {
+        return carbarn;
+    }
+
+    public void setCarbarn(Integer carbarn) {
+        this.carbarn = carbarn;
+    }
+
+    public String getVr() {
+        return vr;
+    }
+
+    public void setVr(String vr) {
+        this.vr = vr == null ? null : vr.trim();
+    }
+
+    public String getPropertyFee() {
+        return propertyFee;
+    }
+
+    public void setPropertyFee(String propertyFee) {
+        this.propertyFee = propertyFee == null ? null : propertyFee.trim();
+    }
+
+    public String getLandTax() {
+        return landTax;
+    }
+
+    public void setLandTax(String landTax) {
+        this.landTax = landTax == null ? null : landTax.trim();
+    }
+
+    public Long getMonthlyRent() {
+        return monthlyRent;
+    }
+
+    public void setMonthlyRent(Long monthlyRent) {
+        this.monthlyRent = monthlyRent;
+    }
+
+    public String getMonthlyRentTrend() {
+        return monthlyRentTrend;
+    }
+
+    public void setMonthlyRentTrend(String monthlyRentTrend) {
+        this.monthlyRentTrend = monthlyRentTrend == null ? null : monthlyRentTrend.trim();
     }
 
     public String getSchool() {
@@ -167,25 +254,55 @@ public class Resource {
     }
 
     public void setSchool(String school) {
-        this.school = school;
+        this.school = school == null ? null : school.trim();
     }
 
-    public String getTaxHistory() {
-        return taxHistory;
+    public String getPics() {
+        return pics;
     }
 
-    public void setTaxHistory(String taxHistory) {
-        this.taxHistory = taxHistory;
+    public void setPics(String pics) {
+        this.pics = pics == null ? null : pics.trim();
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.getState()).append("-").append(this.getCounty()).append("-").append(this.getZip())
-                .append("-").append(this.getStreet());
-        sb.append(this.getId()).append("-").append(this.getAddress()).append("-").append(this.getArea())
-                .append("-").append(this.getBaths()).append("-").append(this.getBeds());
-
-        return sb.toString();
+        return "Resource{" +
+                "id=" + id +
+                ", no=" + no +
+                ", zid='" + zid + '\'' +
+                ", address='" + address + '\'' +
+                ", room=" + room +
+                ", bath=" + bath +
+                ", size=" + size +
+                ", year=" + year +
+                ", type=" + type +
+                ", name='" + name + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", countyName='" + countyName + '\'' +
+                ", stateName='" + stateName + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", descCn='" + descCn + '\'' +
+                ", area=" + area +
+                ", carbarn=" + carbarn +
+                ", vr='" + vr + '\'' +
+                ", propertyFee='" + propertyFee + '\'' +
+                ", landTax='" + landTax + '\'' +
+                ", monthlyRent=" + monthlyRent +
+                ", monthlyRentTrend='" + monthlyRentTrend + '\'' +
+                ", school='" + school + '\'' +
+                ", pics='" + pics + '\'' +
+                ", createdTime=" + createdTime +
+                '}';
     }
 }
