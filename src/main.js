@@ -3,7 +3,6 @@
 import Vue from 'vue'
 
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
 import FastClick from 'fastclick'
 
 import App from './App'
@@ -14,11 +13,14 @@ import './scss/utility.scss'
 
 import { Field } from 'mint-ui'
 import { Button } from 'mint-ui'
+import { Range } from 'mint-ui'
+import { Switch } from 'mint-ui'
 
+Vue.component(Switch.name, Switch)
+Vue.component(Range.name, Range)
 Vue.component(Field.name, Field)
 Vue.component(Button.name, Button)
 
-Vue.use(Vuex)
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false

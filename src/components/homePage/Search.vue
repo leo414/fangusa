@@ -12,7 +12,7 @@
     </p>
 
     <div class="btn_list fr">
-      <button class="advanced_search">高级搜索</button>
+      <router-link to="/filter" class="advanced_search">高级搜索</router-link>
       <a class="filter" @click.stop="is_show_filter = !is_show_filter">排序 <i class="i i-paixu"/></a>
     </div>
   </div>
@@ -27,21 +27,17 @@
     </ul>
   </transition>
 
-  <!-- <FliterLayout /> -->
-
 </section>
 
 </template>
 
 <script>
 import Menu from '../globalLayout/Menu.vue'
-import Filter from './Filter.vue'
 
 export default {
   name: "Search",
   components: {
     MenuLayout: Menu,
-    FliterLayout: Filter,
   },
   data() {
     return {

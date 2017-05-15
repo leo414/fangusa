@@ -1,4 +1,5 @@
 const HomePage = resolve => require(['../components/homePage/index.vue'], resolve)
+const Filter = resolve => require(['../components/homePage/Filter.vue'], resolve)
 const MarkList = resolve => require(['../components/markList/index.vue'], resolve)
 const ContactUs = resolve => require(['../components/contactUs/index.vue'], resolve)
 const HouseDetail = resolve => require(['../components/detail/index.vue'], resolve)
@@ -20,6 +21,15 @@ const routers = [
     },
     name: 'HouseDetail',
     component: HouseDetail
+  },
+
+  {
+    path: '/filter',
+    meta: {
+      title: '高级搜索'
+    },
+    name: 'Filter',
+    component: Filter
   },
 
   {
