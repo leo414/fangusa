@@ -1,17 +1,15 @@
-const HomePage = resolve => require(['../components/homePage/index.vue'], resolve)
-const Filter = resolve => require(['../components/homePage/Filter.vue'], resolve)
-const MarkList = resolve => require(['../components/markList/index.vue'], resolve)
-const ContactUs = resolve => require(['../components/contactUs/index.vue'], resolve)
-const HouseDetail = resolve => require(['../components/detail/index.vue'], resolve)
+import entryRoutes from '../components/entry/router'
 
 const routers = [
+  ...entryRoutes,
+  
   {
     path: '/',
     meta: {
       title: 'Fangusa'
     },
     name: 'HomePage',
-    component: HomePage
+    component: resolve => require(['../components/homePage/index.vue'], resolve)
   },
 
   {
@@ -20,7 +18,7 @@ const routers = [
       title: '房产详情'
     },
     name: 'HouseDetail',
-    component: HouseDetail
+    component: resolve => require(['../components/detail/index.vue'], resolve)
   },
 
   {
@@ -29,7 +27,7 @@ const routers = [
       title: '高级搜索'
     },
     name: 'Filter',
-    component: Filter
+    component: resolve => require(['../components/homePage/Filter.vue'], resolve)
   },
 
   {
@@ -38,7 +36,7 @@ const routers = [
       title: '收藏列表'
     },
     name: 'MarkList',
-    component: MarkList
+    component: resolve => require(['../components/markList/index.vue'], resolve)
   },
 
   {
@@ -47,7 +45,8 @@ const routers = [
       title: '联系我们'
     },
     name: 'ContactUs',
-    component: ContactUs
+    component: resolve => require(['../components/contactUs/index.vue'], resolve)
   },
 ]
+
 export default routers
