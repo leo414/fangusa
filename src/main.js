@@ -15,7 +15,9 @@ import { Field } from 'mint-ui'
 import { Button } from 'mint-ui'
 import { Range } from 'mint-ui'
 import { Switch } from 'mint-ui'
+import { Actionsheet } from 'mint-ui'
 
+Vue.component(Actionsheet.name, Actionsheet)
 Vue.component(Switch.name, Switch)
 Vue.component(Range.name, Range)
 Vue.component(Field.name, Field)

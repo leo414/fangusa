@@ -73,11 +73,11 @@ export default {
 }
 
 .face {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   display: inline-block;
   border-radius: 50%;
-  background: url(http://placehold.it/150x150) center no-repeat;
+  background: url(http://placehold.it/120x120) center no-repeat;
   background-size: cover;
 }
 
