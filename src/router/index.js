@@ -2,7 +2,7 @@ import entryRoutes from '../components/entry/router'
 
 const routers = [
   ...entryRoutes,
-  
+
   {
     path: '/',
     meta: {
@@ -10,6 +10,15 @@ const routers = [
     },
     name: 'HomePage',
     component: resolve => require(['../components/homePage/index.vue'], resolve)
+  },
+
+  {
+    path: '/users',
+    meta: {
+      title: '个人设置'
+    },
+    name: 'UserProfile',
+    component: resolve => require(['../components/users/index.vue'], resolve)
   },
 
   {
