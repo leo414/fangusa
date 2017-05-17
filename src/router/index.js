@@ -1,12 +1,12 @@
-const Homepage = resolve => require(['../components/homePage/index.vue'], resolve)
+const Homepage = () => import('../components/homePage/index.vue')
 
-const Login = resolve => require(['../components/entry/Login.vue'], resolve)
-const Register = resolve => require(['../components/entry/Register.vue'], resolve)
-const ChangePd = resolve => require(['../components/entry/ChangePd.vue'], resolve)
+const Login = () => import('../components/entry/Login.vue')
+const Register = () => import('../components/entry/Register.vue')
+const ChangePd = () => import('../components/entry/ChangePd.vue')
 
-const HouseDetail = resolve => require(['../components/detail/index.vue'], resolve)
+const HouseDetail = () => import('../components/detail/index.vue')
 
-const MapSearch = resolve => require(['../components/searchResult/MapSearch.vue'], resolve)
+const MapSearch = () => import('../components/searchResult/MapSearch.vue')
 
 
 const routers = [
