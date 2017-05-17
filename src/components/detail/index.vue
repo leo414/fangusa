@@ -244,16 +244,16 @@ export default {
 .divide_bar {
   height: 26px;
   line-height: 26px;
-  font-size: 14px;
+  font-size: 12px;
   padding-left: 10px;
   width: 100%;
-  background: #EAEAEA;
 
   .fl { font-weight: bold; }
 
   .i {
     width: 40px;
     height: 26px;
+    font-size: 14px;
     text-align: center;
   }
 }

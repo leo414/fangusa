@@ -94,7 +94,7 @@ export default {
   height: 50px;
   line-height: 50px;
   margin-top: 20px;
-  font-size: 22px;
+  font-size: 20px;
   color: #3a3a3a;
 
   a {
@@ -114,10 +114,10 @@ export default {
     width: 100%;
     height: 50px;
     line-height: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: $theme_color;
     border-bottom: 1px solid #EAEAEA;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
   }
 }

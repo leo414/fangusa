@@ -86,6 +86,7 @@ export default {
 #filter_container {
   width: 100%;
   height: auto;
+  min-height: 100vh;
   padding: 20px;
   background: #fff;
 }

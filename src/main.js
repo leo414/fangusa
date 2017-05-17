@@ -16,7 +16,9 @@ import { Button } from 'mint-ui'
 import { Range } from 'mint-ui'
 import { Switch } from 'mint-ui'
 import { Actionsheet } from 'mint-ui'
+import { Radio } from 'mint-ui'
 
+Vue.component(Radio.name, Radio)
 Vue.component(Actionsheet.name, Actionsheet)
 Vue.component(Switch.name, Switch)
 Vue.component(Range.name, Range)
