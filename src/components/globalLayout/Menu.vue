@@ -67,9 +67,17 @@ export default {
   top: 2px;
   left: 2px;
   padding: 10px;
+  width: 50px;
+  text-align: center;
   color: #fff;
   z-index: $z_menu_icon;
-  font-size: 32px;
+  font-size: 28px;
+}
+
+.nav_bar_layout .i-menu {
+  padding: 0;
+  top: 0;
+  left: 10px;
 }
 
 .face {

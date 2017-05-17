@@ -1,11 +1,6 @@
 <template>
 <section id="contact_us">
-  <header class="header">
-    <MenuLayout @open="is_show_filter = false" />
-    <div class="title">
-      联系我们
-    </div>
-  </header>
+  <NavBar title="联系我们" />
 
   <img src="http://placehold.it/300x300" class="qr">
   <div class="desc">
@@ -31,7 +26,7 @@
 </template>
 
 <script>
-import Menu from '../globalLayout/Menu.vue'
+import NavBar from '../globalLayout/NavBar.vue'
 
 export default {
   name: "ContactUs",
@@ -44,7 +39,7 @@ export default {
     }
   },
   components: {
-    MenuLayout: Menu,
+    NavBar,
   },
 }
 </script>
@@ -52,34 +47,13 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
-.header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: $z_filter;
-  width: 100%;
-  height: 58px;
-  padding: 10px 20px;
-  overflow: hidden;
-  background: $theme_color;
-  color: #fff;
-  font-size: 12px;
-}
-
-.title {
-  width: 100%;
-  height: 40px;
-  font-size: 22px;
-  line-height: 40px;
-  text-align: center;
-}
-
 .qr {
   width: 250px;
   height: 250px;
   display: block;
   margin: 20px auto;
-  margin-top: 78px;
+  margin-top: 50px;
+  padding-top: 20px;
 }
 
 .desc {
