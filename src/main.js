@@ -9,7 +9,7 @@ import App from './App'
 import Routers from './router'
 import Util from './libs/util'
 
-import './scss/utility.scss'
+import './scss/index.scss'
 
 import { Field } from 'mint-ui'
 import { Button } from 'mint-ui'
