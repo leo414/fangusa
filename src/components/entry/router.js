@@ -1,3 +1,6 @@
+const Login = () => import('./Login.vue')
+const Register = () => import('./Register.vue')
+
 export default [
   {
     path: '/login',
@@ -5,7 +8,7 @@ export default [
       title: '登录'
     },
     name: 'Login',
-    component: resolve => require(['./Login.vue'], resolve)
+    component: Login,
   },
   {
     path: '/register',
@@ -13,6 +16,6 @@ export default [
       title: '注册'
     },
     name: 'Register',
-    component: resolve => require(['./Register.vue'], resolve)
+    component: Register,
   },
 ]

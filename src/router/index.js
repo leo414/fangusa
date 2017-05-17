@@ -1,5 +1,12 @@
 import entryRoutes from '../components/entry/router'
 
+const HomePage = () => import('../components/homePage/index.vue')
+const UserProfile = () => import('../components/users/index.vue')
+const HouseDetail = () => import('../components/detail/index.vue')
+const Filter = () => import('../components/homePage/Filter.vue')
+const MarkList = () => import('../components/markList/index.vue')
+const ContactUs = () => import('../components/contactUs/index.vue')
+
 const routers = [
   ...entryRoutes,
 
@@ -9,7 +16,7 @@ const routers = [
       title: 'Fangusa'
     },
     name: 'HomePage',
-    component: resolve => require(['../components/homePage/index.vue'], resolve)
+    component: HomePage,
   },
 
   {
@@ -18,7 +25,7 @@ const routers = [
       title: '个人设置'
     },
     name: 'UserProfile',
-    component: resolve => require(['../components/users/index.vue'], resolve)
+    component: UserProfile,
   },
 
   {
@@ -27,7 +34,7 @@ const routers = [
       title: '房产详情'
     },
     name: 'HouseDetail',
-    component: resolve => require(['../components/detail/index.vue'], resolve)
+    component: HouseDetail,
   },
 
   {
@@ -36,7 +43,7 @@ const routers = [
       title: '高级搜索'
     },
     name: 'Filter',
-    component: resolve => require(['../components/homePage/Filter.vue'], resolve)
+    component: Filter,
   },
 
   {
@@ -45,7 +52,7 @@ const routers = [
       title: '收藏列表'
     },
     name: 'MarkList',
-    component: resolve => require(['../components/markList/index.vue'], resolve)
+    component: MarkList,
   },
 
   {
@@ -54,7 +61,7 @@ const routers = [
       title: '联系我们'
     },
     name: 'ContactUs',
-    component: resolve => require(['../components/contactUs/index.vue'], resolve)
+    component: ContactUs,
   },
 ]
 
