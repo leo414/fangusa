@@ -3,7 +3,6 @@
 import Vue from 'vue'
 
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
 
 import App from './App'
 import Routers from './router'
@@ -14,7 +13,6 @@ import 'iview/dist/styles/iview.css'
 
 import LoadingBar from 'iview/src/components/loading-bar'
 
-Vue.use(Vuex)
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false
