@@ -2,6 +2,9 @@ import entryRoutes from '../components/entry/router'
 
 const HomePage = () => import('../components/homePage/index.vue')
 const UserProfile = () => import('../components/users/index.vue')
+
+const LinkPage = () => import('../components/users/LinkPage.vue')
+
 const HouseDetail = () => import('../components/detail/index.vue')
 const Filter = () => import('../components/homePage/Filter.vue')
 const MarkList = () => import('../components/markList/index.vue')
@@ -17,6 +20,15 @@ const routers = [
     },
     name: 'HomePage',
     component: HomePage,
+  },
+
+  {
+    path: '/link_page',
+    meta: {
+      title: '引导页'
+    },
+    name: 'LinkPage',
+    component: LinkPage,
   },
 
   {

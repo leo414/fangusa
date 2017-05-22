@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "fastclick": "^1.0.6",
+    "finger-mover": "^1.1.0",
+    "fmover-slide-x": "^1.1.0",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "mint-ui": "^2.2.5",
