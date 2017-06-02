@@ -36,16 +36,22 @@ class AjaxFactory {
 
   _processingData(AJAX_PROMISE) {
     return AJAX_PROMISE
-            .then(response => {
-              if(response.status === 200) return response.data
-              this._ajaxFail()
-            })
-            .catch(this._ajaxFail)
+      .then(response => {
+        if(response.status !== 200) return this._ajaxFail()
+
+        const { data } = response
+        if(data.succes) return data
+        this._ajaxFail(data.error_msg)
+      })
+      .catch(error => {
+        console.error('Ajax ' + error)
+        this._ajaxFail()
+      })
   }
 
-  _ajaxFail() {
+  _ajaxFail(message = '') {
     toast = Toast({
-      message: '网络错误，请检查网络后尝试刷新！',
+      message: message || '网络错误，请检查网络后尝试刷新！',
       position: 'middle',
       duration: 1500
     })
