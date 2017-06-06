@@ -1,13 +1,13 @@
 <template>
   <section id="map_search">
-    <Row>
-      <Coll span="16" class="map_container">
+    <el-row>
+      <el-col :span="16" class="map_container">
         <div id="map_box"></div>
-      </Coll>
-      <Coll span="8" class="house_list">
+      </el-col>
+      <el-col :span="8" class="house_list">
         <div class="house_list"></div>
-      </Coll>
-    </Row>
+      </el-col>
+    </el-row>
   </section>
 
 </template>

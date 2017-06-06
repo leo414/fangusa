@@ -1,6 +1,12 @@
 @import "variables";
 @import "mixins";
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #app {
   display: flex;
   min-height: 100vh;
@@ -53,6 +59,12 @@
 .mt-30 { margin-top: 30px; }
 .mb-20 { margin-bottom: 20px; }
 .mb-30 { margin-bottom: 30px; }
+
+
+//----- tag -----
+a {
+  text-decoration: none;
+}
 
 h1,
 h2,

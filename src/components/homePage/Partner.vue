@@ -3,35 +3,35 @@
   <h1 class="h1">
     合作伙伴
   </h1>
-  <Row class="partner_list" :gutter="8">
-    <Coll span="6">
+  <el-row class="partner_list" :gutter="8">
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-    <Coll span="6">
+    </el-col>
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-    <Coll span="6">
+    </el-col>
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-    <Coll span="6">
+    </el-col>
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-  </Row>
+    </el-col>
+  </el-row>
 
-  <Row class="partner_list" :gutter="8">
-    <Coll span="6">
+  <el-row class="partner_list" :gutter="8">
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-    <Coll span="6">
+    </el-col>
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-    <Coll span="6">
+    </el-col>
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-    <Coll span="6">
+    </el-col>
+    <el-col :span="6">
       <div class="item"></div>
-    </Coll>
-  </Row>
+    </el-col>
+  </el-row>
 </div>
 </template>
 

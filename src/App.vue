@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <nav-layout />
-    <search-layout />
+    <nav-lay />
+    <!--<search-layout />-->
     <router-view class="app_content"></router-view>
-    <footer-layout />
+    <!--<footer-layout />-->
   </div>
 </template>
 
 <script>
-import Nav from './components/layout/Nav.vue'
-import Footer from './components/layout/Footer.vue'
-import Search from './components/layout/Search.vue'
+import NavLay from './components/layout/nav-lay'
+// import Footer from './components/layout/Footer
+// import Search from './components/layout/Search
 export default {
   name: 'App',
   components: {
-    navLayout: Nav,
-    searchLayout: Search,
-    footerLayout: Footer,
+    NavLay,
+    // searchLayout: Search,
+    // footerLayout: Footer,
   },
 }
 </script>

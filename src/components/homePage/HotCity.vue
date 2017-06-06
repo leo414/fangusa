@@ -1,14 +1,14 @@
 <template lang="html">
 <section id="hot_city" class="container">
   <h1 class="h1">热门城市</h1>
-  <Row type="flex" justify="space-between" class="code-row-bg">
-    <Coll class="city" span="8"></Coll>
-    <Coll class="city" span="8"></Coll>
-    <Coll class="city" span="8"></Coll>
-    <Coll class="city" span="8"></Coll>
-    <Coll class="city" span="8"></Coll>
-    <Coll class="city" span="8"></Coll>
-  </Row>
+  <el-row type="flex" justify="space-between" class="code-row-bg">
+    <el-col class="city" :span="8"></el-col>
+    <el-col class="city" :span="8"></el-col>
+    <el-col class="city" :span="8"></el-col>
+    <el-col class="city" :span="8"></el-col>
+    <el-col class="city" :span="8"></el-col>
+    <el-col class="city" :span="8"></el-col>
+  </el-row>
 </section>
 </template>
 

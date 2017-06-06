@@ -27,7 +27,7 @@
     </div>
 
     <transition name="slide-fade">
-      <advanced-search v-if="is_show_search" :isShow="is_show_search" />
+      <advanced-search v-if="is_show_search" />
     </transition>
   </section>
 
@@ -36,7 +36,7 @@
 
 <script>
 import { Row, Col } from 'iview/src/components/grid'
-import AdvancedSearch from './AdvancedSearch.vue'
+import AdvancedSearch from './AdvancedSearch
 
 export default {
   name: 'Search',

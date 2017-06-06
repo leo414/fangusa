@@ -1,8 +1,8 @@
 <template lang="html">
 <section class="service_list container">
   <h1 class="h1">一站式服务</h1>
-  <Row class="table">
-    <Coll span="6" class="box">
+  <el-row class="table">
+    <el-col :span="6" class="box">
       <div class="icon icon-1"></div>
       <p class="h2">置业指南</p>
       <div class="desc">
@@ -10,9 +10,9 @@
         Saepe, maxime, autem! Recusandae architecto, vitae culpa,
       </div>
       <router-link class="find" to="">Find more</router-link>
-    </Coll>
+    </el-col>
 
-    <Coll span="6" class="box">
+    <el-col :span="6" class="box">
       <div class="icon icon-2"></div>
       <p class="h2">房屋贷款</p>
       <div class="desc">
@@ -20,9 +20,9 @@
         Saepe, maxime, autem! Recusandae architecto, vitae culpa,
       </div>
       <router-link class="find" to="">Find more</router-link>
-    </Coll>
+    </el-col>
 
-    <Coll span="6" class="box">
+    <el-col :span="6" class="box">
       <div class="icon icon-3"></div>
       <p class="h2">置业托管</p>
       <div class="desc">
@@ -30,9 +30,9 @@
         Saepe, maxime, autem! Recusandae architecto, vitae culpa,
       </div>
       <router-link class="find" to="">Find more</router-link>
-    </Coll>
+    </el-col>
 
-    <Coll span="6" class="box">
+    <el-col :span="6" class="box">
       <div class="icon icon-4"></div>
       <p class="h2">私人订制</p>
       <div class="desc">
@@ -40,8 +40,8 @@
         Saepe, maxime, autem! Recusandae architecto, vitae culpa,
       </div>
       <router-link class="find" to="">Find more</router-link>
-    </Coll>
-  </Row>
+    </el-col>
+  </el-row>
 </section>
 </template>
 

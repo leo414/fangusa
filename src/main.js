@@ -8,14 +8,16 @@ import App from './App'
 import Routers from './router'
 import Util from './libs/util'
 
-import  './scss/utility.scss'
-import 'iview/dist/styles/iview.css'
-
-import LoadingBar from 'iview/src/components/loading-bar'
+import 'element-ui/lib/theme-default/index.css'
+import  './scss/index.scss'
 
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false
+
+import { Row, Col } from 'element-ui'
+Vue.use(Row)
+Vue.use(Col)
 
 // route config
 const RouterConfig = {
@@ -25,14 +27,11 @@ const RouterConfig = {
 const router = new VueRouter(RouterConfig)
 
 router.beforeEach((to, from, next) => {
-  LoadingBar.start()
   Util.title(to.meta.title)
   next()
 })
 
 router.afterEach((to, from, next) => {
-  LoadingBar.finish()
-  window.scrollTo(0, 0)
   // 谷歌统计
   if (window.ga) {
     window.ga('set', 'page', to.fullPath) // 你可能想根据请求参数添加其他参数，可以修改这里的 to.fullPath

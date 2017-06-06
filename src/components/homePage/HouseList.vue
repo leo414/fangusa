@@ -3,31 +3,31 @@
     <h1 class="h1">{{title}}</h1>
     <Carousel id="banner" v-model="value2">
       <Carousel-item>
-        <Row type="flex" justify="space-between" class="code-row-bg">
-          <Coll class="house" span="8">
+        <el-row type="flex" justify="space-between" class="code-row-bg">
+          <el-col class="house" :span="8">
             <HouseLayout />
-          </Coll>
-          <Coll class="house" span="8">
+          </el-col>
+          <el-col class="house" :span="8">
             <HouseLayout />
-          </Coll>
-          <Coll class="house" span="8">
+          </el-col>
+          <el-col class="house" :span="8">
             <HouseLayout />
-          </Coll>
-        </Row>
+          </el-col>
+        </el-row>
       </Carousel-item>
 
       <Carousel-item>
-        <Row type="flex" justify="space-between" class="code-row-bg">
-          <Coll class="house" span="8">
+        <el-row type="flex" justify="space-between" class="code-row-bg">
+          <el-col class="house" :span="8">
             <HouseLayout />
-          </Coll>
-          <Coll class="house" span="8">
+          </el-col>
+          <el-col class="house" :span="8">
             <HouseLayout />
-          </Coll>
-          <Coll class="house" span="8">
+          </el-col>
+          <el-col class="house" :span="8">
             <HouseLayout />
-          </Coll>
-        </Row>
+          </el-col>
+        </el-row>
       </Carousel-item>
     </Carousel>
   </div>
@@ -37,7 +37,7 @@
 import { Row, Col } from 'iview/src/components/grid'
 import Carousel from 'iview/src/components/carousel'
 const CarouselItem = Carousel.Item
-import HouseLayout from './HouseLayout.vue'
+import HouseLayout from './HouseLayout
 
 export default {
   name: 'HouseList',

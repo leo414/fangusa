@@ -54,32 +54,32 @@
 
   <div class="school">
     <h3 class="h3">学校信息</h3>
-    <Row>
-      <Coll span="9">
+    <el-row>
+      <el-col :span="9">
         <h4 class="h4">学校名字</h4>
         <p>小学：xxxx</p>
         <p>小学：xxxx</p>
         <p>小学：xxxx</p>
-      </Coll>
-      <Coll span="6" class="tc">
+      </el-col>
+      <el-col :span="6" class="tc">
         <h4 class="h4">评分（满分10分）</h4>
         <p>5</p>
         <p>5</p>
         <p>5</p>
-      </Coll>
-      <Coll span="4" class="tc">
+      </el-col>
+      <el-col :span="4" class="tc">
         <h4 class="h4">年级</h4>
         <p>4-2</p>
         <p>4-2</p>
         <p>4-2</p>
-      </Coll>
-      <Coll span="5" class="tc">
+      </el-col>
+      <el-col :span="5" class="tc">
         <h4 class="h4">距离（公里）</h4>
         <p>3.14</p>
         <p>3.14</p>
         <p>3.14</p>
-      </Coll>
-    </Row>
+      </el-col>
+    </el-row>
   </div>
 
   <div class="contact_us">
@@ -89,11 +89,11 @@
     联系方式2：xxx<br/>
     联系方式3： xxx
     <h3 class="h3">直接填写以下表格联系我们：</h3>
-    <Row type="flex" justify="space-between" class="code-row-bg mb-20">
-      <Coll span="7"><i-input v-model="value1" size="large" placeholder="你的姓名" /></Coll>
-      <Coll span="7"><i-input v-model="value1" size="large" placeholder="联系电话" /></Coll>
-      <Coll span="7"><i-input v-model="value1" size="large" placeholder="邮箱 / 微信 ID （选填）" /></Coll>
-    </Row>
+    <el-row type="flex" justify="space-between" class="code-row-bg mb-20">
+      <el-col :span="7"><i-input v-model="value1" size="large" placeholder="你的姓名" /></el-col>
+      <el-col :span="7"><i-input v-model="value1" size="large" placeholder="联系电话" /></el-col>
+      <el-col :span="7"><i-input v-model="value1" size="large" placeholder="邮箱 / 微信 ID （选填）" /></el-col>
+    </el-row>
     <i-input v-model="value2" type="textarea" :rows="4" placeholder="" />
 
     <i-button type="primary">提交</i-button>

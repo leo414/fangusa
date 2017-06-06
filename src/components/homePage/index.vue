@@ -1,32 +1,32 @@
 <template lang="html">
 <div id="home_page">
-  <banner-layout />
-  <HotCity />
+  <!--<banner-layout />-->
+  <!--<HotCity />
   <HouseList title="最新房源" />
   <HouseList title="学区好房" />
   <router-link id="vr" to="/vr_list"></router-link>
   <ServiceList />
   <BlogList />
-  <Partner />
+  <Partner />-->
 </div>
 </template>
 
 <script>
-import Banner from './Banner.vue'
-import HotCity from './HotCity.vue'
-import HouseList from './HouseList.vue'
-import ServiceList from './ServiceList.vue'
-import BlogList from './BlogList.vue'
-import Partner from './Partner.vue'
+// import Banner from './Banner
+// import HotCity from './HotCity
+// import HouseList from './HouseList
+// import ServiceList from './ServiceList
+// import BlogList from './BlogList
+// import Partner from './Partner
 export default {
   name: 'HomePage',
   components: {
-    bannerLayout: Banner,
-    HotCity,
-    HouseList,
-    ServiceList,
-    BlogList,
-    Partner,
+    // bannerLayout: Banner,
+    // HotCity,
+    // HouseList,
+    // ServiceList,
+    // BlogList,
+    // Partner,
   }
 }
 </script>

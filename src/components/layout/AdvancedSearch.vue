@@ -71,9 +71,6 @@ export default {
     iSelect: Select,
     iOption: Option,
   },
-  props: {
-    isShow: Boolean,
-  },
   data() {
     return {
       value1: [20, 50],

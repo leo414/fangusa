@@ -30,10 +30,10 @@
 <script>
 import Button from 'iview/src/components/button'
 import Icon from 'iview/src/components/icon'
-import PhotoShow from './PhotoShow.vue'
-import CreditComputed from './CreditComputed.vue'
-import HouseInfo from './HouseInfo.vue'
-import OtherHouse from './OtherHouse.vue'
+import PhotoShow from './PhotoShow
+import CreditComputed from './CreditComputed
+import HouseInfo from './HouseInfo
+import OtherHouse from './OtherHouse
 
 export default {
   name: "HouseDetail",

@@ -7,36 +7,36 @@
 
   <Carousel id="banner" autoplay v-model="value2">
     <Carousel-item>
-      <Row type="flex" justify="space-between" class="code-row-bg">
-        <Coll class="blog" span="6">
+      <el-row type="flex" justify="space-between" class="code-row-bg">
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-        <Coll class="blog" span="6">
+        </el-col>
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-        <Coll class="blog" span="6">
+        </el-col>
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-        <Coll class="blog" span="6">
+        </el-col>
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-      </Row>
+        </el-col>
+      </el-row>
     </Carousel-item>
     <Carousel-item>
-      <Row type="flex" justify="space-between" class="code-row-bg">
-        <Coll class="blog" span="6">
+      <el-row type="flex" justify="space-between" class="code-row-bg">
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-        <Coll class="blog" span="6">
+        </el-col>
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-        <Coll class="blog" span="6">
+        </el-col>
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-        <Coll class="blog" span="6">
+        </el-col>
+        <el-col class="blog" :span="6">
           <BlogLayout />
-        </Coll>
-      </Row>
+        </el-col>
+      </el-row>
     </Carousel-item>
   </Carousel>
 </div>
@@ -48,7 +48,7 @@ import Carousel from 'iview/src/components/carousel'
 import Icon from 'iview/src/components/icon'
 import Button from 'iview/src/components/button'
 const CarouselItem = Carousel.Item
-import BlogLayout from './BlogLayout.vue'
+import BlogLayout from './BlogLayout
 
 export default {
   name: 'BlogList',

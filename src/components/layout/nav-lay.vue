@@ -1,11 +1,11 @@
 <template lang="html">
 <section class="bg_white_container">
   <div id="nav" class="container">
-    <Row>
-      <Coll span="4" class="logo">
+    <el-row class="row_container">
+      <el-col :span="4" class="logo">
         <router-link to="/"><img src="../../assets/logo.png" alt=""></router-link>
-      </Coll>
-      <Coll span="16" offset="1">
+      </el-col>
+      <el-col :span="16" :offset="1">
         <ul class="nav_list">
           <li><router-link to="#">首页</router-link></li>
           <li><router-link to="#">全部房产信息</router-link></li>
@@ -15,26 +15,21 @@
           <li><router-link to="#">博客</router-link></li>
           <li><router-link to="#">联系我们</router-link></li>
         </ul>
-      </Coll>
-      <Coll class="entry" span="3">
+      </el-col>
+      <el-col class="entry" :span="3">
         <router-link to="login">登录</router-link>
         <i class="i i-shugang" />
         <router-link to="register">注册</router-link>
-      </Coll>
-    </Row>
+      </el-col>
+    </el-row>
   </div>
 </section>
 </template>
 
 <script>
-import { Row, Col } from 'iview/src/components/grid'
 
 export default {
-  name: 'Nav',
-  components: {
-    Row,
-    'Coll': Col,
-  },
+  name: 'NavLay',
   data() {
     return {
     }
@@ -56,12 +51,17 @@ export default {
   }
 }
 
+.row_container {
+  height: 70px;
+}
+
 .nav_list {
   height: inherit;
 
   li {
     display: inline-block;
-    margin-right: 15px;
+    margin-right: 18px;
+    font-weight: bold;
   }
 }
 
@@ -75,7 +75,5 @@ export default {
 
 .entry {
   text-align: right;
-
 }
-
 </style>
