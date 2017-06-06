@@ -3,20 +3,20 @@
     <nav-lay />
     <!--<search-layout />-->
     <router-view class="app_content"></router-view>
-    <!--<footer-layout />-->
+    <footer-lay />
   </div>
 </template>
 
 <script>
 import NavLay from './components/layout/nav-lay'
-// import Footer from './components/layout/Footer
+import FooterLay from './components/layout/footer-lay'
 // import Search from './components/layout/Search
 export default {
   name: 'App',
   components: {
     NavLay,
+    FooterLay,
     // searchLayout: Search,
-    // footerLayout: Footer,
   },
 }
 </script>

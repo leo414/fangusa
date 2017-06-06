@@ -53,13 +53,8 @@
 </template>
 
 <script>
-import { Row, Col } from 'iview/src/components/grid'
 export default {
-  name: 'Footer',
-  components: {
-    Row,
-    'Coll': Col,
-  },
+  name: 'FooterLay',
 }
 </script>
 
@@ -100,9 +95,11 @@ export default {
 
 .bottom {
   margin-top: 30px;
+  padding: 5px 0;
   width: 100%;
-  height: 40px;
+  height: 50px;
   line-height: 40px;
+  font-size: 12px;
   background: $theme_color;
   text-align: center;
   color: #fff;
