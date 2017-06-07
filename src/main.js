@@ -15,9 +15,24 @@ Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 
-import { Row, Col } from 'element-ui'
+import { 
+  Row, 
+  Col,
+  Input,
+  Switch,
+  Select,
+  Option,
+  Slider,
+  Button,
+} from 'element-ui'
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Input)
+Vue.use(Switch)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Slider)
+Vue.use(Button)
 
 // route config
 const RouterConfig = {

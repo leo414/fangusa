@@ -27,7 +27,7 @@
     </div>
 
     <transition name="slide-fade">
-      <!--<advanced-search v-if="is_show_search" />-->
+      <advanced-search v-if="is_show_search" />
     </transition>
   </section>
 
@@ -35,12 +35,12 @@
 </template>
 
 <script>
-// import AdvancedSearch from './AdvancedSearch'
+import AdvancedSearch from './advanced-search'
 
 export default {
   name: 'SearchLay',
   components: {
-    // AdvancedSearch,
+    AdvancedSearch,
   },
   data() {
     return {
