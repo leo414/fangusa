@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { Row, Col } from 'iview/src/components/grid'
+
 import Carousel from 'iview/src/components/carousel'
 import Icon from 'iview/src/components/icon'
 import Button from 'iview/src/components/button'

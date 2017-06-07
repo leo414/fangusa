@@ -104,7 +104,7 @@
 <script>
 import Input from 'iview/src/components/input'
 import Button from 'iview/src/components/button'
-import { Row, Col } from 'iview/src/components/grid'
+
 
 export default {
   name: "HouseDetail",

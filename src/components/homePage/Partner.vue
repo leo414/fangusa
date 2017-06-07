@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { Row, Col } from 'iview/src/components/grid'
+
 
 export default {
   name: 'Partner',

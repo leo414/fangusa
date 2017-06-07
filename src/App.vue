@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-lay />
-    <!--<search-layout />-->
+    <search-lay></search-lay>
     <router-view class="app_content"></router-view>
     <footer-lay />
   </div>
@@ -10,13 +10,13 @@
 <script>
 import NavLay from './components/layout/nav-lay'
 import FooterLay from './components/layout/footer-lay'
-// import Search from './components/layout/Search
+import SearchLay from './components/layout/search-lay'
 export default {
   name: 'App',
   components: {
     NavLay,
     FooterLay,
-    // searchLayout: Search,
+    SearchLay,
   },
 }
 </script>

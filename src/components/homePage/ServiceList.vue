@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { Row, Col } from 'iview/src/components/grid'
+
 import Carousel from 'iview/src/components/carousel'
 const CarouselItem = Carousel.Item
 

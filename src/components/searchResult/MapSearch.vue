@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { Row, Col } from 'iview/src/components/grid'
+
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 mapboxgl.accessToken = 'pk.eyJ1IjoibGVvNDE0IiwiYSI6ImNpcmh5MGk2MTAxczFnNG5uYmN0NGQzcjQifQ.DeTBccB-w-ZqUAFsOusxZg'
 
