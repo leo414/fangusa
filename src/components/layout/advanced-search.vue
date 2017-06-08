@@ -40,7 +40,7 @@
         </el-select>
       </div>
 
-      <div class="container">
+      <div class="container" style="margin-top: -5px;">
          <el-select placeholder="城市" style="width: 150px; margin-right: 22px;" v-model="model1">
           <el-option
             v-for="item in cityList"
@@ -65,7 +65,10 @@
             <el-switch
               class="fr"
               v-model="value2"
-              on-color="#13ce66"
+              :width="84"
+              on-text="平方英尺"
+              off-text="平方米"
+              on-color="#0142a1"
               off-color="#ff4949">
             </el-switch>
           </div>
@@ -84,7 +87,10 @@
             <el-switch
               class="fr"
               v-model="value2"
-              on-color="#13ce66"
+              on-text="美元"
+              off-text="人民币"
+              :width="70"
+              on-color="#0142a1"
               off-color="#ff4949">
             </el-switch>
           </div>
@@ -96,7 +102,7 @@
           </el-slider>
         </div>
 
-        <el-button class="i_button" type="primary">高级搜索</el-button>
+        <el-button size="large" class="i_button" type="primary" icon="search">高级搜索</el-button>
       </div>
   </section>
 </template>
@@ -150,15 +156,15 @@ export default {
   left: 0;
   z-index: $z_filter;
   width: 100%;
-  height: 240px;
+  height: 200px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
   background: #fff;
-
-  
 
   .slider_box {
     display: inline-block;
     width: 335px;
     font-size: 12px;
+    vertical-align: middle;
 
     .desc {
       height: 28px;
@@ -167,6 +173,7 @@ export default {
   }
 
   .i_button {
+    margin-top: 25px;
     float: right;
   }
 }
