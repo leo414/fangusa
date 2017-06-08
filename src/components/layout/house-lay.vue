@@ -18,7 +18,8 @@
   <footer class="footer">
     房源信息发布于：3 天前
     <span class="fr">
-      <Icon type="ios-star-outline" size="18" />
+      <!--<Icon type="ios-star-outline" size="18" />-->
+      <i style="color: #8492A6;" class="i i-star" />
       加入收藏
     </span>
   </footer>
@@ -26,12 +27,8 @@
 </template>
 
 <script>
-import Icon from 'iview/src/components/icon'
 export default {
   name: 'HouseLayout',
-  components: {
-    Icon,
-  }
 }
 </script>
 
@@ -67,6 +64,8 @@ export default {
     color: #fff;
     bottom: 10px;
     left: 10px;
+
+    h2, h3 { color: #fff; }
 
     .price1 {
       font-size: 16px;
