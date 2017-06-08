@@ -24,6 +24,8 @@ import {
   Option,
   Slider,
   Button,
+  Carousel,
+  CarouselItem,
 } from 'element-ui'
 Vue.use(Row)
 Vue.use(Col)
@@ -33,6 +35,8 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Slider)
 Vue.use(Button)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
 
 // route config
 const RouterConfig = {

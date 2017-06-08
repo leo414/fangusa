@@ -1,6 +1,6 @@
 <template lang="html">
 <div id="home_page">
-  <!--<banner-layout />-->
+  <banner-lay />
   <!--<HotCity />
   <HouseList title="最新房源" />
   <HouseList title="学区好房" />
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// import Banner from './Banner
+import BannerLay from './banner-lay'
 // import HotCity from './HotCity
 // import HouseList from './HouseList
 // import ServiceList from './ServiceList
@@ -21,7 +21,7 @@
 export default {
   name: 'HomePage',
   components: {
-    // bannerLayout: Banner,
+    BannerLay,
     // HotCity,
     // HouseList,
     // ServiceList,
