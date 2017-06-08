@@ -84,7 +84,7 @@ export default {
   margin: 10px 0;
   height: 44px;
   font-size: 18px;
-  color: #000;
+  color: #324057;
   @include text-multiLine-ellipsis(2, 22px)
 }
 

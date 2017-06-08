@@ -1,6 +1,6 @@
 <template lang="html">
 <section class="service_list container">
-  <h1 class="h1">一站式服务</h1>
+  <h2 class="title">一站式服务</h2>
   <el-row class="table">
     <el-col :span="6" class="box">
       <div class="icon icon-1"></div>
@@ -46,18 +46,8 @@
 </template>
 
 <script>
-
-import Carousel from 'iview/src/components/carousel'
-const CarouselItem = Carousel.Item
-
 export default {
   name: 'ServiceList',
-  components: {
-    Row,
-    Coll: Col,
-    Carousel,
-    CarouselItem,
-  },
   data() {
     return {
       value2: 0,
@@ -69,22 +59,22 @@ export default {
 <style lang="scss" scoped>
 @import '../../scss/mixins.scss';
 
-.h1 {
+.title {
   margin: 40px 0;
-  color: #000;
+  color: #324057;
   text-align: center;
 }
 
 .table {
-  height: 340px;
+  height: 360px;
   background: #fff;
   text-align: center;
   border: 1px #eee solid;
 }
 
 .box{
-  height: 340px;
-  padding: 60px 20px 20px 20px;
+  height: inherit;
+  padding: 50px 20px 20px 20px;
   border-right: 1px #eee solid;
 
   &:last-child {
@@ -119,21 +109,24 @@ export default {
   }
 
   .h2 {
+    margin: 10px 0;
     font-weight: bold;
     font-size: 20px;
-    color: #000;
+    color: #324057;
   }
 
   .desc {
     height: 60px;
     font-size: 12px;
-    @include text-multiLine-ellipsis(3, 20px)
+    color: #475669;
+    @include text-multiLine-ellipsis(4, 20px)
   }
 
   .find {
     display: block;
     margin-top: 15px;
     font-size: 16px;
+    color: $theme_color;
   }
 }
 </style>

@@ -69,7 +69,7 @@ export default {
 .top {
   .h2 {
     margin-bottom: 10px;
-    color: #000;
+    color: #324057;
   }
   .nav_list {
     li {

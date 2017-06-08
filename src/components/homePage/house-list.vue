@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="new_house container">
-    <h1 class="h1">{{title}}</h1>
+    <h2 class="h2">{{title}}</h2>
 
     <el-row type="flex" justify="space-between" class="code-row-bg">
       <el-col class="house" :span="8">
@@ -53,7 +53,7 @@ export default {
   margin-top: 20px;
 }
 
-.h1 {
+.h2 {
   padding: 20px 0;
 }
 

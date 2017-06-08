@@ -3,9 +3,9 @@
   <banner-lay />
   <hot-city />
   <house-list title="最新房源" />
-  <!--<HouseList title="学区好房" />-->
-  <!--<router-link id="vr" to="/vr_list"></router-link>-->
-  <!--<ServiceList />-->
+  <house-list title="学区好房" />
+  <router-link id="vr" to="/vr_list"></router-link>
+  <service-list />
   <!--<BlogList />-->
   <!--<Partner />-->
 </div>
@@ -15,7 +15,7 @@
 import BannerLay from './banner-lay'
 import HotCity from './hot-city'
 import HouseList from './house-list'
-// import ServiceList from './ServiceList
+import ServiceList from './service-list'
 // import BlogList from './BlogList
 // import Partner from './Partner
 export default {
@@ -24,7 +24,7 @@ export default {
     BannerLay,
     HotCity,
     HouseList,
-    // ServiceList,
+    ServiceList,
     // BlogList,
     // Partner,
   }

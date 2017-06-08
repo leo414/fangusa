@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+body {
+  color: #324057;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
 #app {
   display: flex;
   min-height: 100vh;
@@ -41,7 +46,7 @@
 .dib { display: inline-block; }
 
 .theme_color { color: $theme_color !important; }
-.black { color: #000 !important; }
+.black { color: #324057 !important; }
 .bg_white { background: #fff !important; }
 
 .pointer { cursor: pointer;}
@@ -76,5 +81,5 @@ h3,
 h4,
 h5,
 h6 {
-  color: #000;
+  color: #1F2D3D;
 }

@@ -163,10 +163,10 @@ export default {
   line-height: 60px;
   background: $app_bg_colol;
   font-size: 16px;
-  color: #000;
+  color: #324057;
 
   a {
-    color: #000;
+    color: #324057;
     text-decoration: underline;
     margin-right: 20px;
   }

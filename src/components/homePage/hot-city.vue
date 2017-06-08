@@ -29,7 +29,7 @@ export default {
 
 .h1 {
   padding: 20px 0;
-  color: #000;
+  color: #324057;
 }
 
 .city {

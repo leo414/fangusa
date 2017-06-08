@@ -56,7 +56,7 @@ export default {
   height: 50px;
   line-height: 50px;
   font-size: 0;
-  background: #000;
+  background: #324057;
 
   a {
     display: inline-block;
@@ -67,7 +67,7 @@ export default {
   }
 
   .active {
-    color: #000;
+    color: #324057;
     background: #fff;
   }
 }

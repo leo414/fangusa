@@ -80,7 +80,7 @@ export default {
 .hd {
   padding: 10px;
   font-size: 12px;
-  color: #000;
+  color: #324057;
 
   .title {
     font-size: 18px;
@@ -103,7 +103,7 @@ export default {
 }
 
 .footer {
-  color: #000;
+  color: #324057;
   font-size: 14px;
   clear: both;
 }

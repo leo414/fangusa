@@ -90,7 +90,7 @@ export default {
   clear: both;
 
   .h1 {
-    color: #000;
+    color: #324057;
   }
 
   .more_articles {
