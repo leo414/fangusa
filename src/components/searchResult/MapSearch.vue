@@ -19,11 +19,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibGVvNDE0IiwiYSI6ImNpcmh5MGk2MTAxczFnNG5uYmN0N
 
 export default {
   name: 'MapSearch',
-  components: {
-    Row,
-    Coll: Col,
-  },
-
   data() {
     return {
     }
