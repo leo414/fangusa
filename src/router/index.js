@@ -1,13 +1,11 @@
 const Homepage = resolve => import('../components/homePage/index').then(module => resolve(module))
-
-// const Login = () => import('../components/entry/Login)
-// const Register = () => import('../components/entry/Register)
-// const ChangePd = () => import('../components/entry/ChangePd)
+const Login = resolve => import('../components/entry/login').then(module => resolve(module))
+const Register = resolve => import('../components/entry/register').then(module => resolve(module))
+const ChangePd = resolve => import('../components/entry/change-pd').then(module => resolve(module))
 
 // const HouseDetail = () => import('../components/detail/index)
 
 // const MapSearch = () => import('../components/searchResult/MapSearch)
-
 
 const routers = [
   {
@@ -18,28 +16,30 @@ const routers = [
     name: 'Homepage',
     component: Homepage,
   },
-  // {
-  //   path: '/login',
-  //   meta: {
-  //     title: '登录'
-  //   },
-  //   name: 'Login',
-  //   component: Login,
-  // },{
-  //   path: '/register',
-  //   meta: {
-  //     title: '注册'
-  //   },
-  //   name: 'Register',
-  //   component: Register,
-  // },{
-  //   path: '/change_pd',
-  //   meta: {
-  //     title: '修改密码'
-  //   },
-  //   name: 'ChangePd',
-  //   component: ChangePd,
-  // },
+  {
+    path: '/login',
+    meta: {
+      title: '登录'
+    },
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/register',
+    meta: {
+      title: '注册'
+    },
+    name: 'Register',
+    component: Register,
+  },
+  {
+    path: '/change_pd',
+    meta: {
+      title: '修改密码'
+    },
+    name: 'ChangePd',
+    component: ChangePd,
+  },
 
   // {
   //   path: '/map_search',

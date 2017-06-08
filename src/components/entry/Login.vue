@@ -8,36 +8,29 @@
   <div class="content">
     <div class="input_box">
       <section class="account box">
-        <Icon type="android-person" />
+        <i class="i i-user" />
         <input class="ipt" type="text" placeholder="邮箱 / 手机号" />
       </section>
 
       <section class="password box">
-        <Icon type="android-lock" />
+        <i class="i i-lock" />
         <input class="ipt" type="password" placeholder="密码" />
       </section>
     </div>
     <router-link to="change_pd" class="fr theme_color">忘记密码？</router-link>
-    <i-button size="large" class="login">登录</i-button>
+    <el-button type="primary" size="large" class="login_btn">登录</el-button >
 
     <hr/>
 
     <p class="desc">社交媒体账号登录</p>
-    <i-button class="we_loign"><i class="i-weixin i"></i>微信账号登录</i-button>
+    <el-button class="we_loign_btn"><i class="i-weixin i"></i>微信账号登录</el-button >
   </div>
 </section>
 </template>
 
 <script>
-import Button from 'iview/src/components/button'
-import Icon from 'iview/src/components/icon'
-
 export default {
   name: 'Login',
-  components: {
-    iButton: Button,
-    Icon,
-  }
 }
 </script>
 
@@ -113,13 +106,12 @@ export default {
   }
 }
 
-.login {
+.login_btn {
   width: 100%;
   height: 42px;
   font-size: 16px;
   margin-top: 20px;
   clear: both;
-  background: $theme_color;
   color: #fff;
   letter-spacing: 10px;
 }
@@ -134,8 +126,8 @@ hr {
   text-align: center;
 }
 
-.we_loign {
-  @extend .login;
+.we_loign_btn {
+  @extend .login_btn;
   letter-spacing: 2px;
   background: $we_color;
 

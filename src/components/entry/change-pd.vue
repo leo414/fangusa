@@ -1,43 +1,34 @@
-
 <template lang="html">
 <section id="login">
   <header class="header">
-    <router-link active-class="active" to="/login">登录</router-link>
-    <router-link active-class="active" to="/register">注册</router-link>
+    找回密码
   </header>
 
   <div class="content">
     <div class="input_box">
       <section class="account box">
-        <Icon type="android-person" />
+        <i class="i i-user" />
         <input class="ipt" type="text" placeholder="邮箱 / 手机号" />
       </section>
 
       <section class="password box">
-        <Icon type="android-lock" />
+        <i class="i i-lock" />
         <input class="ipt" type="password" placeholder="密码" />
       </section>
 
       <section class="code box">
-        <Icon type="android-lock" />
+        <i class="i i-code" />
         <input class="ipt" type="password" placeholder="手机/邮箱 验证码" />
       </section>
     </div>
-    <i-button size="large" class="login">注册</i-button>
+    <el-button class="login_btn">提交</el-button >
   </div>
 </section>
 </template>
 
 <script>
-import Button from 'iview/src/components/button'
-import Icon from 'iview/src/components/icon'
-
 export default {
   name: 'ChangePd',
-  components: {
-    iButton: Button,
-    Icon,
-  }
 }
 </script>
 
@@ -55,8 +46,9 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  font-size: 0;
   background: #324057;
+  text-align: center;
+  color: #fff;
 
   a {
     display: inline-block;
@@ -114,7 +106,7 @@ export default {
   }
 }
 
-.login {
+.login_btn {
   width: 100%;
   height: 42px;
   font-size: 16px;
@@ -133,17 +125,6 @@ hr {
 
 .desc {
   text-align: center;
-}
-
-.we_loign {
-  @extend .login;
-  letter-spacing: 2px;
-  background: $we_color;
-
-  i {
-    margin-right: 20px;
-    font-size: 20px;
-  }
 }
 
 </style>
