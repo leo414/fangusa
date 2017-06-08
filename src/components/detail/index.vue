@@ -1,11 +1,11 @@
 <template>
-<section id="HouseDetail" class="container">
-  <header calss="header">
+<section class="house_detail container">
+  <header class="header">
     <h1 class="h1">
       旧金山三室两厅独栋别墅
-      <i-button size="small" class="vr"><Icon type="ios-videocam" /> VR 看房</i-button>
-      <i-button size="small" class="mark"><Icon type="ios-star-outline"></Icon> 加入收藏</i-button>
-      <i-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</i-button>
+      <el-button size="small" class="vr"> VR 看房</el-button>
+      <el-button size="small" class="mark"> 加入收藏</el-button>
+      <el-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</el-button>
       <span class="fr price">
         售价：$350,000（约￥50万）
       </span>
@@ -13,33 +13,29 @@
   </header>
 
   <div class="content_left">
-    <h3 class="fl">2015 年建造 | 190 平米</h3>
+    <h3 class="fl h3">2015 年建造 | 190 平米</h3>
     <small class="fr u_line pointer" @click="print">打印此页</small>
-    <PhotoShow />
-    <HouseInfo />
+    <photo-show />
+    <house-info />
   </div>
 
   <div class="content_right">
-    <h3 class="tr">估计月租金收入：$1800（约￥8500）</h3>
-    <CreditComputed />
-    <OtherHouse />
+    <h3 class="tr h3">估计月租金收入 $1800 (约￥8500)</h3>
+    <credit-computed />
+    <other-house />
   </div>
-</section>
+</section> 
 </template>
 
 <script>
-import Button from 'iview/src/components/button'
-import Icon from 'iview/src/components/icon'
-import PhotoShow from './PhotoShow
-import CreditComputed from './CreditComputed
-import HouseInfo from './HouseInfo
-import OtherHouse from './OtherHouse
+import PhotoShow from './photo-show'
+import CreditComputed from './credit-computed'
+import HouseInfo from './house-info'
+import OtherHouse from './other-house'
 
 export default {
   name: "HouseDetail",
   components: {
-    iButton: Button,
-    Icon,
     PhotoShow,
     CreditComputed,
     HouseInfo,
@@ -61,7 +57,7 @@ export default {
 <style lang="scss">
 @import "../../scss/variables";
 
-#HouseDetail {
+.house_detail {
   margin-top: 30px;
 
   .content_left {
@@ -83,8 +79,10 @@ export default {
     }
   }
 
-  h3 {
-    margin-bottom: 10px;
+  .h3 { 
+    font-weight: 400;
+    margin-bottom: 10px; 
+    font-size: 16px;
   }
 }
 
@@ -104,17 +102,19 @@ export default {
 }
 
 .vr {
-  margin-bottom: 5px;
   margin-left: 10px;
+  margin-bottom: 6px;
+  vertical-align: middle;
   background: $btn_color;
   color: #fff;
   border: none;
   font-size: 12px;
-  padding: 0px 8px;
 
-  i {
-    font-size: 14px;
+  &:hover {
+    color: #fff;
   }
+
+  i { font-size: 14px; }
 }
 
 

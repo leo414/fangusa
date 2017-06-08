@@ -32,44 +32,44 @@
 
   <div class="recommend_house">
     <h3>推荐房源</h3>
-    <Carousel v-model="value1">
-      <Carousel-item>
+    <el-carousel v-model="value1">
+      <el-carousel-item>
         <div class="house">
-          <i-button size="small" type="error">推荐房源</i-button>
+          <el-button size="small" type="error">推荐房源</el-button>
           <div class="footer">
             <h3 class="h3">$350,000(约xxxxx)</h3>
-            <Icon class="star" type="ios-star-outline" />
+            <!--<Icon class="star" type="ios-star-outline" />-->
             <i class="i i-weixin wexin" />
           </div>
         </div>
-      </Carousel-item>
-      <Carousel-item>
+      </el-carousel-item>
+      <el-carousel-item>
         <div class="house"></div>
-      </Carousel-item>
-      <Carousel-item>
+      </el-carousel-item>
+      <el-carousel-item>
         <div class="house"></div>
-      </Carousel-item>
-      <Carousel-item>
+      </el-carousel-item>
+      <el-carousel-item>
         <div class="house"></div>
-      </Carousel-item>
-    </Carousel>
+      </el-carousel-item>
+    </el-carousel>
   </div>
 
   <div class="house_type">
     <h3>房屋类型</h3>
     <ul>
       <li class="theme_color">
-        <Icon type="arrow-right-b"></Icon>
+        <!--<Icon type="arrow-right-b"></Icon>-->
         独栋别墅
         <span class="fr">(30)</span>
       </li>
       <li class="theme_color">
-        <Icon type="arrow-right-b"></Icon>
+        <!--<Icon type="arrow-right-b"></Icon>-->
         独栋别墅
         <span class="fr">(30)</span>
       </li>
       <li class="theme_color">
-        <Icon type="arrow-right-b"></Icon>
+        <!--<Icon type="arrow-right-b"></Icon>-->
         独栋别墅
         <span class="fr">(30)</span>
       </li>
@@ -79,19 +79,9 @@
 
 </template>
 <script>
-import Carousel from 'iview/src/components/carousel'
-import Icon from 'iview/src/components/icon'
-const CarouselItem = Carousel.Item
-import Button from 'iview/src/components/button'
 
 export default {
   name: "OtherHouse",
-  components: {
-    Carousel,
-    Icon,
-    CarouselItem,
-    iButton: Button,
-  },
   data() {
     return {
       value1: 0,

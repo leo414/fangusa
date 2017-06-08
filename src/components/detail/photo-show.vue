@@ -1,43 +1,25 @@
 <template>
 <section id="PhotoShow">
-  <Carousel v-model="value1">
-     <Carousel-item>
-        <div class="photo"></div>
-     </Carousel-item>
-     <Carousel-item>
-        <div class="photo"></div>
-     </Carousel-item>
-     <Carousel-item>
-        <div class="photo"></div>
-     </Carousel-item>
-     <Carousel-item>
-        <div class="photo"></div>
-     </Carousel-item>
-   </Carousel>
-   <ul class="small_photo">
+  <el-carousel indicator-position="outside" height="400px">
+    <el-carousel-item v-for="item in 4" :key="item" class="banner_item">
+      <div class="photo"></div>
+    </el-carousel-item>
+  </el-carousel>
+  <ul class="small_photo">
     <li><img src="http://placehold.it/60x30" /></li>
     <li><img src="http://placehold.it/60x30" /></li>
     <li><img src="http://placehold.it/60x30" /></li>
     <li><img src="http://placehold.it/60x30" /></li>
     <li><img src="http://placehold.it/60x30" /></li>
     <li><img src="http://placehold.it/60x30" /></li>
-   </ul>
+  </ul>
 </section>
-
 </template>
 <script>
-import Carousel from 'iview/src/components/carousel'
-const CarouselItem = Carousel.Item
-
 export default {
   name: "PhotoShow",
-  components: {
-    Carousel,
-    CarouselItem,
-  },
   data() {
     return {
-      value1: 0,
     }
   }
 }

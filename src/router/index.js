@@ -2,9 +2,7 @@ const Homepage = resolve => import('../components/homePage/index').then(module =
 const Login = resolve => import('../components/entry/login').then(module => resolve(module))
 const Register = resolve => import('../components/entry/register').then(module => resolve(module))
 const ChangePd = resolve => import('../components/entry/change-pd').then(module => resolve(module))
-
-// const HouseDetail = () => import('../components/detail/index)
-
+const HouseDetail = resolve => import('../components/detail/index').then(module => resolve(module))
 // const MapSearch = () => import('../components/searchResult/MapSearch)
 
 const routers = [
@@ -50,13 +48,13 @@ const routers = [
   //   component: MapSearch,
   // },
 
-  // {
-  //   path: '/detail/:id',
-  //   meta: {
-  //     title: '房详情'
-  //   },
-  //   name: 'HouseDetail',
-  //   component: HouseDetail,
-  // },
+  {
+    path: '/detail/:id',
+    meta: {
+      title: '房详情'
+    },
+    name: 'HouseDetail',
+    component: HouseDetail,
+  },
 ]
 export default routers

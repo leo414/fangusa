@@ -26,26 +26,19 @@
     <input type="text" placeholder="Principal" class="ivu-input" />
   </div>
 
-  <i-button class="button" type="error">贷款月供：$900（约￥7200）</i-button>
-  <i-button class="button" type="primary">立刻申请贷款</i-button>
+  <el-button class="button" type="error">贷款月供：$900（约￥7200）</el-button>
+  <el-button class="button" type="primary">立刻申请贷款</el-button>
   <small class="small">
     贷款计算结果仅供参考，实际利率与贷款金额依个人情况而定。
-    <Icon type="ios-information-outline"></Icon>
+    <!--<Icon type="ios-information-outline"></Icon>-->
   </small>
 
 </section>
 
 </template>
 <script>
-import Button from 'iview/src/components/button'
-import Icon from 'iview/src/components/icon'
-
 export default {
   name: "CreditComputed",
-  components: {
-    iButton: Button,
-    Icon,
-  },
   data() {
     return {
 

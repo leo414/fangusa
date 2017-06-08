@@ -90,30 +90,20 @@
     联系方式3： xxx
     <h3 class="h3">直接填写以下表格联系我们：</h3>
     <el-row type="flex" justify="space-between" class="code-row-bg mb-20">
-      <el-col :span="7"><i-input v-model="value1" size="large" placeholder="你的姓名" /></el-col>
-      <el-col :span="7"><i-input v-model="value1" size="large" placeholder="联系电话" /></el-col>
-      <el-col :span="7"><i-input v-model="value1" size="large" placeholder="邮箱 / 微信 ID （选填）" /></el-col>
+      <el-col :span="7"><el-input v-model="value1" size="large" placeholder="你的姓名" /></el-col>
+      <el-col :span="7"><el-input v-model="value1" size="large" placeholder="联系电话" /></el-col>
+      <el-col :span="7"><el-input v-model="value1" size="large" placeholder="邮箱 / 微信 ID （选填）" /></el-col>
     </el-row>
-    <i-input v-model="value2" type="textarea" :rows="4" placeholder="" />
+    <el-input v-model="value2" type="textarea" :rows="4" placeholder="" />
 
-    <i-button type="primary">提交</i-button>
+    <el-button type="primary">提交</el-button>
   </div>
 </section>
 
 </template>
 <script>
-import Input from 'iview/src/components/input'
-import Button from 'iview/src/components/button'
-
-
 export default {
   name: "HouseDetail",
-  components: {
-    iInput: Input,
-    iButton: Button,
-    Row,
-    Coll: Col,
-  },
   data() {
     return {
       value1: '',
