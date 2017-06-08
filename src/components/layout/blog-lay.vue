@@ -22,14 +22,14 @@
   <footer class="footer">
     <router-link class="link" to="/">
       继续阅读
-      <Icon type="arrow-right-b"></Icon>
+      <i class="i i-youjiantou" />
     </router-link>
 
     <section class="author_info">
       <img class="face" src="http://placehold.it/50x50" alt="作者头像">
       <div class="info">
         <h3>托尼张</h3>
-        <Icon type="android-person"></Icon>
+        <i class="i i-user" />
         签约作者
       </div>
     </section>
@@ -38,12 +38,8 @@
 </template>
 
 <script>
-import Icon from 'iview/src/components/icon'
 export default {
   name: 'BlogLayout',
-  components: {
-    Icon,
-  }
 }
 </script>
 
@@ -96,6 +92,8 @@ export default {
 .footer {
   margin-top: 30px;
   font-size: 12px;
+
+  i { font-size: 14px; }
 
   .link {
     display: block;

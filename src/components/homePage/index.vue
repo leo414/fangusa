@@ -6,7 +6,7 @@
   <house-list title="学区好房" />
   <router-link id="vr" to="/vr_list"></router-link>
   <service-list />
-  <!--<BlogList />-->
+  <blog-list />
   <!--<Partner />-->
 </div>
 </template>
@@ -16,7 +16,7 @@ import BannerLay from './banner-lay'
 import HotCity from './hot-city'
 import HouseList from './house-list'
 import ServiceList from './service-list'
-// import BlogList from './BlogList
+import BlogList from './blog-list'
 // import Partner from './Partner
 export default {
   name: 'HomePage',
@@ -25,7 +25,7 @@ export default {
     HotCity,
     HouseList,
     ServiceList,
-    // BlogList,
+    BlogList,
     // Partner,
   }
 }
