@@ -1,10 +1,13 @@
 <template lang="html">
 <section id="hot_city" class="container">
   <h1 class="h1">热门城市</h1>
-  <el-row type="flex" justify="space-between" class="code-row-bg">
+  <el-row type="flex" justify="space-between">
     <el-col class="city" :span="8"></el-col>
     <el-col class="city" :span="8"></el-col>
     <el-col class="city" :span="8"></el-col>
+  </el-row>
+
+   <el-row type="flex" justify="space-between">
     <el-col class="city" :span="8"></el-col>
     <el-col class="city" :span="8"></el-col>
     <el-col class="city" :span="8"></el-col>
@@ -16,10 +19,6 @@
 
 export default {
   name: 'HotCity',
-  components: {
-    Row,
-    Coll: Col,
-  },
 }
 </script>
 

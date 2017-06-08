@@ -1,19 +1,19 @@
 <template lang="html">
 <div id="home_page">
   <banner-lay />
-  <!--<HotCity />
-  <HouseList title="最新房源" />
+  <hot-city />
+  <!--<HouseList title="最新房源" />
   <HouseList title="学区好房" />
   <router-link id="vr" to="/vr_list"></router-link>
   <ServiceList />
-  <BlogList />
-  <Partner />-->
+  <BlogList />-->
+  <!--<Partner />-->
 </div>
 </template>
 
 <script>
 import BannerLay from './banner-lay'
-// import HotCity from './HotCity
+import HotCity from './hot-city'
 // import HouseList from './HouseList
 // import ServiceList from './ServiceList
 // import BlogList from './BlogList
@@ -22,7 +22,7 @@ export default {
   name: 'HomePage',
   components: {
     BannerLay,
-    // HotCity,
+    HotCity,
     // HouseList,
     // ServiceList,
     // BlogList,
