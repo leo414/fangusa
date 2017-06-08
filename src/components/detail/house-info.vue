@@ -1,5 +1,5 @@
 <template>
-<section id="HouseDetail">
+<section class="house_detail">
   <div class="house_desc">
     <h3 class="h3">房屋介绍</h3>
     <p>
@@ -113,7 +113,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#HouseDetail {
+.house_detail {
   width: 100%;
   height: auto;
 }

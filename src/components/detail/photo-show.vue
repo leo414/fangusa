@@ -1,5 +1,5 @@
 <template>
-<section id="PhotoShow">
+<section class="photo_show">
   <el-carousel indicator-position="outside" height="400px">
     <el-carousel-item v-for="item in 4" :key="item" class="banner_item">
       <div class="photo"></div>
@@ -25,7 +25,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#PhotoShow {
+.photo_show {
   background: #fff;
   clear: both;
 }

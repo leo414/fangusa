@@ -1,10 +1,10 @@
 <template>
-<section class="house_detail container">
+<section class="house_detail_container container">
   <header class="header">
     <h1 class="h1">
       旧金山三室两厅独栋别墅
-      <el-button size="small" class="vr"> VR 看房</el-button>
-      <el-button size="small" class="mark"> 加入收藏</el-button>
+      <el-button size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
+      <el-button size="small" class="mark"><i class="i i-star" /> 加入收藏</el-button>
       <el-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</el-button>
       <span class="fr price">
         售价：$350,000（约￥50万）
@@ -13,14 +13,14 @@
   </header>
 
   <div class="content_left">
-    <h3 class="fl h3">2015 年建造 | 190 平米</h3>
+    <h3 class="fl subtitle">2015 年建造 | 190 平米</h3>
     <small class="fr u_line pointer" @click="print">打印此页</small>
     <photo-show />
     <house-info />
   </div>
 
   <div class="content_right">
-    <h3 class="tr h3">估计月租金收入 $1800 (约￥8500)</h3>
+    <h3 class="tr subtitle">估计月租金收入 $1800 (约￥8500)</h3>
     <credit-computed />
     <other-house />
   </div>
@@ -57,7 +57,7 @@ export default {
 <style lang="scss">
 @import "../../scss/variables";
 
-.house_detail {
+.house_detail_container {
   margin-top: 30px;
 
   .content_left {
@@ -79,7 +79,7 @@ export default {
     }
   }
 
-  .h3 { 
+  .subtitle { 
     font-weight: 400;
     margin-bottom: 10px; 
     font-size: 16px;
@@ -113,8 +113,6 @@ export default {
   &:hover {
     color: #fff;
   }
-
-  i { font-size: 14px; }
 }
 
 
