@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/variables.scss';
+@import '../../scss/variables';
 
 .blog_list {
   margin-top: 60px;

@@ -1,8 +1,9 @@
 <template lang="html">
 <div class="container" id="partner">
-  <h1 class="h1">
+  <h2 class="h2">
     合作伙伴
-  </h1>
+  </h2>
+
   <el-row class="partner_list" :gutter="8">
     <el-col :span="6">
       <div class="item"></div>
@@ -37,13 +38,8 @@
 
 <script>
 
-
 export default {
-  name: 'Partner',
-  components: {
-    Row,
-    Coll: Col,
-  }
+  name: 'PartnerLay',
 }
 </script>
 
@@ -66,6 +62,4 @@ export default {
     background-size: cover;
   }
 }
-
-
 </style>
