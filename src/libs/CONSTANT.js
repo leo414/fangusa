@@ -1,5 +1,7 @@
 export const API = {
-  
+  House: {
+    HouseList: 'house',
+  }
 }
 
 export const SDK = {

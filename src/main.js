@@ -1,19 +1,18 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-
-import VueRouter from 'vue-router'
-
 import App from './App'
-import Routers from './router'
 import Util from './libs/util'
 
-import 'element-ui/lib/theme-default/index.css'
-import  './scss/index.scss'
-
-Vue.use(VueRouter)
+import './scss/index.scss'
+import './mixins/GlobalMixin'
 
 Vue.config.productionTip = false
+
+/**
+ * Element UI 
+ */
+import 'element-ui/lib/theme-default/index.css'
 
 import { 
   Row, 
@@ -38,7 +37,22 @@ Vue.use(Button)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
 
-// route config
+
+/**
+ * Axios config
+ */
+import AxiosPlugin from './libs/axios'
+Vue.use(AxiosPlugin)
+
+
+/**
+ * route config
+ */
+import VueRouter from 'vue-router'
+import Routers from './router'
+
+Vue.use(VueRouter)
+
 const RouterConfig = {
   mode: 'history',
   routes: Routers
