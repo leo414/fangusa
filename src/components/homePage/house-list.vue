@@ -42,9 +42,18 @@ export default {
   },
   data() {
     return {
-      value2: 0,
     }
-  }
+  },
+  mounted() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.$http.get(this.API.HOUSE.List).then(res => {
+        console.log(res)
+      })
+    }
+  },
 }
 </script>
 

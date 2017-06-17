@@ -15,10 +15,6 @@ const Axios = axios.create({
 Axios.interceptors.response.use(res => {
   if(res.status !== 200) {
     ShowMessage()
-  } else if (res.data.status === 'not_found') {
-    ShowMessage('查询商品不存在')
-  } else if (res.data.status === 'false'){
-    ShowMessage(res.data.message)
   }
 
   return res.data

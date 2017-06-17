@@ -1,6 +1,6 @@
 export const API = {
-  House: {
-    HouseList: 'house',
+  HOUSE: {
+    List: 'house/',
   }
 }
 
