@@ -2,29 +2,14 @@
   <div class="new_house container">
     <h2 class="h2">{{title}}</h2>
 
-    <el-row type="flex" justify="space-between" class="code-row-bg">
-      <el-col class="house" :span="8">
-        <house-lay />
-      </el-col>
-      <el-col class="house" :span="8">
-        <house-lay />
-      </el-col>
-      <el-col class="house" :span="8">
-        <house-lay />
-      </el-col>
-    </el-row>
-
-    <el-row type="flex" justify="space-between" class="code-row-bg">
-      <el-col class="house" :span="8">
-        <house-lay />
-      </el-col>
-      <el-col class="house" :span="8">
-        <house-lay />
-      </el-col>
-      <el-col class="house" :span="8">
-        <house-lay />
-      </el-col>
-    </el-row>
+    <swiper :options="swiperOption">
+      <swiper-slide v-for="(house, index) in houseList" :key="index">
+        <house-lay :info="house" />
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+    </swiper>
   </div>
 </template>
 
@@ -42,6 +27,16 @@ export default {
   },
   data() {
     return {
+      houseList: [],
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        paginationClickable: true,
+        spaceBetween: 20,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+      },
     }
   },
   mounted() {
@@ -50,7 +45,7 @@ export default {
   methods: {
     fetchData() {
       this.$http.get(this.API.HOUSE.List).then(res => {
-        console.log(res)
+        this.houseList = res.results
       })
     }
   },

@@ -1,24 +1,23 @@
 <template lang="html">
 <section class="city_layout">
-  <div class="img_box">
+  <div class="img_box" :style="background">
     <span class="tag">推荐房源</span>
     <footer class="footer">
-      <h3 class="price1">$200.00</h3>
-      <h2 class="price2">约￥50 万</h2>
+      <h3 class="price1">${{info.zestimate}}</h3>
+      <h2 class="price2">约￥{{info.zestimate}} 万</h2>
     </footer>
   </div>
 
   <div class="hd">
-    <p class="title text_ellipsis">旧金山</p>
+    <p class="title text_ellipsis">{{info.city_name}}</p>
     <p class="title text_ellipsis">三室两厅独栋别墅</p>
-    <span class="desc">2015 年建造 | 190 平米</span>
+    <span class="desc">{{info.build_year}} 年建造 | {{info.square}} 平米</span>
   </div>
   <button class="btn fr">查看详情</button>
 
   <footer class="footer">
     房源信息发布于：3 天前
     <span class="fr">
-      <!--<Icon type="ios-star-outline" size="18" />-->
       <i style="color: #8492A6;" class="i i-star" />
       加入收藏
     </span>
@@ -28,7 +27,23 @@
 
 <script>
 export default {
-  name: 'HouseLayout',
+  name: 'HouseLay',
+  props: {
+    info: {
+      type: Object,
+      default: {},
+    },
+  },
+  computed: {
+    background() {
+      return {
+        backgroundImage: 'url('+ this.info.front_image_url +')',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }
+    }
+  },
 }
 </script>
 
@@ -39,6 +54,7 @@ export default {
   height: auto;
   padding: 10px;
   background: #fff;
+  cursor: pointer;
 }
 
 .img_box {
@@ -49,13 +65,12 @@ export default {
   margin-bottom: 10px;
   width: 100%;
   height: 220px;
-  background: url('http://placehold.it/300x220') center center no-repeat;
-  background-size: cover;
 
   .tag {
     padding: 5px;
     font-size: 12px;
     color: #fff;
+    cursor: point; 
     background: $btn_color;
   }
 
@@ -84,6 +99,7 @@ export default {
 
   .title {
     font-size: 18px;
+    margin-bottom: 5px;
     color: $theme_color;
   }
 

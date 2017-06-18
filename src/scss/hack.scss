@@ -1,0 +1,13 @@
+.swiper-button-prev, .swiper-button-next {
+  opacity: .5;
+  z-index: 100;
+  height: 30px;
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+
+.swiper-button-next { 
+  right: 0;
+}

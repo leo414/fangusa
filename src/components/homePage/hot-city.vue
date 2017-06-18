@@ -1,6 +1,6 @@
 <template lang="html">
 <section id="hot_city" class="container">
-  <h1 class="h1">热门城市</h1>
+  <h2 class="h2">热门城市</h2>
   <el-row type="flex" justify="space-between">
     <el-col class="city" :span="8"></el-col>
     <el-col class="city" :span="8"></el-col>
@@ -27,9 +27,8 @@ export default {
   margin-top: 20px;
 }
 
-.h1 {
+.h2 {
   padding: 20px 0;
-  color: #324057;
 }
 
 .city {
