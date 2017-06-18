@@ -41,7 +41,7 @@
       </div>
 
       <div class="container" style="margin-top: -5px;">
-         <el-select placeholder="城市" style="width: 150px; margin-right: 22px;" v-model="model1">
+         <el-select placeholder="城市圈" style="width: 150px; margin-right: 22px;" v-model="model1">
           <el-option
             v-for="item in cityList"
             :key="item.value"
