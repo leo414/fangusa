@@ -1,54 +1,46 @@
 <template>
 <section class="credit_computed">
   <h3 class="h3">贷款计算器</h3>
+  <el-form ref="form" :model="form" label-width="80px">
+    <el-form-item label="房屋总价">
+      <el-input disabled :value="price">
+        <template slot="append">$</template>
+      </el-input>
+    </el-form-item>
 
-  <div class="el-input">
-    <i class="i el-input__icon i-font34" />
-    <input 
-      placeholder="房屋总价" 
-      type="text" 
-      class="el-input__inner" 
-    />
-  </div>
+     <el-form-item label="首付金额">
+      <el-input disabled :value="downPayment">
+        <template slot="append">$</template>
+      </el-input>
+    </el-form-item>
 
-  <div class="el-input">
-    <i class="i el-input__icon i-font34" />
-    <input 
-      placeholder="首付金额" 
-      type="text" 
-      class="el-input__inner" 
-    />
-  </div>
+     <el-form-item label="首付比例">
+      <el-input v-model="form.paymentRatio">
+        <template slot="append">%</template>
+      </el-input>
+    </el-form-item>
 
-   <div class="el-input">
-    <i class="i el-input__icon i-baifenbi" />
-    <input 
-      placeholder="贷款年利率" 
-      type="text" 
-      class="el-input__inner" 
-    />
-  </div>
+    <el-form-item label="贷款计划">
+      <el-select v-model="form.months">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+    </el-form-item>
 
-   <div class="el-input">
-    <i class="i el-input__icon i-calc" />
-    <input 
-      placeholder="贷款计划" 
-      type="text" 
-      class="el-input__inner" 
-    />
-  </div>
+     <el-form-item label="年利率">
+      <el-input v-model="form.rate">
+        <template slot="append">%</template>
+      </el-input>
+    </el-form-item>
 
-   <div class="el-input">
-    <i class="i el-input__icon i-font34" />
-    <input 
-      placeholder="Principal" 
-      type="text" 
-      class="el-input__inner" 
-    />
-  </div>
-
-  <el-button class="button" type="danger">贷款月供：$900（约￥7200）</el-button>
-  <el-button class="button" type="primary">立刻申请贷款</el-button>
+    <el-button class="button" type="danger">贷款月供：$900（约￥7200）</el-button>
+    <el-button class="button bottom" @click="onSubmit" type="primary">立刻申请贷款</el-button>
+  </el-form>
+  
   <small class="small">
     贷款计算结果仅供参考，实际利率与贷款金额依个人情况而定。
     <i class="i i-i" />
@@ -60,9 +52,47 @@
 <script>
 export default {
   name: "CreditComputed",
+  props: {
+    price: {
+      type: Number,
+      required: true,
+    }
+  },
   data() {
-    return {}
-  }
+    return {
+      options: [{
+          value: 360,
+          label: '30-year fixed'
+        }, {
+          value: 180,
+          label: '15-year fixed'
+        }, {
+          value: 60,
+          label: '5/1 ARM'
+        }],
+      form: {
+        months: 360,// 贷款多少个月
+        rate: 3.748, //银行利息多少，单位 %
+        paymentRatio: 20,//首付比例，单位 %
+      },
+    }
+  },
+  computed: {
+    // 首付价格, 单位 $
+    downPayment() {
+      return 999
+    },
+
+    // 月供价格, 单位 $
+    monthPayment() {
+
+    },
+  },
+  methods: {
+    onSubmit() {
+
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -70,25 +100,11 @@ export default {
   padding: 25px 20px;
   width: 100%;
   background: #fff;
-  height: 480px;
+  height: auto;
 }
 
 .h3 {
   margin-bottom: 15px;
-}
-
-.el-input {
-  width: 240px;
-  margin-bottom: 12px;
-}
-
-.el-input__icon {
-  left: 0;
-  border-right: 1px solid #d7dde4;
-}
-
-.el-input__icon+.el-input__inner {
-  padding-left: 40px;
 }
 
 .word {
@@ -97,8 +113,11 @@ export default {
 
 .button {
   width: 100%;
-  margin-top: 15px;
   margin-left: 0;
+}
+
+.button.bottom {
+  margin-top: 15px;
 }
 
 .small {

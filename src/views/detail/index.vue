@@ -24,7 +24,7 @@
 
   <div class="content_right">
     <h3 class="tr subtitle">估计月租金收入 $1800 (约￥8500)</h3>
-    <credit-computed />
+    <credit-computed :price="2000" />
     <other-house />
   </div>
 </section> 

@@ -25,6 +25,8 @@ import {
   Option,
   Slider,
   Button,
+  Form,
+  FormItem,
   Carousel,
   CarouselItem,
   Tooltip,  
@@ -35,6 +37,8 @@ Vue.use(Input)
 Vue.use(Switch)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Form)
+Vue.use(FormItem)
 Vue.use(Slider)
 Vue.use(Button)
 Vue.use(Carousel)
