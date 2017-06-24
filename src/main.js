@@ -27,6 +27,7 @@ import {
   Button,
   Carousel,
   CarouselItem,
+  Tooltip,  
 } from 'element-ui'
 Vue.use(Row)
 Vue.use(Col)
@@ -38,6 +39,7 @@ Vue.use(Slider)
 Vue.use(Button)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(Tooltip)
 
 
 /**
