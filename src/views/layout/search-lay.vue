@@ -4,7 +4,7 @@
     <div class="container">
       <div class="input_box">
         <input v-model="search_key" type="search" placeholder="城市名／邮编／房源编号" />
-        <a class="btn">搜索</a>
+        <a @click.stop="" class="btn">搜索</a>
       </div>
       <div class="advanced_search_btn" @click="is_show_search = !is_show_search">
         <i class="i i-shezhi1" />
@@ -142,6 +142,7 @@ export default {
       vertical-align: top;
       width: 70px;
       line-height: 46px;
+      cursor: pointer;
       text-align: center;
       height: inherit;
       letter-spacing: 2px;

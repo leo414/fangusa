@@ -106,6 +106,7 @@ export default {
   }
 
   .hd {
+    margin-top: 10px;
     display: inline-block;
     vertical-align: top;
     font-size: 12px;
