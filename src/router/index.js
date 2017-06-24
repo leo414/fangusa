@@ -1,9 +1,9 @@
-const Homepage = resolve => import('../components/homePage/index').then(module => resolve(module))
-const Login = resolve => import('../components/entry/login').then(module => resolve(module))
-const Register = resolve => import('../components/entry/register').then(module => resolve(module))
-const ChangePd = resolve => import('../components/entry/change-pd').then(module => resolve(module))
-const HouseDetail = resolve => import('../components/detail/index').then(module => resolve(module))
-// const MapSearch = () => import('../components/searchResult/MapSearch)
+const Homepage = resolve => import('views/homePage/index').then(module => resolve(module))
+const Login = resolve => import('views/entry/login').then(module => resolve(module))
+const Register = resolve => import('views/entry/register').then(module => resolve(module))
+const ChangePd = resolve => import('views/entry/change-pd').then(module => resolve(module))
+const HouseDetail = resolve => import('views/detail/index').then(module => resolve(module))
+// const MapSearch = () => import('views/searchResult/MapSearch)
 
 const routers = [
   {

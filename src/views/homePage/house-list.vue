@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import HouseLay from '../layout/house-lay'
+import HouseLay from 'components/house-lay/house-lay'
 
 export default {
   name: 'HouseList',

@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import NavLay from './components/layout/nav-lay'
-import FooterLay from './components/layout/footer-lay'
-import SearchLay from './components/layout/search-lay'
+import NavLay from 'views/layout/nav-lay'
+import FooterLay from 'views/layout/footer-lay'
+import SearchLay from 'views/layout/search-lay'
 export default {
   name: 'App',
   components: {
