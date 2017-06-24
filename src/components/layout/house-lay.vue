@@ -1,19 +1,19 @@
 <template lang="html">
 <section class="city_layout">
-  <div class="img_box" :style="background">
+  <router-link :to="'/detail/' + info.url_object_id" class="img_box" :style="background">
     <span class="tag">推荐房源</span>
     <footer class="footer">
       <h3 class="price1">${{info.zestimate}}</h3>
       <h2 class="price2">约￥{{info.zestimate}} 万</h2>
     </footer>
-  </div>
+  </router-link>
 
   <div class="hd">
     <p class="title text_ellipsis">{{info.city_name}}</p>
     <p class="title text_ellipsis">三室两厅独栋别墅</p>
     <span class="desc">{{info.build_year}} 年建造 | {{info.square}} 平米</span>
   </div>
-  <button class="btn fr">查看详情</button>
+  <router-link :to="'/detail/' + info.url_object_id" class="btn fr">查看详情</router-link>
 
   <footer class="footer">
     房源信息发布于：3 天前
@@ -54,17 +54,18 @@ export default {
   height: auto;
   padding: 10px;
   background: #fff;
-  cursor: pointer;
 }
 
 .img_box {
   position: relative;
   left: 0;
   right: 0;
+  display: block;
   padding: 10px;
   margin-bottom: 10px;
   width: 100%;
   height: 220px;
+  cursor: pointer;  
 
   .tag {
     padding: 5px;

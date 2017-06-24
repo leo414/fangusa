@@ -48,17 +48,6 @@
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
-  <!--<el-row type="flex" justify="space-between">
-    <el-col class="city" :span="8"></el-col>
-    <el-col class="city" :span="8"></el-col>
-    <el-col class="city" :span="8"></el-col>
-  </el-row>
-
-   <el-row type="flex" justify="space-between">
-    <el-col class="city" :span="8"></el-col>
-    <el-col class="city" :span="8"></el-col>
-    <el-col class="city" :span="8"></el-col>
-  </el-row>-->
 </section>
 </template>
 
