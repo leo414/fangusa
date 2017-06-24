@@ -6,10 +6,7 @@
       <el-button size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
       <el-button size="small" class="mark"><i class="i i-star" /> 加入收藏</el-button>
       <el-tooltip placement="top" effect="light">
-        <div slot="content">
-          <h2 class="tc">微信扫一扫</h2>
-          <img src="http://qr.liantu.com/api.php?text=https://www.baidu.com&logo=https://ws3.sinaimg.cn/large/006tKfTcly1fgw5vvaoxrj30le04iq53.jpg&w=180" />
-        </div>
+        <QrImage slot="content" houseId="url_object_id"></QrImage>
         <el-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</el-button>
       </el-tooltip>
       <span class="fr price">
@@ -38,6 +35,7 @@ import PhotoShow from './photo-show'
 import CreditComputed from './credit-computed'
 import HouseInfo from './house-info'
 import OtherHouse from './other-house'
+import QrImage from 'components/qr-image/qr-image'
 
 export default {
   name: "HouseDetail",
@@ -46,6 +44,7 @@ export default {
     CreditComputed,
     HouseInfo,
     OtherHouse,
+    QrImage,
   },
   data() {
     return {
