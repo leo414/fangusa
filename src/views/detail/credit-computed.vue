@@ -37,7 +37,7 @@
       </el-input>
     </el-form-item>
 
-    <el-button class="button" type="danger">贷款月供：$900（约￥7200）</el-button>
+    <el-button class="button" type="danger">贷款月供：${{monthPayment}}（约￥7200）</el-button>
     <el-button class="button bottom" @click="onSubmit" type="primary">立刻申请贷款</el-button>
   </el-form>
   
@@ -72,7 +72,7 @@ export default {
         }],
       form: {
         months: 360,// 贷款多少个月
-        rate: 3.748, //银行利息多少，单位 %
+        rate: 4.108, //银行利息多少，单位 %
         paymentRatio: 20,//首付比例，单位 %
       },
     }
@@ -80,12 +80,16 @@ export default {
   computed: {
     // 首付价格, 单位 $
     downPayment() {
-      return 999
+      return this.price * (this.form.paymentRatio / 100)
     },
 
     // 月供价格, 单位 $
     monthPayment() {
-
+      let { rate, months } = this.form
+      rate = rate / 1200
+      const Numerator = this.downPayment * rate
+      const Denominator = 1 - Math.pow((1 + rate), -months)
+      return (Numerator / Denominator).toFixed(2)
     },
   },
   methods: {
