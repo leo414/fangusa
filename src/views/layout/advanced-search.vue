@@ -102,7 +102,7 @@
           </el-slider>
         </div>
 
-        <el-button size="large" class="i_button" type="primary" icon="search">高级搜索</el-button>
+        <el-button size="small" class="i_button" type="primary" icon="search">高级搜索</el-button>
       </div>
   </section>
 </template>
@@ -156,9 +156,9 @@ export default {
   left: 0;
   z-index: $z_filter;
   width: 100%;
-  height: 200px;
+  height: 170px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
-  background: #fff;
+  background: rgba(255,255,255,.9);
 
   .slider_box {
     display: inline-block;
@@ -173,7 +173,7 @@ export default {
   }
 
   .i_button {
-    margin-top: 25px;
+    margin-top: 10px;
     float: right;
   }
 }

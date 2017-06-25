@@ -3,7 +3,7 @@
   <div id="nav" class="container">
     <el-row class="row_container">
       <el-col :span="4" class="logo">
-        <router-link to="/"><img src="../../assets/logo.png" alt=""></router-link>
+        <router-link to="/"><img src="../../assets/logo.png" alt="LOGO"></router-link>
       </el-col>
       <el-col :span="16" :offset="1">
         <ul class="nav_list">

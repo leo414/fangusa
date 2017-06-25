@@ -3,6 +3,7 @@ const Login = resolve => import('views/entry/login').then(module => resolve(modu
 const Register = resolve => import('views/entry/register').then(module => resolve(module))
 const ChangePd = resolve => import('views/entry/change-pd').then(module => resolve(module))
 const HouseDetail = resolve => import('views/detail/index').then(module => resolve(module))
+const SearchResult = resolve => import('views/searchResult/search-result').then(module => resolve(module))
 // const MapSearch = () => import('views/searchResult/MapSearch)
 
 const routers = [
@@ -55,6 +56,15 @@ const routers = [
     },
     name: 'HouseDetail',
     component: HouseDetail,
+  },
+
+  {
+    path: '/result/',
+    meta: {
+      title: '房源搜索结果'
+    },
+    name: 'SearchResult',
+    component: SearchResult,
   },
 ]
 export default routers
