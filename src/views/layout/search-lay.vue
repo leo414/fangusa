@@ -117,6 +117,7 @@ export default {
 
     .advanced_search_btn {
       display: inline-block;
+      cursor: pointer;
       margin-left: 30px;
       color: #fff;
       font-size: 18px;
