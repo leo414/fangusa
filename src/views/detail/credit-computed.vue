@@ -87,7 +87,7 @@ export default {
     monthPayment() {
       let { rate, months } = this.form
       rate = rate / 1200
-      const Numerator = this.downPayment * rate
+      const Numerator = (this.price  - this.downPayment) * rate
       const Denominator = 1 - Math.pow((1 + rate), -months)
       return (Numerator / Denominator).toFixed(2)
     },
