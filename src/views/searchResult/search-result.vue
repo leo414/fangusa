@@ -13,8 +13,9 @@
     <el-pagination
       class="pagination"
       layout="prev, pager, next"
+      :page-size="30"
       @current-change="onChagePage"
-      :page-count="pageCount">
+      :total="total">
     </el-pagination>
   </div>
 </template>
@@ -30,7 +31,7 @@ export default {
     return {
       results: [],
       pageCount: 1,
-      currentPage: 1,
+      total: 0,
     }
   },
   mounted() {
@@ -59,7 +60,7 @@ export default {
       this.$http.get(this.API.HOUSE.List, data).then(res => {
         if(res.results) {
           this.results = res.results
-          this.pageCount = res.count
+          this.total = res.count
         }
       })
     },
@@ -69,7 +70,7 @@ export default {
 
 <style lang="scss" scoped>
   .container {
-    margin-top: 200px;
+    margin-top: 170px;
   }
 
   .header {
