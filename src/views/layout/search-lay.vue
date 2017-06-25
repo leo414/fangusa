@@ -18,12 +18,18 @@
   <section class="filter">
     <div class="container">
       热门城市：
-      <router-link to="#">洛杉矶</router-link>
       <router-link to="#">旧金山</router-link>
-      <router-link to="#">达拉斯</router-link>
-      <router-link to="#">西雅图</router-link>
+      <router-link to="#">洛杉矶</router-link>
       <router-link to="#">纽约</router-link>
+      <router-link to="#">西雅图</router-link>
       <router-link to="#">波士顿</router-link>
+      <router-link to="#">芝加哥</router-link>
+      <router-link to="#">圣地亚哥</router-link>
+      <router-link to="#">亚特兰大</router-link>
+      <router-link to="#">迈阿密</router-link>
+      <router-link to="#">达拉斯</router-link>
+      <router-link to="#">休斯顿</router-link>
+      <router-link to="#">奥斯汀</router-link>
     </div>
 
     <transition name="slide-fade">
