@@ -15,26 +15,15 @@
     </div>
   </section>
 
-  <section class="filter">
-    <div class="container">
-      热门城市：
-      <router-link to="#">旧金山</router-link>
-      <router-link to="#">洛杉矶</router-link>
-      <router-link to="#">纽约</router-link>
-      <router-link to="#">西雅图</router-link>
-      <router-link to="#">波士顿</router-link>
-      <router-link to="#">芝加哥</router-link>
-      <router-link to="#">圣地亚哥</router-link>
-      <router-link to="#">亚特兰大</router-link>
-      <router-link to="#">迈阿密</router-link>
-      <router-link to="#">达拉斯</router-link>
-      <router-link to="#">休斯顿</router-link>
-      <router-link to="#">奥斯汀</router-link>
-    </div>
-
+  <section class="filter_container">
     <transition name="slide-fade">
       <advanced-search v-if="is_show_search" />
     </transition>
+
+    <div class="city_seleted container">
+      热门城市：
+      <router-link v-for="city in hotCities" :key="city.value" :to="'/result?country=' + city.value">{{city.value}}</router-link>
+    </div>
   </section>
 
 </div>
@@ -42,6 +31,7 @@
 
 <script>
 import AdvancedSearch from './advanced-search'
+import { HOT_CITIES } from 'libs/Constant'
 
 export default {
   name: 'SearchLay',
@@ -50,6 +40,7 @@ export default {
   },
   data() {
     return {
+      hotCities: HOT_CITIES,
       is_show_search: false,
       search_key: '',
       value1: [20, 50],
@@ -177,12 +168,14 @@ export default {
   }
 }
 
-.filter {
-  position: relative;
-  left: 0;
-  top: 0;
-  height: 60px;
-  line-height: 60px;
+.filter_container {
+  width: 100%;
+  background: $app_bg_colol;
+}
+
+.city_seleted {
+  height: 50px;
+  line-height: 50px;
   background: $app_bg_colol;
   font-size: 16px;
   color: #324057;

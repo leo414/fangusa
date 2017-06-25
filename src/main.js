@@ -31,6 +31,7 @@ import {
   CarouselItem,
   Tooltip, 
   Pagination,
+  Cascader,
 } from 'element-ui'
 Vue.use(Row)
 Vue.use(Col)
@@ -46,6 +47,7 @@ Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Tooltip)
 Vue.use(Pagination)
+Vue.use(Cascader)
 
 
 /**
