@@ -5,18 +5,17 @@
       <el-button type="primary" class="fr btn"><router-link to="/map">地图选房</router-link></el-button>
     </header>
     <el-row :gutter="20" class="house_list">
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
-      <el-col :span="8"><house-lay /></el-col>
+      <el-col :span="8" v-for="(info, key) in results" :key="key">
+        <house-lay :info="info" />
+      </el-col>
     </el-row>
+
+    <el-pagination
+      class="pagination"
+      layout="prev, pager, next"
+      @current-change="onChagePage"
+      :page-count="pageCount">
+    </el-pagination>
   </div>
 </template>
 
@@ -27,12 +26,50 @@ export default {
   components: {
     HouseLay,
   },
+  data() {
+    return {
+      results: [],
+      pageCount: 1,
+      currentPage: 1,
+    }
+  },
+  mounted() {
+    this.fetchData()
+  },
+
+  watch: {
+    $route() {
+      this.fetchData()
+    },
+  },
+
+  methods: {
+    onChagePage(page) {
+      this.currentPage = page
+      this.fetchData()
+    },
+
+    fetchData() {
+      const data = {
+        params: {
+          ...this.$route.query,
+          page: this.currentPage,
+        }
+      }
+      this.$http.get(this.API.HOUSE.List, data).then(res => {
+        if(res.results) {
+          this.results = res.results
+          this.pageCount = res.count
+        }
+      })
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
   .container {
-    margin-top: 100px;
+    margin-top: 200px;
   }
 
   .header {
@@ -51,5 +88,10 @@ export default {
 
   .el-col {
     margin-top: 20px;
+  }
+
+  .pagination {
+    margin-top: 20px;
+    text-align: center;
   }
 </style>

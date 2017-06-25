@@ -44,7 +44,9 @@ export default {
   methods: {
     fetchData() {
       this.$http.get(this.API.HOUSE.List).then(res => {
-        this.houseList = res.results
+        if(res.results) {
+          this.houseList = res.results
+        }
       })
     }
   },

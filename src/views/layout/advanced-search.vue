@@ -157,7 +157,7 @@ export default {
   z-index: $z_filter;
   width: 100%;
   height: 170px;
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  box-shadow: 0 1px 5px rgba(0,0,0,.1);
   background: rgba(255,255,255,.9);
 
   .slider_box {

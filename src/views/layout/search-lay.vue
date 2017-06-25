@@ -3,8 +3,8 @@
   <section class="input_container">
     <div class="container">
       <div class="input_box">
-        <input v-model="search_key" type="search" placeholder="城市名／邮编／房源编号" />
-        <a @click.stop="" class="btn">搜索</a>
+        <input @keyup.enter="onSearch" v-model.trim="search_key" type="search" placeholder="城市名／邮编／房源编号" />
+        <a @click.stop="onSearch" class="btn">搜索</a>
       </div>
       <div class="advanced_search_btn" @click="is_show_search = !is_show_search">
         <i class="i i-shezhi1" />
@@ -75,7 +75,21 @@ export default {
       ],
       model1: '',
     }
-  }
+  },
+  watch: {
+    $route(to) {
+      if(to.name === 'SearchResult') {
+        this.is_show_search = true
+      } else {
+        if(this.is_show_search) this.is_show_search = false
+      }
+    }
+  },
+  methods: {
+    onSearch() {
+      this.$router.push({path: 'result', query: {search: this.search_key}})
+    },
+  },
 }
 </script>
 
