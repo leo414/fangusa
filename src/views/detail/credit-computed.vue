@@ -15,7 +15,7 @@
     </el-form-item>
 
      <el-form-item label="首付比例">
-      <el-input v-model="form.paymentRatio">
+      <el-input type="number" v-model.number="form.paymentRatio">
         <template slot="append">%</template>
       </el-input>
     </el-form-item>
@@ -32,7 +32,7 @@
     </el-form-item>
 
      <el-form-item label="年利率">
-      <el-input v-model="form.rate">
+      <el-input type="number" v-model.number="form.rate">
         <template slot="append">%</template>
       </el-input>
     </el-form-item>
