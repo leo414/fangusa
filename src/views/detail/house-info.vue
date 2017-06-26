@@ -2,14 +2,7 @@
 <section class="house_detail">
   <div class="house_desc">
     <h3 class="h3">房屋介绍</h3>
-    <p>
-      房屋介绍，房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍
-      房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍
-    </p>
-    <p>
-      房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍房屋介绍
-      房屋介绍房屋介绍房屋介绍房屋介绍
-    </p>
+    <p>{{info.house_desc}}</p>
   </div>
 
   <div class="house_parame">
@@ -104,6 +97,14 @@
 <script>
 export default {
   name: "HouseDetail",
+  props: {
+    info: {
+      type: Object,
+      default() {
+        return {}
+      },
+    }
+  },
   data() {
     return {
       value1: '',

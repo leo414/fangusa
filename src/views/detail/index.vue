@@ -2,7 +2,7 @@
 <section class="house_detail_container container">
   <header class="header">
     <h1 class="h1">
-      旧金山三室两厅独栋别墅
+      {{info.beds}}室{{info.baths}}卫 {{info.house_type}}
       <el-button size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
       <el-button size="small" class="mark"><i class="i i-star" /> 加入收藏</el-button>
       <el-tooltip placement="top" effect="light">
@@ -10,21 +10,21 @@
         <el-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</el-button>
       </el-tooltip>
       <span class="fr price">
-        售价：$350,000（约￥50万）
+        售价：${{info.zestimate}}（约￥{{info.zestimate | toRMB_W}}万）
       </span>
     </h1>
   </header>
 
   <div class="content_left">
-    <h3 class="fl subtitle">2015 年建造 | 190 平米</h3>
+    <h3 class="fl subtitle">{{info.build_year}} 年建造 | {{parseInt(info.square *  0.093)}} 平米</h3>
     <small class="fr u_line pointer" @click="print">打印此页</small>
-    <photo-show />
-    <house-info />
+    <photo-show :images="info.image_urls" />
+    <house-info :info="info" />
   </div>
 
   <div class="content_right">
-    <h3 class="tr subtitle">估计月租金收入 $1800 (约￥8500)</h3>
-    <credit-computed :price="20000" />
+    <h3 class="tr subtitle">估计月租金收入 ${{info.rent_estimate}} (约￥{{info.rent_estimate | toRMB}})</h3>
+    <credit-computed :price="info.zestimate"></credit-computed>
     <other-house />
   </div>
 </section> 
@@ -48,13 +48,23 @@ export default {
   },
   data() {
     return {
-
+      info: {},
     }
+  },
+  mounted() {
+    this.fetchData()
   },
   methods: {
     print() {
       window.print()
-    }
+    },
+    fetchData() {
+      this.$http.get(this.API.HOUSE.List + this.$route.params.id + '/').then(res => {
+        if(res) {
+          this.info = res
+        }
+      })
+    },
   },
 }
 </script>

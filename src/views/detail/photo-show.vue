@@ -1,27 +1,40 @@
 <template>
 <section class="photo_show">
   <el-carousel indicator-position="outside" height="400px">
-    <el-carousel-item v-for="item in 4" :key="item" class="banner_item">
-      <div class="photo"></div>
+    <el-carousel-item v-for="(img, index) in images" :key="index" class="banner_item">
+      <div class="photo" :style="background(img)"></div>
     </el-carousel-item>
   </el-carousel>
   <ul class="small_photo">
-    <li><img src="http://placehold.it/60x30" /></li>
-    <li><img src="http://placehold.it/60x30" /></li>
-    <li><img src="http://placehold.it/60x30" /></li>
-    <li><img src="http://placehold.it/60x30" /></li>
-    <li><img src="http://placehold.it/60x30" /></li>
-    <li><img src="http://placehold.it/60x30" /></li>
+    <li item v-for="(img, index) in images" :key="index" :style="background(img)"></li>
   </ul>
 </section>
 </template>
 <script>
 export default {
   name: "PhotoShow",
+  props: {
+    images: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
+  },
   data() {
     return {
     }
-  }
+  },
+  methods: {
+    background(image) {
+      return {
+        backgroundImage: 'url('+ image +')',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -33,8 +46,6 @@ export default {
 .photo {
   width: 100%;
   height: 400px;
-  background: url('http://placehold.it/740x400') center center no-repeat;
-  background-size: cover;
 }
 
 .small_photo {
@@ -47,6 +58,8 @@ export default {
   li {
     display: inline-block;
     margin-right: 2px;
+    width: 60px;
+    height: 30px;
   }
 }
 </style>
