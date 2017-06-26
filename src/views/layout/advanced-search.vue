@@ -1,7 +1,7 @@
 <template lang="html">
   <section class="advanced_search">
     <div class="container">
-        <el-cascader
+      <el-cascader
         class="cascader"
         clearable
         placeholder="请选择热门城市和区域"
@@ -10,36 +10,60 @@
         @change="handleChange">
       </el-cascader>
       
-      <el-select v-model="model1" style="width: 150px; margin-right: 20px;" placeholder="房屋类型">
+      <el-select 
+        @change="value => onSelectChange('house_type', value)" 
+        v-model="house_type" 
+        clearable 
+        style="width: 150px; margin-right: 20px;" 
+        placeholder="房屋类型"
+      >
         <el-option
-          v-for="item in cityList"
+          v-for="item in house_type_list"
           :key="item.value"
           :label="item.label"
           :value="item.value">
         </el-option>
       </el-select>
 
-      <el-select v-model="model1" style="width: 150px; margin-right: 20px;" placeholder="房龄">
+      <el-select 
+        @change="value => onSelectChange('build_year', value)" 
+        v-model="build_year" 
+        clearable 
+        style="width: 150px; margin-right: 20px;" 
+        placeholder="房龄"
+      >
         <el-option
-          v-for="item in cityList"
+          v-for="item in build_year_list"
           :key="item.value"
           :label="item.label"
           :value="item.value">
         </el-option>
       </el-select>
 
-        <el-select v-model="model1" style="width: 150px; margin-right: 20px;" placeholder="卧室数">
+      <el-select 
+        @change="value => onSelectChange('beds', value)" 
+        v-model="beds" 
+        clearable 
+        style="width: 150px; margin-right: 20px;" 
+        placeholder="卧室数"
+      >
         <el-option
-          v-for="item in cityList"
+          v-for="item in beds_list"
           :key="item.value"
           :label="item.label"
           :value="item.value">
         </el-option>
       </el-select>
 
-      <el-select v-model="model1" style="width: 150px;" placeholder="卫浴数">
+      <el-select 
+        @change="value => onSelectChange('baths', value)" 
+        v-model="baths" 
+        clearable
+        style="width: 150px;" 
+        placeholder="卫浴数"
+      >
         <el-option
-          v-for="item in cityList"
+          v-for="item in baths_list"
           :key="item.value"
           :label="item.label"
           :value="item.value">
@@ -108,22 +132,134 @@ export default {
       value2: true,
       cityData: HOT_CITIES,
       selectedOptions: [],
-      cityList: [
+      house_type: '',
+      house_type_list: [
+        {
+          value: 'Apartment',
+          label: '公寓',
+        },
+        {
+          value: 'single Family',
+          label: '独栋别墅',
+        },
+        {
+          value: 'townhouse',
+          label: '联排别墅',
+        },
+      ],
+      build_year: '',
+      build_year_list: [
           {
-              value: 'beijing',
-              label: '北京市'
+            value: '5',
+            label: '5年内'
           },
           {
-              value: 'shanghai',
-              label: '上海市'
+            value: '10',
+            label: '10 年内'
+          },
+          {
+            value: '15',
+            label: '15 年内'
+          },
+          {
+            value: '20',
+            label: '20 年内'
+          },
+          {
+            value: '30',
+            label: '30 年内'
           },
       ],
-      model1: '',
+      beds: '',
+      beds_list: [
+        {
+          value: '1',
+          label: '1+'
+        },
+        {
+          value: '2',
+          label: '2+'
+        },
+        {
+          value: '3',
+          label: '3+'
+        },
+        {
+          value: '4',
+          label: '4+'
+        },
+        {
+          value: '5',
+          label: '5+'
+        },
+      ],
+      baths: '',
+      baths_list: [
+        {
+          value: '1',
+          label: '1+'
+        },
+        {
+          value: '2',
+          label: '2+'
+        },
+        {
+          value: '3',
+          label: '3+'
+        },
+        {
+          value: '4',
+          label: '4+'
+        },
+        {
+          value: '5',
+          label: '5+'
+        },
+      ],
     }
   },
-   methods: {
+  watch: {
+    house_type(value) {
+      this.onSelectChange('house_type', value)
+    },
+  },
+  methods: {
     handleChange(value) {
       console.log(value);
+    },
+    onSelectChange(type, value) {
+      let query = null
+      if(type === 'build_year') {
+        const date = new Date()
+        const thisYear = date.getFullYear()
+        
+        if(this.$route.name === 'SearchResult') {
+          query = {
+            ...this.$route.query,
+            min_build_year: thisYear - value,
+            max_build_year: thisYear,
+          }
+        } else {
+          query = {
+            min_build_year: thisYear - value,
+            max_build_year: thisYear,
+          }
+        }
+
+        this.$router.push({path: '/result', query})
+        return
+      }
+
+      if(this.$route.name === 'SearchResult') {
+        query = {
+          ...this.$route.query,
+          [type]: value,
+        }
+      } else {
+        query = {[type]: value}
+      }
+
+      this.$router.push({path: '/result', query})
     }
   },
 }
