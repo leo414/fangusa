@@ -13,7 +13,7 @@
       <el-select 
         @change="value => onSelectChange('house_type', value)" 
         v-model="house_type" 
-        clearable 
+        clearable
         style="width: 150px; margin-right: 20px;" 
         placeholder="房屋类型"
       >
@@ -74,33 +74,34 @@
     <div class="container" style="margin-top: 15px;">
       <div class="slider_box" style="margin-right: 80px;">
         <div class="desc">
-          房屋面积：不限-不限
+          房屋面积：{{area_slide.value[0]}}-{{area_slide.value[1]}}
           <el-switch
             style="margin-left: 10px;"
-            v-model="value2"
+            @change="onAreaSwitch"
+            v-model="area_slide.isChina"
             :width="80"
             on-text="平方英尺"
             off-text="平方米"
             on-color="#0142a1"
             off-color="#ff4949">
           </el-switch>
-          <el-button size="small" class="fr" type="primary">搜索</el-button>        
+          <el-button size="small" class="fr" @click="onAreaSearch" type="primary">搜索</el-button>        
         </div>
         
         <el-slider
-          v-model="value9"
-          range
-          show-stops
-          :max="10">
+          v-model="area_slide.value"
+          :max="area_slide_max"
+          range>
         </el-slider>
       </div>
 
       <div class="slider_box">
         <div class="desc">
-          价格区间：不限-不限
+          价格区间：{{price_slide.value[0]}}k-{{price_slide.value[1]}}k
           <el-switch
             style="margin-left: 10px;"
-            v-model="value2"
+            @change="onPriceSwitch"
+            v-model="price_slide.isChina"
             on-text="美元"
             off-text="人民币"
             :width="70"
@@ -108,13 +109,13 @@
             off-color="#ff4949">
           </el-switch>
 
-          <el-button size="small" class="fr" type="primary">搜索</el-button>
+          <el-button size="small" class="fr" @click="onPriceSearch" type="primary">搜索</el-button>
         </div>
         <el-slider
-          v-model="value9"
-          range
-          show-stops
-          :max="10">
+          v-model="price_slide.value"
+          :max="price_slide_max"
+          :format-tooltip="value => value + 'k'"
+          range>
         </el-slider>
       </div>
     </div>
@@ -128,8 +129,14 @@ export default {
   name: 'AdvancedSearch',
   data() {
     return {
-      value9: [4, 8],
-      value2: true,
+      area_slide: {
+        isChina: false,
+        value: [0, 0],
+      },
+      price_slide: {
+        isChina: false,
+        value: [0, 0],
+      },
       cityData: HOT_CITIES,
       selectedOptions: [],
       house_type: '',
@@ -223,10 +230,75 @@ export default {
       this.onSelectChange('house_type', value)
     },
   },
+  computed: {
+    area_slide_max() {
+      return this.area_slide.isChina ? 10000 : 1000
+    },
+    price_slide_max() {
+      return this.price_slide.isChina ? 1000 : 6000
+    }
+  },
   methods: {
+    onAreaSwitch(isChina) {
+      if(!isChina) {
+        // 一英尺等于多少米
+        this.area_slide.value = this.area_slide.value.map(value => parseInt(value * 0.093))
+      } else {
+        this.area_slide.value = this.area_slide.value.map(value => parseInt(value * 10.76))
+      }
+    },
+
+    onAreaSearch() {
+      const [ min_square, max_square ] = this.area_slide.value
+      let query = null
+      if(this.$route.name === 'SearchResult') {
+        query = {
+          ...this.$route.query,
+          min_square,
+          max_square,
+        }
+      } else {
+        query = {
+          min_square,
+          max_square,
+        }
+      }
+      this.$router.push({path: '/result', query})
+    },
+
+    onPriceSwitch(isChina) {
+      const { dollar_to_rmb, rmb_to_dollar } = JSON.parse(sessionStorage.rate)
+      if(!isChina) {
+        // 一美元等于多少元
+        this.price_slide.value = this.price_slide.value.map(value => parseInt(value * dollar_to_rmb))
+      } else {
+        this.price_slide.value = this.price_slide.value.map(value => parseInt(value * rmb_to_dollar))
+      }
+    },
+
+    onPriceSearch() {
+      let [ min_price, max_price ] = this.price_slide.value
+      min_price = min_price * 1000
+      max_price = max_price * 1000
+      let query = null
+      if(this.$route.name === 'SearchResult') {
+        query = {
+          ...this.$route.query,
+          min_price,
+          max_price,
+        }
+      } else {
+        query = {
+          min_price,
+          max_price,
+        }
+      }
+      this.$router.push({path: '/result', query})
+    },
+
     countryChange(value) {
       // TODO 如果 country 发生改变，重置 city
-      console.log(value);
+      console.log(value)
     },
     onSelectChange(type, value) {
       let query = null

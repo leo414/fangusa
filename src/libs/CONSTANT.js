@@ -1,7 +1,8 @@
 export const API = {
   HOUSE: {
     List: 'house/',
-  }
+    Rate: 'rate/1/'
+  },
 }
 
 export const HOT_CITIES = [

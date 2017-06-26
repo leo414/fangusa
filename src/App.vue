@@ -18,6 +18,14 @@ export default {
     FooterLay,
     SearchLay,
   },
+  created() {
+    if(sessionStorage.rate) return
+    this.$http.get(this.API.HOUSE.Rate).then(res => {
+      if(res) {
+        sessionStorage.rate = JSON.stringify(res)
+      }
+    })
+  },
 }
 </script>
 
