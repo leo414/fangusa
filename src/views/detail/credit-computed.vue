@@ -37,7 +37,7 @@
       </el-input>
     </el-form-item>
 
-    <el-button class="button" type="danger">贷款月供：${{monthPayment}}（约￥7200）</el-button>
+    <el-button class="button" type="danger">贷款月供：${{monthPayment}}（约￥{{monthPayment | toRMB}}）</el-button>
     <el-button class="button bottom" @click="onSubmit" type="primary">立刻申请贷款</el-button>
   </el-form>
   

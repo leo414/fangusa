@@ -4,14 +4,14 @@
     <span class="tag">推荐房源</span>
     <footer class="footer">
       <h3 class="price1">${{info.zestimate}}</h3>
-      <h2 class="price2">约￥{{info.zestimate}} 万</h2>
+      <h2 class="price2">约￥{{info.zestimate | toRMB_W}} 万</h2>
     </footer>
   </router-link>
 
   <div class="hd">
     <p class="title text_ellipsis">{{info.city_name}}</p>
-    <p class="title text_ellipsis">三室两厅独栋别墅</p>
-    <span class="desc">{{info.build_year}} 年建造 | {{info.square}} 平米</span>
+    <p class="title text_ellipsis">{{info.beds}}室{{info.baths}}卫 {{info.house_type}}</p>
+    <span class="desc">{{info.build_year}} 年建造 | {{parseInt(info.square *  0.093)}} 平米</span>
   </div>
   <router-link :to="'/detail/' + info.url_object_id" class="btn fr">查看详情</router-link>
 

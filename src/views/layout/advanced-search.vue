@@ -235,7 +235,7 @@ export default {
       return this.area_slide.isChina ? 10000 : 1000
     },
     price_slide_max() {
-      return this.price_slide.isChina ? 1000 : 6000
+      return this.price_slide.isChina ? 2000 : 10000
     }
   },
   methods: {

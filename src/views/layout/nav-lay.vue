@@ -7,7 +7,7 @@
       </el-col>
       <el-col :span="16" :offset="1">
         <ul class="nav_list">
-          <li><router-link to="#">首页</router-link></li>
+          <li><router-link to="/">首页</router-link></li>
           <li><router-link to="#">全部房产信息</router-link></li>
           <li><router-link to="#">美国置业指南</router-link></li>
           <li><router-link to="#">一站式服务</router-link></li>
