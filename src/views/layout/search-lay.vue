@@ -3,8 +3,8 @@
   <section class="input_container">
     <div class="container">
       <div class="input_box">
-        <input @keyup.enter="onSearch" v-model.trim="search_key" type="search" placeholder="城市名／邮编／房源编号" />
-        <a @click.stop="onSearch" class="btn">搜索</a>
+        <input @keyup.enter="toFilterPage('search', search_key)" v-model.trim="search_key" type="search" placeholder="城市名／邮编／房源编号" />
+        <a @click.stop="toFilterPage('search', search_key)" class="btn">搜索</a>
       </div>
       <div class="advanced_search_btn" @click="is_show_search = !is_show_search">
         <i class="i i-shezhi1" />
@@ -22,7 +22,7 @@
 
     <div class="city_seleted container">
       热门城市：
-      <router-link v-for="city in hotCities" :key="city.value" :to="'/result?country=' + city.value">{{city.value}}</router-link>
+      <a v-for="city in hotCities" :key="city.value" @click.stop="toFilterPage('country', city.value)">{{city.value}}</a>
     </div>
   </section>
 
@@ -83,8 +83,18 @@ export default {
     }
   },
   methods: {
-    onSearch() {
-      this.$router.push({path: 'result', query: {search: this.search_key}})
+    toFilterPage(type, value) {
+      let query = null
+      if(this.$route.name === 'SearchResult') {
+        query = {
+          ...this.$route.query,
+          [type]: value,
+        }
+      } else {
+        query = {[type]: value}
+      }
+
+      this.$router.push({path: 'result', query})
     },
   },
 }

@@ -7,7 +7,7 @@
         placeholder="请选择热门城市和区域"
         :options="cityData"
         v-model="selectedOptions"
-        @change="handleChange">
+        @change="countryChange">
       </el-cascader>
       
       <el-select 
@@ -224,7 +224,8 @@ export default {
     },
   },
   methods: {
-    handleChange(value) {
+    countryChange(value) {
+      // TODO 如果 country 发生改变，重置 city
       console.log(value);
     },
     onSelectChange(type, value) {
