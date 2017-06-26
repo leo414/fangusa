@@ -12,32 +12,48 @@
       <span class="value">ABC123456</span>
     </p>
     <p>
-      <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="key">房屋地址：</span>
+      <span class="value">{{info.address}}</span>
     </p>
     <p>
-      <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="key">居中面积：</span>
+      <span class="value">{{info.square}}</span>
     </p>
     <p>
-      <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="key">土地面积：</span>
+      <span class="value">{{info.lot}}</span>
     </p>
     <p>
-      <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="key">建筑年代：</span>
+      <span class="value">{{info.build_year}}</span>
     </p>
     <p>
-      <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="key">房屋类型：</span>
+      <span class="value">{{info.house_type}}</span>
     </p>
     <p>
-      <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="key">卧室数：</span>
+      <span class="value">{{info.beds}}</span>
     </p>
     <p>
-      <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="key">卫浴数：</span>
+      <span class="value">{{info.baths}}</span>
+    </p>
+    <p>
+      <span class="key">私人车库：</span>
+      <span class="value">{{info.parking}}</span>
+    </p>
+    <p>
+      <span class="key">物业费（每月）：</span>
+      <span class="value">{{info.property_costs}}</span>
+    </p>
+    <p>
+      <span class="key">地产税（每年）：</span>
+      <span class="value">{{info.property_tax_history}}</span>
+    </p>
+    <p>
+      <span class="key">预估月租金收入：</span>
+      <span class="value">{{info.rent_estimate}}</span>
     </p>
   </div>
 
@@ -48,29 +64,23 @@
   <div class="school">
     <h3 class="h3">学校信息</h3>
     <el-row>
-      <el-col :span="9">
+      <el-col :span="9" v-if="info.nearby_schools">
         <h4 class="h4">学校名字</h4>
-        <p>小学：xxxx</p>
-        <p>小学：xxxx</p>
-        <p>小学：xxxx</p>
+        <p>小学：{{info.nearby_schools[0].school_name}}</p>
+        <p>中学：{{info.nearby_schools[1].school_name}}</p>
+        <p>高中：{{info.nearby_schools[2].school_name}}</p>
       </el-col>
       <el-col :span="6" class="tc">
         <h4 class="h4">评分（满分10分）</h4>
-        <p>5</p>
-        <p>5</p>
-        <p>5</p>
+        <p :key="index" v-for="(school, index) in info.nearby_schools">{{school.school_grade}}</p>
       </el-col>
       <el-col :span="4" class="tc">
         <h4 class="h4">年级</h4>
-        <p>4-2</p>
-        <p>4-2</p>
-        <p>4-2</p>
+        <p :key="index" v-for="(school, index) in info.nearby_schools">{{school.school_grade}}</p>
       </el-col>
       <el-col :span="5" class="tc">
         <h4 class="h4">距离（公里）</h4>
-        <p>3.14</p>
-        <p>3.14</p>
-        <p>3.14</p>
+        <p :key="index" v-for="(school, index) in info.nearby_schools">{{school.school_distance | toKM}}</p>
       </el-col>
     </el-row>
   </div>
@@ -110,7 +120,12 @@ export default {
       value1: '',
       value2: '我对 L343356 号房源很感兴趣，希望了解更多相关信息。',
     }
-  }
+  },
+  filters: {
+    toKM(value) {
+      return (Number(value) * 1.61).toFixed(2)
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -141,10 +156,10 @@ export default {
   p {
     margin-bottom: 10px;
 
-    .key {
-       width: 80px;
-       display: inline-block;
-     }
+    // .key {
+    //    width: 140px;
+    //    display: inline-block;
+    //  }
   }
 }
 
