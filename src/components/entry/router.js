@@ -1,5 +1,5 @@
-const Login = () => import('./Login.vue')
-const Register = () => import('./Register.vue')
+const Login = resolve => import('./Login.vue').then(module => resolve(module))
+const Register = resolve => import('./Register.vue').then(module => resolve(module))
 
 export default [
   {

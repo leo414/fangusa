@@ -1,24 +1,24 @@
 <template>
-<section class="house_layout">
+<router-link :to="'/house/' + info.url_object_id" tag="div" class="house_layout"  :style="background">
   <span class="time">刚刚更新</span>
   <i class="star i i-star" />
 
   <div class="info">
     <span class="tag">推荐房源</span>
     <div class="title">
-      <div class="fl text_ellipsis">旧金山 三室两卫独栋别墅</div>
-      <div class="fr text_ellipsis">$34.000</div>
+      <div class="fl text_ellipsis">{{info.city_name}} {{info.beds}}室{{info.baths}}卫 {{info.house_type}}</div>
+      <div class="fr text_ellipsis">${{info.zestimate}}</div>
     </div>
     <div class="desc">
       <div class="fl text_ellipsis">学区：高中10  初中9  小学9</div>
-      <div class="fr text_ellipsis">（约¥50万）</div>
+      <div class="fr text_ellipsis">（约¥{{info.zestimate | toRMB_W}}万）</div>
     </div>
     <div class="desc desc_bottom">
-      <div class="fl text_ellipsis">2015年建造 ｜ 190平米</div>
-      <div class="fr text_ellipsis">预估月租金：$1800（约¥9000）</div>
+      <div class="fl text_ellipsis">{{info.build_year}}年建造 ｜ {{parseInt(info.square *  0.093)}}平米</div>
+      <div class="fr text_ellipsis">预估月租金：${{info.rent_estimate}}（约¥{{info.rent_estimate | toRMB}}）</div>
     </div>
   </div>
-</section>
+</router-link>
 
 </template>
 
@@ -26,11 +26,27 @@
 
 export default {
   name: "HouseLayout",
+  props: {
+    info: {
+      type: Object,
+      default: {},
+    },
+  },
   data() {
     return {
 
     }
-  }
+  },
+  computed: {
+    background() {
+      return {
+        backgroundImage: 'url('+ this.info.front_image_url +')',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }
+    }
+  },
 }
 </script>
 
@@ -44,8 +60,6 @@ export default {
   position: relative;
   left: 0;
   right: 0;
-  background: url('http://placehold.it/375x200') center no-repeat;
-  background-size: cover;
 }
 
 .time {
