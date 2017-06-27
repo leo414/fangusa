@@ -9,5 +9,13 @@ export default {
   name: 'App',
   components: {
   },
+  created() {
+    if(sessionStorage.rate) return
+    this.$http.get(this.API.HOUSE.Rate).then(res => {
+      if(res) {
+        window.globalData = res
+      }
+    })
+  },
 }
 </script>

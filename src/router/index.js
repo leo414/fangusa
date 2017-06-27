@@ -1,14 +1,14 @@
 import entryRoutes from '../components/entry/router'
 
-const HomePage = () => import('../components/homePage/index.vue')
-const UserProfile = () => import('../components/users/index.vue')
+const HomePage = resolve => import('../components/homePage/index.vue').then(module => resolve(module))
+const UserProfile = resolve => import('../components/users/index.vue').then(module => resolve(module))
 
-const LinkPage = () => import('../components/users/LinkPage.vue')
+const LinkPage = resolve => import('../components/users/LinkPage.vue').then(module => resolve(module))
 
-const HouseDetail = () => import('../components/detail/index.vue')
-const Filter = () => import('../components/homePage/Filter.vue')
-const MarkList = () => import('../components/markList/index.vue')
-const ContactUs = () => import('../components/contactUs/index.vue')
+const HouseDetail = resolve => import('../components/detail/index.vue').then(module => resolve(module))
+const Filter = resolve => import('../components/homePage/Filter.vue').then(module => resolve(module))
+const MarkList = resolve => import('../components/markList/index.vue').then(module => resolve(module))
+const ContactUs = resolve => import('../components/contactUs/index.vue').then(module => resolve(module))
 
 const routers = [
   ...entryRoutes,

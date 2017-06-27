@@ -8,8 +8,14 @@ import FastClick from 'fastclick'
 import App from './App'
 import Routers from './router'
 import Util from './libs/util'
-
+import './mixins/GlobalMixin'
 import './scss/index.scss'
+
+/**
+ * Axios config
+ */
+import AxiosPlugin from './libs/axios'
+Vue.use(AxiosPlugin)
 
 import { Field } from 'mint-ui'
 import { Button } from 'mint-ui'
@@ -29,6 +35,7 @@ Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 FastClick.attach(document.body)
+
 
 // route config
 const RouterConfig = {
