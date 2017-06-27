@@ -1,7 +1,13 @@
 <template lang="html">
 <section id="home_page">
   <Search />
-  <div class="house_lsit">
+  <div 
+    v-infinite-scroll="loadMore"
+    infinite-scroll-disabled="loading"
+    infinite-scroll-distance="10"
+    :infinite-scroll-immediate-check="true"
+    class="house_lsit"
+  >
     <house-layout v-for="(info, index) in houseList" :info="info" :key="index" />
   </div>
 </section>
@@ -19,7 +25,10 @@ export default {
   },
   data() {
     return {
+      loading: false,
       houseList: [],
+      pageCount: 1,
+      total: 0,
     }
   },
   mounted() {
@@ -32,7 +41,11 @@ export default {
           this.houseList = res.results
         }
       })
-    }
+    },
+    loadMore(){
+      console.log(1212)
+      this.loading = true
+    },
   },
 }
 </script>

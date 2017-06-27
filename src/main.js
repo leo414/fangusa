@@ -23,7 +23,9 @@ import { Range } from 'mint-ui'
 import { Switch } from 'mint-ui'
 import { Actionsheet } from 'mint-ui'
 import { Radio } from 'mint-ui'
+import { InfiniteScroll } from 'mint-ui';
 
+Vue.use(InfiniteScroll)
 Vue.component(Radio.name, Radio)
 Vue.component(Actionsheet.name, Actionsheet)
 Vue.component(Switch.name, Switch)
