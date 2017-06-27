@@ -10,12 +10,12 @@
   </div>
   <section class="house_info">
     <div class="title">
-      <div class="fl text_ellipsis">旧金山 三室两卫独栋别墅</div>
-      <div class="fr text_ellipsis">$350,000</div>
+      <div class="fl text_ellipsis">{{info.city_name}} {{info.beds}}室{{info.baths}}卫 {{info.house_type}}</div>
+      <div class="fr text_ellipsis">${{info.zestimate}}</div>
     </div>
     <div class="info">
       <div class="fl">房产编号：ABC123456</div>
-      <div class="fr">约¥50万</div>
+      <div class="fr">约¥{{info.zestimate | toRMB_W}}万</div>
     </div>
     <a href="/" class="vr_btn"><i class="i i-vr"></i> VR 看房</a>
   </section>
@@ -25,11 +25,7 @@
     <i class="fr i i-xiangshangjiantou" />
   </div>
   <div class="desc">
-    <p>
-      Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum.
-       Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.
-       Phasellus at semper turpis. Nunc eu tellus tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id
-    </p>
+    <p>{{info.house_desc}}</p>
   </div>
   <div class="divide_bar">
     <p class="fl">房屋详情</p>
@@ -41,16 +37,48 @@
       <span class="fr text_ellipsis">xxxxxxxxxxxxx</span>
     </div>
     <div class="cell">
-      <span class="fl text_ellipsis">房屋编号</span>
-      <span class="fr text_ellipsis">xxxxxxxxxxxxx</span>
+      <span class="fl text_ellipsis">房屋地址</span>
+      <span class="fr text_ellipsis">{{info.address}}</span>
     </div>
     <div class="cell">
-      <span class="fl text_ellipsis">房屋编号房屋编号</span>
-      <span class="fr text_ellipsis">xxxxxxxxxxxquis nulla commodo, aliquam lectus sed, blandit augue. Crasxx</span>
+      <span class="fl text_ellipsis">居住面积</span>
+      <span class="fr text_ellipsis">{{info.square}}</span>
     </div>
     <div class="cell">
-      <span class="fl text_ellipsis">房屋编号</span>
-      <span class="fr text_ellipsis">xxxxxxxxxxxxx</span>
+      <span class="fl text_ellipsis">土地面积：</span>
+      <span class="fr text_ellipsis">{{info.lot}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">建筑年代</span>
+      <span class="fr text_ellipsis">{{info.build_year}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">房屋类型</span>
+      <span class="fr text_ellipsis">{{info.house_type}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">卧室数</span>
+      <span class="fr text_ellipsis">{{info.beds}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">卫浴数</span>
+      <span class="fr text_ellipsis">{{info.baths}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">私人车库</span>
+      <span class="fr text_ellipsis">{{info.parking}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">物业费（每月）</span>
+      <span class="fr text_ellipsis">{{info.property_costs}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">地产税（每年）</span>
+      <span class="fr text_ellipsis">{{info.property_tax_history}}</span>
+    </div>
+    <div class="cell">
+      <span class="fl text_ellipsis">预估月租金收入</span>
+      <span class="fr text_ellipsis">{{info.rent_estimate}}</span>
     </div>
   </div>
 
@@ -59,7 +87,7 @@
     <i class="fr i i-xiangshangjiantou" />
   </div>
 
-  <div class="school_info">
+  <div class="school_info" v-if="info.nearby_schools">
     <div class="tr_title">
       <p class="td td_1">学校名字</p>
       <p class="td td_2">评分(10分)</p>
@@ -67,22 +95,22 @@
       <p class="td td_4">距离(公里)</p>
     </div>
     <div class="tr">
-      <p class="td td_1">小学: Monroe Elementary School</p>
-      <p class="td td_2">3</p>
-      <p class="td td_3">PX-5</p>
-      <p class="td td_4">距离(公里)</p>
+      <p class="td td_1">小学: {{info.nearby_schools[0].school_name}}</p>
+      <p class="td td_2">{{info.nearby_schools[0].school_grade}}</p>
+      <p class="td td_3">{{info.nearby_schools[0].school_grade}}</p>
+      <p class="td td_4">{{info.nearby_schools[0].school_distance}}</p>
     </div>
     <div class="tr">
-      <p class="td td_1">中学: Monroe Elementary School</p>
-      <p class="td td_2">3</p>
-      <p class="td td_3">PX-2</p>
-      <p class="td td_4">距离(公里)</p>
+      <p class="td td_1">中学: {{info.nearby_schools[1].school_name}}</p>
+      <p class="td td_2">{{info.nearby_schools[1].school_grade}}</p>
+      <p class="td td_3">{{info.nearby_schools[1].school_grade}}</p>
+      <p class="td td_4">{{info.nearby_schools[1].school_distance}}</p>
     </div>
     <div class="tr">
-      <p class="td td_1">高学: Monroe Elementary School</p>
-      <p class="td td_2">3</p>
-      <p class="td td_3">PX-8</p>
-      <p class="td td_4">距离(公里)</p>
+      <p class="td td_1">高中: {{info.nearby_schools[2].school_name}}</p>
+      <p class="td td_2">{{info.nearby_schools[2].school_grade}}</p>
+      <p class="td td_3">{{info.nearby_schools[2].school_grade}}</p>
+      <p class="td td_4">{{info.nearby_schools[2].school_distance}}</p>
     </div>
   </div>
 
@@ -90,7 +118,8 @@
     <p class="fl">相似房源</p>
     <i class="fr i i-xiangshangjiantou" />
   </div>
-  <HouseLayout v-for="info in 10" :key="info" />
+  <!-- TODO -->
+  <!--<HouseLayout v-for="info in 10" :key="info" />-->
 
 </section>
 
@@ -106,11 +135,20 @@ export default {
   },
   data() {
     return {
-
+      info: {},
     }
   },
+  mounted() {
+    this.fetchData()
+  },
   methods: {
-
+    fetchData() {
+      this.$http.get(this.API.HOUSE.List + this.$route.params.id + '/').then(res => {
+        if(res) {
+          this.info = res
+        }
+      })
+    },
   },
 }
 </script>

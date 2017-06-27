@@ -1,5 +1,5 @@
 <template lang="html">
-<section id="home_page">
+<section>
   <Search />
   <div 
     v-infinite-scroll="loadMore"
