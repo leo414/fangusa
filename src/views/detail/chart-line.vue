@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import Trend from './trend'
-
 export default {
   name: 'ChartLine',
   props: {
@@ -32,7 +30,6 @@ export default {
       ten_year_trend: [],
       chartData: {},
       chartSettings: {},
-      Trend,
     }
   },
 
@@ -88,27 +85,18 @@ export default {
     renderRows(key) {
       let result = []
       const chartsData = this[key]
-      console.log(chartsData)
-      const length = chartsData[0].data.length
+      const length = Math.max(...chartsData.map(trend => trend.data.length))
       for(let i = 0; i< length; i++) {
         result.push({})
       }
 
-      // 算出 this.Trend.one_year_trend 里每个 data.length 的最小值
-      // Because the stupid Zillow programmer, so I wrote this line of stupid code.    
-      const minLength = Math.min(...chartsData.map(trend => trend.data.length))
       chartsData.forEach((trend, index) => {
-        for(let i = 0; i < minLength; i++) {
-          console.log(2)
-          if(index === 0) {
-            result[i]['日期'] = this.getLocalTime(trend.data[i].xValue)
-            result[i][trend.name] = trend.data[i].yValue
-          } else {
-            result[i][trend.name] = trend.data[i].yValue
-          }
-        }
+        trend.data.forEach((item, index2) => {
+          result[index2]['日期'] = this.getLocalTime(item.xValue)
+          result[index2][trend.name] = item.yValue
+          result[index2][trend.name] = item.yValue
+        })
       })
-      console.log(result)
       return result
     },
   },
