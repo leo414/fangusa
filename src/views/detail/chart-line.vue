@@ -48,7 +48,7 @@ export default {
 
     // 算出 this.Trend.one_year_trend 里每个 data.length 的最小值
     // Because the stupid Zillow programmer, so I wrote this line of stupid code.    
-    const minLength = Math.min.apply(null, this.Trend.one_year_trend.map(trend => trend.data.length))
+    const minLength = Math.min(...this.Trend.one_year_trend.map(trend => trend.data.length))
     
     this.Trend.one_year_trend.forEach((trend, index) => {
       for(let i = 0; i < minLength; i++) {
