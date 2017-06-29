@@ -59,7 +59,7 @@
 
   <div class="chart">
     <h3 class="h3">租金走势</h3>
-    <chart-line></chart-line>
+    <chart-line :id="info.url_object_id"></chart-line>
   </div>
 
   <div class="school">
