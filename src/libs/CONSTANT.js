@@ -1,7 +1,8 @@
 export const API = {
   HOUSE: {
     List: 'house/',
-    Rate: 'rate/1/'
+    Rate: 'rate/1/',
+    Trend: 'trend/',
   },
 }
 

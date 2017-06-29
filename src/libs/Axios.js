@@ -1,8 +1,6 @@
 require('es6-promise').polyfill()
 import axios from 'axios'
 // import qs from 'qs'
-
-import Vue from 'vue'
 import { Message } from 'element-ui'
 
 const ShowMessage = (message = '网络错误，请检查网络后尝试刷新！') => Message.error(message || '网络错误，请刷新重试！')

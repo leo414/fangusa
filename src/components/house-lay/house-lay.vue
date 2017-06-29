@@ -1,6 +1,6 @@
 <template lang="html">
 <section class="city_layout">
-  <router-link :to="'/detail/' + info.url_object_id" class="img_box" :style="background">
+  <router-link :to="'/house/' + info.url_object_id" class="img_box" :style="background">
     <span class="tag">推荐房源</span>
     <footer class="footer">
       <h3 class="price1">${{info.zestimate}}</h3>

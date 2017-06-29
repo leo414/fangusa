@@ -50,7 +50,7 @@ const routers = [
   // },
 
   {
-    path: '/detail/:id',
+    path: '/house/:id',
     meta: {
       title: '房详情'
     },

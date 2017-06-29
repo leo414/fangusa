@@ -4,11 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import Util from './libs/util'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import VeLine from 'v-charts/lib/line'
 
 import './scss/index.scss'
 import './mixins/GlobalMixin'
 
 Vue.use(VueAwesomeSwiper)
+Vue.component(VeLine.name, VeLine)
 Vue.config.productionTip = false
 
 /**

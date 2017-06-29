@@ -16,7 +16,7 @@
       <span class="value">{{info.address}}</span>
     </p>
     <p>
-      <span class="key">居中面积：</span>
+      <span class="key">居住面积：</span>
       <span class="value">{{info.square}}</span>
     </p>
     <p>
@@ -59,6 +59,7 @@
 
   <div class="chart">
     <h3 class="h3">租金走势</h3>
+    <chart-line></chart-line>
   </div>
 
   <div class="school">
@@ -105,8 +106,12 @@
 
 </template>
 <script>
+import ChartLine from './chart-line'
 export default {
   name: "HouseDetail",
+  components: {
+    ChartLine,
+  },
   props: {
     info: {
       type: Object,
