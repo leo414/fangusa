@@ -13,31 +13,31 @@
     </p>
     <p>
       <span class="key">房屋地址：</span>
-      <span class="value">{{info.address}}</span>
+      <span class="value">{{info.address || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">居住面积：</span>
-      <span class="value">{{info.square}}</span>
+      <span class="value">{{info.square || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">土地面积：</span>
-      <span class="value">{{info.lot}}</span>
+      <span class="value">{{info.lot || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">建筑年代：</span>
-      <span class="value">{{info.build_year}}</span>
+      <span class="value">{{info.build_year || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">房屋类型：</span>
-      <span class="value">{{info.house_type}}</span>
+      <span class="value">{{info.house_type || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">卧室数：</span>
-      <span class="value">{{info.beds}}</span>
+      <span class="value">{{info.beds || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">卫浴数：</span>
-      <span class="value">{{info.baths}}</span>
+      <span class="value">{{info.baths || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">私人车库：</span>
@@ -62,10 +62,10 @@
     <chart-line :id="info.url_object_id"></chart-line>
   </div>
 
-  <div class="school">
+  <div class="school" v-if="info.nearby_schools">
     <h3 class="h3">学校信息</h3>
     <el-row>
-      <el-col :span="9" v-if="info.nearby_schools">
+      <el-col :span="9">
         <h4 class="h4">学校名字</h4>
         <p>小学：{{info.nearby_schools[0].school_name}}</p>
         <p>中学：{{info.nearby_schools[1].school_name}}</p>
