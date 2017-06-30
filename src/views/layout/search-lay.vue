@@ -94,7 +94,7 @@ export default {
         query = {[type]: value}
       }
 
-      this.$router.push({path: 'result', query})
+      this.$router.push({path: '/result', query})
     },
   },
 }

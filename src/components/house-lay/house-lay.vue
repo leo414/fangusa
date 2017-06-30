@@ -13,7 +13,7 @@
     <p class="title text_ellipsis">{{info.beds}}室{{info.baths}}卫 {{info.house_type}}</p>
     <span class="desc">{{info.build_year}} 年建造 | {{parseInt(info.square *  0.093)}} 平米</span>
   </div>
-  <router-link :to="'/detail/' + info.url_object_id" class="btn fr">查看详情</router-link>
+  <router-link :to="'/house/' + info.url_object_id" class="btn fr">查看详情</router-link>
 
   <footer class="footer">
     房源信息发布于：3 天前

@@ -73,7 +73,7 @@
       </el-col>
       <el-col :span="6" class="tc">
         <h4 class="h4">评分（满分10分）</h4>
-        <p :key="index" v-for="(school, index) in info.nearby_schools">{{school.school_grade}}</p>
+        <p :key="index" v-for="(school, index) in info.nearby_schools">{{school.school_score}}</p>
       </el-col>
       <el-col :span="4" class="tc">
         <h4 class="h4">年级</h4>
