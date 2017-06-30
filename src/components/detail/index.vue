@@ -5,19 +5,22 @@
     房产详情
     <div class="icon"><i class="i i-weixin" /></div>
   </div>
-  <div class="house">
-    <span class="tag">推荐房源</span>
-  </div>
+
+  <mt-swipe :auto="2000" class="house_img_list">
+    <mt-swipe-item v-for="(img, index) in info.image_urls" :key="index" :style="background(img)">
+    </mt-swipe-item>
+  </mt-swipe>
+
   <section class="house_info">
     <div class="title">
       <div class="fl text_ellipsis">{{info.city_name}} {{info.beds}}室{{info.baths}}卫 {{info.house_type}}</div>
       <div class="fr text_ellipsis">${{info.zestimate}}</div>
     </div>
     <div class="info">
-      <div class="fl">房产编号：ABC123456</div>
-      <div class="fr">约¥{{info.zestimate | toRMB_W}}万</div>
+      <div class="fl">房产编号：{{info.zpid}}</div>
+      <div class="fr" v-if="info.zestimate">约¥{{info.zestimate | toRMB_W}}万</div>
     </div>
-    <a href="/" class="vr_btn"><i class="i i-vr"></i> VR 看房</a>
+    <!--<a href="/" class="vr_btn"><i class="i i-vr"></i> VR 看房</a>-->
   </section>
 
   <div class="divide_bar">
@@ -34,51 +37,51 @@
   <div class="detail">
     <div class="cell">
       <span class="fl text_ellipsis">房屋编号</span>
-      <span class="fr text_ellipsis">xxxxxxxxxxxxx</span>
+      <span class="fr text_ellipsis">{{info.zpid  || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">房屋地址</span>
-      <span class="fr text_ellipsis">{{info.address}}</span>
+      <span class="fr text_ellipsis">{{info.address  || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">居住面积</span>
-      <span class="fr text_ellipsis">{{info.square}}</span>
+      <span class="fr text_ellipsis">{{info.square + ' sqft'  || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">土地面积：</span>
-      <span class="fr text_ellipsis">{{info.lot}}</span>
+      <span class="fr text_ellipsis">{{info.lot + ' sqft' || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">建筑年代</span>
-      <span class="fr text_ellipsis">{{info.build_year}}</span>
+      <span class="fr text_ellipsis">{{info.build_year  || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">房屋类型</span>
-      <span class="fr text_ellipsis">{{info.house_type}}</span>
+      <span class="fr text_ellipsis">{{info.house_type || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">卧室数</span>
-      <span class="fr text_ellipsis">{{info.beds}}</span>
+      <span class="fr text_ellipsis">{{info.beds || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">卫浴数</span>
-      <span class="fr text_ellipsis">{{info.baths}}</span>
+      <span class="fr text_ellipsis">{{info.baths || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">私人车库</span>
-      <span class="fr text_ellipsis">{{info.parking}}</span>
+      <span class="fr text_ellipsis">{{info.parking || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">物业费（每月）</span>
-      <span class="fr text_ellipsis">{{info.property_costs}}</span>
+      <span class="fr text_ellipsis">{{info.property_costs || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">地产税（每年）</span>
-      <span class="fr text_ellipsis">{{info.property_tax_history}}</span>
+      <span class="fr text_ellipsis">{{info.property_tax_history || '暂无数据'}}</span>
     </div>
     <div class="cell">
       <span class="fl text_ellipsis">预估月租金收入</span>
-      <span class="fr text_ellipsis">{{info.rent_estimate}}</span>
+      <span class="fr text_ellipsis">{{info.rent_estimate || '暂无数据'}}</span>
     </div>
   </div>
 
@@ -96,19 +99,19 @@
     </div>
     <div class="tr">
       <p class="td td_1">小学: {{info.nearby_schools[0].school_name}}</p>
-      <p class="td td_2">{{info.nearby_schools[0].school_grade}}</p>
+      <p class="td td_2">{{info.nearby_schools[0].school_score}}</p>
       <p class="td td_3">{{info.nearby_schools[0].school_grade}}</p>
       <p class="td td_4">{{info.nearby_schools[0].school_distance}}</p>
     </div>
     <div class="tr">
       <p class="td td_1">中学: {{info.nearby_schools[1].school_name}}</p>
-      <p class="td td_2">{{info.nearby_schools[1].school_grade}}</p>
+      <p class="td td_2">{{info.nearby_schools[1].school_score}}</p>
       <p class="td td_3">{{info.nearby_schools[1].school_grade}}</p>
       <p class="td td_4">{{info.nearby_schools[1].school_distance}}</p>
     </div>
     <div class="tr">
       <p class="td td_1">高中: {{info.nearby_schools[2].school_name}}</p>
-      <p class="td td_2">{{info.nearby_schools[2].school_grade}}</p>
+      <p class="td td_2">{{info.nearby_schools[2].school_score}}</p>
       <p class="td td_3">{{info.nearby_schools[2].school_grade}}</p>
       <p class="td td_4">{{info.nearby_schools[2].school_distance}}</p>
     </div>
@@ -141,6 +144,7 @@ export default {
   mounted() {
     this.fetchData()
   },
+    
   methods: {
     fetchData() {
       this.$http.get(this.API.HOUSE.List + this.$route.params.id + '/').then(res => {
@@ -148,6 +152,14 @@ export default {
           this.info = res
         }
       })
+    },
+    background() {
+      return {
+        backgroundImage: 'url('+ this.info.front_image_url +')',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }
     },
   },
 }
@@ -199,15 +211,13 @@ export default {
   font-size: 22px;
 }
 
-.house {
+.house_img_list {
   margin-top: 58px;
   position: relative;
   left: 0;
   right: 0;
   width: 100%;
   height: 250px;
-  background: url('http://placehold.it/375x250') center no-repeat;
-  background-size: cover;
 
   .tag {
     display: inline-block;

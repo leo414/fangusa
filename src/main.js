@@ -17,14 +17,22 @@ import './scss/index.scss'
 import AxiosPlugin from './libs/axios'
 Vue.use(AxiosPlugin)
 
-import { Field } from 'mint-ui'
-import { Button } from 'mint-ui'
-import { Range } from 'mint-ui'
-import { Switch } from 'mint-ui'
-import { Actionsheet } from 'mint-ui'
-import { Radio } from 'mint-ui'
-import { InfiniteScroll } from 'mint-ui';
+import {
+  Field,
+  Button,
+  Range,
+  Switch,
+  Actionsheet,
+  Radio,
+  InfiniteScroll,
+  Spinner,
+  Swipe, 
+  SwipeItem
+} from 'mint-ui'
 
+Vue.component(Swipe.name, Swipe)
+Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(Spinner.name, Spinner)
 Vue.use(InfiniteScroll)
 Vue.component(Radio.name, Radio)
 Vue.component(Actionsheet.name, Actionsheet)

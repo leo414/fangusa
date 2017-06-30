@@ -1,6 +1,6 @@
 <template>
 <router-link :to="'/house/' + info.url_object_id" tag="div" class="house_layout"  :style="background">
-  <span class="time">刚刚更新</span>
+  <span class="time">{{info.add_time.substring(0, 10)}}</span>
   <i class="star i i-star" />
 
   <div class="info">
@@ -10,12 +10,12 @@
       <div class="fr text_ellipsis">${{info.zestimate}}</div>
     </div>
     <div class="desc">
-      <div class="fl text_ellipsis">学区：高中10  初中9  小学9</div>
+      <div class="fl text_ellipsis">学区：高中{{info.nearby_schools[0].school_score}} 初中{{info.nearby_schools[1].school_score}}  小学{{info.nearby_schools[2].school_score}}</div>
       <div class="fr text_ellipsis">（约¥{{info.zestimate | toRMB_W}}万）</div>
     </div>
     <div class="desc desc_bottom">
       <div class="fl text_ellipsis">{{info.build_year}}年建造 ｜ {{parseInt(info.square *  0.093)}}平米</div>
-      <div class="fr text_ellipsis">预估月租金：${{info.rent_estimate}}（约¥{{info.rent_estimate | toRMB}}）</div>
+      <div class="fr text_ellipsis" v-if="info.rent_estimate">预估月租金：${{info.rent_estimate}}（约¥{{info.rent_estimate | toRMB}}）</div>
     </div>
   </div>
 </router-link>

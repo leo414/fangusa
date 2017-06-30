@@ -9,6 +9,12 @@
     class="house_lsit"
   >
     <house-layout v-for="(info, index) in houseList" :info="info" :key="index" />
+    <div v-if="!isAllLoad">
+      <p v-show="loading" class="scroll_loading">
+        <mt-spinner type="fading-circle"></mt-spinner>
+        加载中...
+      </p>
+    </div>
   </div>
 </section>
 </template>
@@ -27,8 +33,10 @@ export default {
     return {
       loading: false,
       houseList: [],
-      pageCount: 1,
+      page: 1,
+      count: 1,
       total: 0,
+      isAllLoad: false,
     }
   },
   mounted() {
@@ -36,15 +44,27 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$http.get(this.API.HOUSE.List).then(res => {
+      const data = {
+        params: {
+          page: this.page,
+        }
+      }
+      this.$http.get(this.API.HOUSE.List, data).then(res => {
         if(res.results) {
-          this.houseList = res.results
+          this.houseList = [...this.houseList, ...res.results]
+          this.count = res.count
+          if(this.loading) this.loading = false
         }
       })
     },
     loadMore(){
-      console.log(1212)
       this.loading = true
+      if(this.page >= Math.ceil(this.count / 30)) {
+        this.isAllLoad = true
+        return
+      }
+      this.page = this.page + 1
+      this.fetchData()
     },
   },
 }
@@ -53,5 +73,16 @@ export default {
 <style lang="scss" scoped>
 .house_lsit {
   margin-top: 90px;
+}
+
+.mint-spinner-fading-circle {
+  display: inline-block;
+}
+
+.scroll_loading {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  // 部分样式在 minthack .scss
 }
 </style>
