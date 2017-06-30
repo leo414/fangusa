@@ -3,7 +3,7 @@
   <header class="header">
     <h1 class="h1">
       {{info.beds}}室{{info.baths}}卫 {{info.house_type}}
-      <el-button size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
+      <el-button @click="LinkTo(info.vr_url)" size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
       <el-button size="small" class="mark"><i class="i i-star" /> 加入收藏</el-button>
       <el-tooltip placement="top" effect="light">
         <QrImage slot="content" houseId="url_object_id"></QrImage>
@@ -57,6 +57,9 @@ export default {
   methods: {
     print() {
       window.print()
+    },
+    LinkTo(url) {
+      window.open(url)
     },
     fetchData() {
       this.$http.get(this.API.HOUSE.List + this.$route.params.id + '/').then(res => {

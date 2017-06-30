@@ -4,7 +4,7 @@
   <hot-city />
   <house-list title="最新房源" />
   <house-list title="学区好房" />
-  <router-link id="vr" to="/vr_list"></router-link>
+  <div id="vr"></div>
   <service-list />
   <blog-list />
   <partner-lay />
