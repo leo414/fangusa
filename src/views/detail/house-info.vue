@@ -9,7 +9,7 @@
     <h3 class="h3">房屋详情</h3>
     <p>
       <span class="key">房产编号：</span>
-      <span class="value">ABC123456</span>
+      <span class="value">{{info.zpid}}</span>
     </p>
     <p>
       <span class="key">房屋地址：</span>
@@ -41,19 +41,19 @@
     </p>
     <p>
       <span class="key">私人车库：</span>
-      <span class="value">{{info.parking}}</span>
+      <span class="value">{{info.parking || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">物业费（每月）：</span>
-      <span class="value">{{info.property_costs}}</span>
+      <span class="value">{{info.property_costs || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">地产税（每年）：</span>
-      <span class="value">{{info.property_tax_history}}</span>
+      <span class="value">{{info.property_tax_history || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">预估月租金收入：</span>
-      <span class="value">{{info.rent_estimate}}</span>
+      <span class="value">{{info.rent_estimate || '暂无数据'}}</span>
     </p>
   </div>
 

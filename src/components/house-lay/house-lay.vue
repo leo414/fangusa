@@ -16,8 +16,8 @@
   <router-link :to="'/house/' + info.url_object_id" class="btn fr">查看详情</router-link>
 
   <footer class="footer">
-    房源信息发布于：3 天前
-    <span class="fr">
+    房源信息发布于 {{info.add_time.substring(0, 10)}}
+    <span @click="markHouse(info.url_object_id)" class="mark fr">
       <i style="color: #8492A6;" class="i i-star" />
       加入收藏
     </span>
@@ -42,6 +42,12 @@ export default {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }
+    }
+  },
+  methods: {
+    markHouse(id) {
+      // TODO 被轮播图下面的导航给盖住了
+      console.log(id)
     }
   },
 }
@@ -71,7 +77,7 @@ export default {
     padding: 5px;
     font-size: 12px;
     color: #fff;
-    cursor: point; 
+    cursor: pointer; 
     background: $btn_color;
   }
 
@@ -120,8 +126,12 @@ export default {
 }
 
 .footer {
+  height: 18px;
+  line-height: 18px;
   color: #324057;
   font-size: 14px;
   clear: both;
+
+  .mark { cursor: pointer; }
 }
 </style>
