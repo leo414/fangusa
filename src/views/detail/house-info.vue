@@ -17,11 +17,11 @@
     </p>
     <p>
       <span class="key">居住面积：</span>
-      <span class="value">{{info.square || '暂无数据'}}</span>
+      <span class="value">{{info.square + ' sqft' || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">土地面积：</span>
-      <span class="value">{{info.lot || '暂无数据'}}</span>
+      <span class="value">{{info.lot + ' sqft' || '暂无数据'}}</span>
     </p>
     <p>
       <span class="key">建筑年代：</span>
