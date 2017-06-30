@@ -3,7 +3,7 @@
   <MenuLayout @open="is_show_filter = false" />
 
   <div class="search_box">
-    <input type="search" value="" />
+    <input type="search" v-model="search" />
     <i class="i i-sousuo" />
   </div>
   <div class="btn_bar">
@@ -19,11 +19,15 @@
 
   <transition name="slide-fade">
     <ul class="sort_list" v-if="is_show_filter">
-      <li class="active">智能排序 <i class="i i-duihao" /></li>
-      <li>价格最低 <i class="i i-duihao" /></li>
-      <li>价格最高 <i class="i i-duihao" /></li>
-      <li>建造年龄最新 <i class="i i-duihao" /></li>
-      <li>房屋面积最大 <i class="i i-duihao" /></li>
+      <li 
+        v-for="(order, index) in orderList" 
+        @click="orderBy(order.ordering)" 
+        :key="index"
+        :class="order.ordering === ordering ? 'active' : ''"
+      >
+        {{order.value}}
+         <i class="i i-duihao" />
+      </li>
     </ul>
   </transition>
 
@@ -33,6 +37,7 @@
 
 <script>
 import Menu from '../globalLayout/Menu.vue'
+import _debounce from 'lodash.debounce'
 
 export default {
   name: "Search",
@@ -40,13 +45,62 @@ export default {
     MenuLayout: Menu,
   },
   data() {
+    const {search = '', ordering = ''} = this.$route.query
     return {
       is_show_filter: false,
+      search,
+      ordering,
+      orderList: [
+        {
+          value: '智能排序',
+          ordering: '',
+        },
+        {
+          value: '价格最低',
+          ordering: 'zestimate',
+        },
+        {
+          value: '价格最高',
+          ordering: '-zestimate',
+        },
+        {
+          value: '建造年龄最新',
+          ordering: '-build_year',
+        },
+        {
+          value: '房屋面积最大',
+          ordering: '-square',
+        },
+      ],
     }
   },
-  methods: {
 
-  }
+  watch: {
+    search(search) {
+      this.setQuery(this, search)
+    },
+  },
+
+  methods: {
+    setQuery: _debounce((that, search) => {
+      const query = {
+        ...that.$route.query,
+        search
+      }
+      that.$router.push({path: '/', query})
+    }, 500),
+
+    orderBy(order) {
+      this.ordering = order
+      this.is_show_filter = false
+
+      const query = {
+        ...this.$route.query,
+        ordering: order,
+      }
+      this.$router.push({path: '/', query})
+    },
+  },
 }
 </script>
 

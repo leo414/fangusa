@@ -16,6 +16,7 @@
     "fastclick": "^1.0.6",
     "finger-mover": "^1.1.6",
     "fmover-slide-x": "^1.1.6",
+    "lodash.debounce": "^4.0.8",
     "mint-ui": "^2.2.7",
     "vue": "^2.3.4",
     "vue-multiselect": "^2.0.0-beta.15",

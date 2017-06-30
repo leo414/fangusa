@@ -30,6 +30,7 @@ export default {
     HouseLayout,
   },
   data() {
+    const { query } = this.$route
     return {
       loading: false,
       houseList: [],
@@ -37,16 +38,29 @@ export default {
       count: 1,
       total: 0,
       isAllLoad: false,
+      query,
     }
   },
   mounted() {
     this.fetchData()
   },
+
+  watch: {
+    $route(to) {
+      const { query } = to
+      this.query = query
+      this.houseList = []
+      this.page = 1
+      this.fetchData()
+    },
+  },
+
   methods: {
     fetchData() {
       const data = {
         params: {
           page: this.page,
+          ...this.query,
         }
       }
       this.$http.get(this.API.HOUSE.List, data).then(res => {

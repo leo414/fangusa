@@ -17,8 +17,6 @@
     </nav>
   </section>
 </div>
-
-
 </template>
 
 <script>
