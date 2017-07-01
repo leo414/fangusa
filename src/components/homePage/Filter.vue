@@ -44,45 +44,34 @@
       </multiselect>
     </div>
 
-    <div class="range_ctrl">
-      价格区间：
-      <p class="fr">美元<mt-switch v-model="switch1"></mt-switch>人民币</p>
-    </div>
-    <div class="range_box">
-      <span class="range_label">开始：</span>
-      <mt-range v-model="rangeValue">
-        <div slot="start">0</div>
-        <div slot="end">100</div>
-      </mt-range>
-    </div>
-    <div class="range_box">
-      <span class="range_label">结束：</span>
-      <mt-range v-model="rangeValue">
-        <div slot="start">0</div>
-        <div slot="end">100</div>
-      </mt-range>
+    <div class="range_container">
+      <div class="range_ctrl">
+        <p>价格区间：1万 - {{price_slide.value}}万</p>
+        <p class="right"><mt-switch @change="onPriceSwitch" v-model="price_slide.isChina"></mt-switch>{{price_slide.isChina ? '人民币' : '美元'}}</p>
+      </div>
+      <div class="range_box">
+        <mt-range v-model="price_slide.value" :min="1" :max="price_slide_max">
+          <div slot="start">1万</div>
+          <div slot="end">{{price_slide_max}}万</div>
+        </mt-range>
+      </div>
     </div>
 
-    <div class="range_ctrl">
-      房屋面积：
-      <p class="fr">平方英尺<mt-switch v-model="switch1"></mt-switch>平方米</p>
+    <div class="range_container">
+      <div class="range_ctrl">
+        <p>房屋面积：1 - {{area_slide.value}}</p>
+        <p class="right"><mt-switch @change="onAreaSwitch" v-model="area_slide.isChina"></mt-switch>{{area_slide.isChina ? '平方米' : '平方英尺'}}</p>
+      </div>
+      <div class="range_box">
+        <mt-range v-model="area_slide.value" :min="1" :max="area_slide_max">
+          <div slot="start">1</div>
+          <div slot="end">{{area_slide_max}}</div>
+        </mt-range>
+      </div>
     </div>
-    <div class="range_box">
-      <span class="range_label">开始：</span>
-      <mt-range v-model="rangeValue">
-        <div slot="start">0</div>
-        <div slot="end">100</div>
-      </mt-range>
-    </div>
-    <div class="range_box">
-      <span class="range_label">结束：</span>
-      <mt-range v-model="rangeValue">
-        <div slot="start">0</div>
-        <div slot="end">100</div>
-      </mt-range>
-    </div>
-    <mt-button class="btn" @click.native="handleClick" size="large" type="primary">提交</mt-button>
-    <mt-button class="btn go_back" @click.native="$router.go(-1)" size="large" type="primary">取消</mt-button>
+
+    <mt-button class="btn" @click="handleClick" size="large" type="primary">提交</mt-button>
+    <mt-button class="btn go_back" @click="$router.go(-1)" size="large" type="primary">取消</mt-button>
   </section>
 </div>
 </template>
@@ -103,18 +92,24 @@ export default {
   components: { Multiselect },
   data () {
     return {
-      query: {},
-      rangeValue: 2,
-      rangeValue2: 4,
-      switch1: false,
+      area_slide: {
+        isChina: false,
+        value: 10000,
+      },
+      price_slide: {
+        isChina: false,
+        value: 200,
+      },
       house_type: '',
       house_type_list: {
+        '全部': '',
         '公寓': 'Apartment',
         '独栋别墅': 'single Family',
         '联排别墅': 'townhouse',
       },
       build_year: '',
       build_year_list: {
+        '全部': '',
         '5年内': 5,
         '10年内': 10,
         '15年内': 15,
@@ -123,6 +118,7 @@ export default {
       },
       beds: '',
       beds_list:{
+        '全部': '',
         '1+': 1,
         '2+': 2,
         '3+': 3,
@@ -131,6 +127,7 @@ export default {
       },
       baths: '',
       baths_list: {
+        '全部': '',
         '1+': 1,
         '2+': 2,
         '3+': 3,
@@ -160,33 +157,43 @@ export default {
   },
   
   watch: {
-    house_type(house_type) {
-      this.query = {
-        ...this.query,
-        house_type,
+    build_year(build_year) {
+      const date = new Date()
+      const thisYear = date.getFullYear()
+      if(build_year) {
+        this.query = {
+          ...this.query,
+          min_build_year: thisYear - this.build_year_list[build_year],
+          max_build_year: thisYear,
+        }
+      } else {
+        this.query = {
+          ...this.query,
+          min_build_year: '',
+          max_build_year: '',
+        }
       }
+      
+    },
+  },
+
+  computed: {
+    morkPrice() {
+      const { dollar_to_rmb, rmb_to_dollar } = window.globalData
+      if(this.isRMB) {
+        // 一元换算成美元
+        return parseInt(this.price * rmb_to_dollar)
+      } else {
+        return parseInt(this.price * dollar_to_rmb)
+      }
+    },
+    area_slide_max() {
+      return this.area_slide.isChina ? 1000 : 10000
     },
 
-    build_year(house_type) {
-      this.query = {
-        ...this.query,
-        house_type,
-      }
-    },
-
-    house_type(house_type) {
-      this.query = {
-        ...this.query,
-        house_type,
-      }
-    },
-
-    house_type(house_type) {
-      this.query = {
-        ...this.query,
-        house_type,
-      }
-    },
+    price_slide_max() {
+      return this.price_slide.isChina ? 1400 : 200
+    }
   },
 
   methods: {
@@ -194,6 +201,56 @@ export default {
       picker.setSlotValues(1, address[values[0]]);
       this.addressProvince = values[0];
       this.addressCity = values[1];
+    },
+
+    onAreaSwitch(isChina) {
+      if(!isChina) {
+        // 一英尺等于多少米
+        this.area_slide.value = parseInt(this.area_slide.value * 0.093)
+      } else {
+        this.area_slide.value = parseInt(this.area_slide.value * 10.76)
+      }
+    },
+
+    onPriceSwitch(isChina) {
+      const { dollar_to_rmb, rmb_to_dollar } = window.globalData
+      if(!isChina) {
+        // 一美元等于多少元
+        this.price_slide.value = parseInt(this.price_slide.value * dollar_to_rmb)
+      } else {
+        this.price_slide.value = parseInt(this.price_slide.value * rmb_to_dollar)
+      }
+    },
+
+    handleClick() {
+      let build_year_query = {
+        min_build_year: '',
+        max_build_year: '',
+      }
+      
+      if(this.build_year) {
+        const date = new Date()
+        const thisYear = date.getFullYear()
+        build_year_query = {
+          min_build_year: thisYear - this.build_year_list[this.build_year],
+          max_build_year: thisYear,
+        }
+      }
+
+      const { rmb_to_dollar } = window.globalData
+      // console.log(this.beds_list[this.beds])
+      const query = {
+        min_price: 0,
+        max_price: this.price_slide.isChina ? parseInt(this.price_slide.value * rmb_to_dollar) : this.price_slide.value,
+        min_square: 0,
+        max_square: this.area_slide.isChina ? parseInt(this.area_slide.value * 10.76) : this.area_slide.value,
+        house_type: this.house_type_list[this.house_type] || '',
+        beds: this.beds_list[this.beds] || '',
+        baths: this.baths_list[this.baths] || '',
+        ...build_year_query,
+      }
+
+      this.$router.push({path: '/', query})
     },
   },
 }
@@ -207,7 +264,7 @@ export default {
   width: 100%;
   height: auto;
   min-height: 100vh;
-  padding: 20px;
+  padding: 10px;
   padding-top: 0;
   background: #fff;
 }
@@ -225,6 +282,8 @@ export default {
 }
 
 .select_list {
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 0;
 
   .multiselect {
@@ -239,7 +298,16 @@ export default {
   }
 }
 
+.range_container {
+  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px #eee solid;
+  width: 100%;
+  height: auto;
+}
+
 .range_ctrl {
+  display: flex;
   margin-top: 10px;
   font-size: 16px;
   height: 40px;
@@ -251,8 +319,8 @@ export default {
     vertical-align: top;
   }
 
-  .fr {
-    width: 60%;
+  .right {
+    flex: 1;
     font-size: 14px;
     text-align: right;
   }
