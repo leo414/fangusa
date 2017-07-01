@@ -1,18 +1,49 @@
 <template>
 <div>
-  <section id="filter_container">
-    <input type="text" placeholder="房源编号 / 邮编 / 地址" class="input" />
+  <section class="filter_container">
+    <div class="page-picker-wrapper">
+      <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5"></mt-picker>
+    </div>
+    <p class="page-picker-desc">地址: {{ addressProvince }} {{ addressCity }}</p>
+
     <div class="select_list">
       <multiselect
-        v-model="value"
-        :options="options"
+        v-model="house_type"
+        :options="Object.keys(house_type_list)"
         :searchable="false"
         :close-on-select="true"
         :show-labels="false"
-        placeholder="Pick a value"
-        v-for="n in 6" :key="n"
-      />
+        placeholder="房屋类型">
+      </multiselect>
+
+      <multiselect
+        v-model="build_year"
+        :options="Object.keys(build_year_list)"
+        :searchable="false"
+        :close-on-select="true"
+        :show-labels="false"
+        placeholder="房龄">
+      </multiselect>
+
+      <multiselect
+        v-model="beds"
+        :options="Object.keys(beds_list)"
+        :searchable="false"
+        :close-on-select="true"
+        :show-labels="false"
+        placeholder="卧室数">
+      </multiselect>
+
+      <multiselect
+        v-model="baths"
+        :options="Object.keys(baths_list)"
+        :searchable="false"
+        :close-on-select="true"
+        :show-labels="false"
+        placeholder="卫浴数">
+      </multiselect>
     </div>
+
     <div class="range_ctrl">
       价格区间：
       <p class="fr">美元<mt-switch v-model="switch1"></mt-switch>人民币</p>
@@ -54,27 +85,116 @@
     <mt-button class="btn go_back" @click.native="$router.go(-1)" size="large" type="primary">取消</mt-button>
   </section>
 </div>
-
-
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
+
+ const address = {
+    '北京': ['北京'],
+    '广东': ['广州', '深圳', '珠海', '汕头', '韶关', '佛山', '江门', '湛江', '茂名', '肇庆', '惠州', '梅州', '汕尾', '河源', '阳江', '清远', '东莞', '中山', '潮州', '揭阳', '云浮'],
+    '重庆': ['重庆'],
+    '辽宁': ['沈阳', '大连', '鞍山', '抚顺', '本溪', '丹东', '锦州', '营口', '阜新', '辽阳', '盘锦', '铁岭', '朝阳', '葫芦岛'],
+    '江苏': ['南京', '苏州', '无锡', '常州', '镇江', '南通', '泰州', '扬州', '盐城', '连云港', '徐州', '淮安', '宿迁'],
+ }
 
 export default {
   name: "Filter",
   components: { Multiselect },
   data () {
     return {
-      value: '',
-      options: ['Select option', 'options', 'selected', 'mulitple', 'label', 'searchable', 'clearOnSelect', 'hideSelected', 'maxHeight', 'allowEmpty', 'showLabels', 'onChange', 'touched'],
+      query: {},
       rangeValue: 2,
       rangeValue2: 4,
       switch1: false,
+      house_type: '',
+      house_type_list: {
+        '公寓': 'Apartment',
+        '独栋别墅': 'single Family',
+        '联排别墅': 'townhouse',
+      },
+      build_year: '',
+      build_year_list: {
+        '5年内': 5,
+        '10年内': 10,
+        '15年内': 15,
+        '20年内': 20,
+        '30年内': 30,
+      },
+      beds: '',
+      beds_list:{
+        '1+': 1,
+        '2+': 2,
+        '3+': 3,
+        '4+': 4,
+        '5+': 5,
+      },
+      baths: '',
+      baths_list: {
+        '1+': 1,
+        '2+': 2,
+        '3+': 3,
+        '4+': 4,
+        '5+': 5,
+      },
+      addressSlots: [
+        {
+          flex: 1,
+          values: Object.keys(address),
+          className: 'slot1',
+          textAlign: 'center'
+        }, {
+          divider: true,
+          content: '-',
+          className: 'slot2'
+        }, {
+          flex: 1,
+          values: ['北京'],
+          className: 'slot3',
+          textAlign: 'center'
+        }
+      ],
+      addressProvince: '北京',
+      addressCity: '北京'
     }
   },
-  methods: {
+  
+  watch: {
+    house_type(house_type) {
+      this.query = {
+        ...this.query,
+        house_type,
+      }
+    },
 
+    build_year(house_type) {
+      this.query = {
+        ...this.query,
+        house_type,
+      }
+    },
+
+    house_type(house_type) {
+      this.query = {
+        ...this.query,
+        house_type,
+      }
+    },
+
+    house_type(house_type) {
+      this.query = {
+        ...this.query,
+        house_type,
+      }
+    },
+  },
+
+  methods: {
+    onAddressChange(picker, values) {
+      picker.setSlotValues(1, address[values[0]]);
+      this.addressProvince = values[0];
+      this.addressCity = values[1];
+    },
   },
 }
 </script>
@@ -83,11 +203,12 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
-#filter_container {
+.filter_container {
   width: 100%;
   height: auto;
   min-height: 100vh;
   padding: 20px;
+  padding-top: 0;
   background: #fff;
 }
 
@@ -103,14 +224,18 @@ export default {
   border: 1px solid rgba(60,60,60,.15);
 }
 
-.multiselect {
-  margin-top: 15px;
-  margin-right: 4%;
-  width: 48%;
-  display: inline-block;
+.select_list {
+  font-size: 0;
 
-  &:nth-child(2n+0) {
-    margin-right: 0;
+  .multiselect {
+    margin-top: 15px;
+    width: 48%;
+    margin-right: 4%;
+    display: inline-block;
+
+    &:nth-child(2n+0) {
+      margin-right: 0;
+    }
   }
 }
 
