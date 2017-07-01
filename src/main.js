@@ -22,20 +22,20 @@ import {
   Button,
   Range,
   Switch,
-  Actionsheet,
   Radio,
   InfiniteScroll,
   Spinner,
   Swipe, 
-  SwipeItem
+  SwipeItem,
+  Picker,
 } from 'mint-ui'
 
+Vue.component(Picker.name, Picker)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
 Vue.component(Spinner.name, Spinner)
 Vue.use(InfiniteScroll)
 Vue.component(Radio.name, Radio)
-Vue.component(Actionsheet.name, Actionsheet)
 Vue.component(Switch.name, Switch)
 Vue.component(Range.name, Range)
 Vue.component(Field.name, Field)

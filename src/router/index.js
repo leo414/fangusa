@@ -3,7 +3,7 @@ import entryRoutes from '../components/entry/router'
 const HomePage = resolve => import('../components/homePage/index.vue').then(module => resolve(module))
 const UserProfile = resolve => import('../components/users/index.vue').then(module => resolve(module))
 
-const LinkPage = resolve => import('../components/users/LinkPage.vue').then(module => resolve(module))
+// const LinkPage = resolve => import('../components/users/LinkPage.vue').then(module => resolve(module))
 
 const HouseDetail = resolve => import('../components/detail/index.vue').then(module => resolve(module))
 const Filter = resolve => import('../components/homePage/Filter.vue').then(module => resolve(module))
@@ -22,14 +22,14 @@ const routers = [
     component: HomePage,
   },
 
-  {
-    path: '/link_page',
-    meta: {
-      title: '引导页'
-    },
-    name: 'LinkPage',
-    component: LinkPage,
-  },
+  // {
+  //   path: '/link_page',
+  //   meta: {
+  //     title: '引导页'
+  //   },
+  //   name: 'LinkPage',
+  //   component: LinkPage,
+  // },
 
   {
     path: '/users',
