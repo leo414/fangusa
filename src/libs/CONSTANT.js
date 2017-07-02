@@ -4,6 +4,9 @@ export const API = {
     Rate: 'rate/1/',
     Trend: 'trend/',
   },
+  USER: {
+    Login: 'login/',
+  },
 }
 
 export const HOT_CITIES = [

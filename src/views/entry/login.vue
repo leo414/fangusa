@@ -9,16 +9,16 @@
     <div class="input_box">
       <section class="account box">
         <i class="i i-user" />
-        <input class="ipt" type="text" placeholder="邮箱 / 手机号" />
+        <input class="ipt" v-model.trim="username" type="text" placeholder="邮箱 / 手机号" />
       </section>
 
       <section class="password box">
         <i class="i i-lock" />
-        <input class="ipt" type="password" placeholder="密码" />
+        <input class="ipt" v-model.trim="password" type="password" placeholder="密码" />
       </section>
     </div>
-    <router-link to="change_pd" class="fr theme_color">忘记密码？</router-link>
-    <el-button type="primary" size="large" class="login_btn">登录</el-button >
+    <router-link to="/change_pd" class="fr theme_color">忘记密码？</router-link>
+    <el-button type="primary" size="large" @click="onLogin" class="login_btn">登录</el-button >
 
     <hr/>
 
@@ -31,6 +31,41 @@
 <script>
 export default {
   name: 'Login',
+  data() {
+    return {
+      username: '',
+      password: '',
+    }
+  },
+  methods: {
+    onLogin() {
+      const { username, password } = this
+      if(!username) {
+        this.$message.error('请输入账号！')
+        return 
+      }
+
+      if(!password) {
+        this.$message.error('请输入密码！')
+        return 
+      }
+      const data = {
+        username,
+        password
+      }
+      this.$http.post(this.API.USER.Login, data).then(res => {
+        if(res.token) {
+          localStorage.token = res.token
+          // TODO 检查是否有参数，登出成功后，重定向到之前的页面
+          // this.$router.push('')
+        }
+      }).catch(error => {
+        if(error.non_field_errors) {
+          this.$message.error('用户名或密码错误！')
+        }
+      })
+    },
+  }
 }
 </script>
 

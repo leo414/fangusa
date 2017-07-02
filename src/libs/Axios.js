@@ -18,6 +18,9 @@ Axios.interceptors.request.use(config => {
   //   // Only applicable for request methods 'PUT', 'POST', and 'PATCH'
   //   config.data = qs.stringify(config.data);
   // }
+  if (localStorage.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+    config.headers.Authorization = `JWT ${localStorage.token}`;
+  }
   return config
 },(error) =>{
   // 错误的传参 
@@ -28,13 +31,10 @@ Axios.interceptors.response.use(res => {
   if(res.status !== 200) {
     ShowMessage()
   }
-
   return res.data
 },error => {
-  ShowMessage()
-  return Promise.reject(error)
+  return Promise.reject(error.response.data)
 })
-
 
 export default {
   install(Vue) {
