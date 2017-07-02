@@ -1,6 +1,11 @@
 <template lang="html">
   <el-carousel indicator-position="outside" height="500px">
-    <el-carousel-item v-for="item in 4" :key="item" class="banner_item">
+    <el-carousel-item 
+      v-for="(banner, index) in bannerList" 
+      :key="index" 
+      @click.native="goDetail(banner.url_object_id)"
+      :style="background(banner.front_image_url)">
+      class="banner_item">
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -11,8 +16,33 @@ export default {
   name: 'BannerLay',
   data() {
     return {
+      bannerList: [],
     }
-  }
+  },
+  mounted() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.$http.get(this.API.HOUSE.List + '?banner=2').then(res => {
+        if(res.results) {
+          this.bannerList = res.results
+        }
+      })
+    },
+    background(img) {
+      return {
+        backgroundImage: 'url('+ img +')',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        cursor: pointer,
+      }
+    },
+    goDetail(id) {
+      this.$router.push('/house/' + id)
+    },
+  },
 }
 </script>
 

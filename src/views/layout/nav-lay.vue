@@ -17,9 +17,9 @@
         </ul>
       </el-col>
       <el-col class="entry" :span="3">
-        <router-link to="login">登录</router-link>
+        <router-link to="/login">登录</router-link>
         <i class="i i-shugang" />
-        <router-link to="register">注册</router-link>
+        <router-link to="/register">注册</router-link>
       </el-col>
     </el-row>
   </div>
