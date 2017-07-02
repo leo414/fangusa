@@ -14,7 +14,7 @@
 
       <section class="password box">
         <i class="i i-lock" />
-        <input class="ipt" v-model.trim="password" type="password" placeholder="密码" />
+        <input class="ipt" v-model.trim="password"  @keyup.enter="onLogin" type="password" placeholder="密码" />
       </section>
     </div>
     <router-link to="/change_pd" class="fr theme_color">忘记密码？</router-link>
@@ -57,7 +57,7 @@ export default {
         if(res.token) {
           localStorage.token = res.token
           // TODO 检查是否有参数，登出成功后，重定向到之前的页面
-          // this.$router.push('')
+          this.$router.push('/')
         }
       }).catch(error => {
         if(error.non_field_errors) {

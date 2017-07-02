@@ -2,7 +2,7 @@
 <section class="city_layout">
   <router-link :to="'/house/' + info.url_object_id" class="img_box" :style="background">
     <span class="tag">推荐房源</span>
-    <footer class="footer">
+    <footer class="footer_hd">
       <h3 class="price1">${{info.zestimate}}</h3>
       <h2 class="price2">约￥{{info.zestimate | toRMB_W}} 万</h2>
     </footer>
@@ -17,7 +17,7 @@
 
   <footer class="footer">
     房源信息发布于 {{info.add_time.substring(0, 10)}}
-    <span @click="markHouse(info.url_object_id)" class="mark fr">
+    <span @click="userFav(info.url_object_id)" class="mark fr">
       <i style="color: #8492A6;" class="i i-star" />
       加入收藏
     </span>
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { FavMixin } from 'mixins/mixins'
+
 export default {
   name: 'HouseLay',
   props: {
@@ -34,6 +36,7 @@ export default {
       default: {},
     },
   },
+  mixins: [FavMixin],
   computed: {
     background() {
       return {
@@ -42,12 +45,6 @@ export default {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }
-    }
-  },
-  methods: {
-    markHouse(id) {
-      // TODO 被轮播图下面的导航给盖住了
-      console.log(id)
     }
   },
 }
@@ -81,7 +78,7 @@ export default {
     background: $btn_color;
   }
 
-  .footer {
+  .footer_hd {
     position: absolute;
     color: #fff;
     bottom: 10px;

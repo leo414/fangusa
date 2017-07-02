@@ -33,6 +33,10 @@ Axios.interceptors.response.use(res => {
   }
   return res.data
 },error => {
+  if(error.response.status === 401) {
+    // 未登录，跳转到登录页面
+    location.href = '/login'
+  }
   return Promise.reject(error.response.data)
 })
 

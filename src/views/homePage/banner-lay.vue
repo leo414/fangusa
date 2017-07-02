@@ -36,7 +36,7 @@ export default {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        cursor: pointer,
+        cursor: 'pointer',
       }
     },
     goDetail(id) {
