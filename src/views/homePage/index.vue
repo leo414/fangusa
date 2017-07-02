@@ -38,7 +38,7 @@ export default {
   margin-top: 50px;
   width: 100%;
   height: 500px;
-  background: url('../../assets/vr.png') center center no-repeat;
+  background: url('../../assets/vr.jpg') center center no-repeat;
   background-size: cover;
 }
 </style>
