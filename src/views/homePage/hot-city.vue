@@ -7,7 +7,8 @@
         <el-col
           v-for="(img, index) in img_list.slice(0,3)" :key="index"
           class="city" 
-          :style="img.style" 
+          :style="img.style"
+          @click.native="goFilter(img.text)"
           :span="8">
           {{img.text}}
         </el-col>
@@ -18,6 +19,7 @@
           v-for="(img, index) in img_list.slice(3,6)" :key="index"
           class="city" 
           :style="img.style" 
+          @click.native="goFilter(img.text)"
           :span="8">
           {{img.text}}
         </el-col>
@@ -29,6 +31,7 @@
           v-for="(img, index) in img_list.slice(6,9)" :key="index"
           class="city" 
           :style="img.style" 
+          @click.native="goFilter(img.text)"
           :span="8">
           {{img.text}}
         </el-col>
@@ -38,7 +41,8 @@
         <el-col
           v-for="(img, index) in img_list.slice(9,12)" :key="index"
           class="city" 
-          :style="img.style" 
+          :style="img.style"
+          @click.native="goFilter(img.text)" 
           :span="8">
           {{img.text}}
         </el-col>
@@ -107,7 +111,7 @@ export default {
   name: 'HotCity',
   data() {
     const background = img => ({
-      backgroundImage: `url(../../img/${img}.png)`,
+      backgroundImage: `url(${process.env.BASE_URL}media/img/${img}.png)`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
@@ -127,6 +131,11 @@ export default {
       },
       img_list,
     }
+  },
+  methods: {
+    goFilter(city) {
+      this.$router.push('/result?country=' + city)
+    },
   },
 }
 </script>
@@ -151,8 +160,16 @@ export default {
 }
 
 .city {
+  margin-bottom: 28px;
   width: 330px;
   height: 330px;
-  margin-bottom: 28px;
+  line-height: 330px;
+  text-align: center;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  overflow: hidden;
+  cursor: pointer;
+  text-shadow: 1px 1px rgba(0,0,0,.3);
 }
 </style>
