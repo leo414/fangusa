@@ -121,8 +121,8 @@
     <p class="fl">相似房源</p>
     <i class="fr i i-xiangshangjiantou" />
   </div>
-  <!-- TODO -->
-  <!--<HouseLayout v-for="info in 10" :key="info" />-->
+
+  <HouseLayout :info="info" v-for="(info, index) in results" :key="index"></HouseLayout>
 
 </section>
 
@@ -139,10 +139,18 @@ export default {
   data() {
     return {
       info: {},
+      results: [],
     }
   },
   mounted() {
     this.fetchData()
+  },
+
+  watch: {
+    $route(to) {
+      // 点击相似房源或者推荐房源进入房子详情页时，刷新页面
+      location.reload()
+    },
   },
     
   methods: {
@@ -150,6 +158,7 @@ export default {
       this.$http.get(this.API.HOUSE.List + this.$route.params.id + '/').then(res => {
         if(res) {
           this.info = res
+          this.fetchSimilarHouse(res.city_name, res.zestimate)
         }
       })
     },
@@ -160,6 +169,20 @@ export default {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }
+    },
+    fetchSimilarHouse(city_name, price) {
+      const data = {
+        params: {
+          city_name,
+          min_price: price - 50000 >= 0 ? price - 50000 : 0,
+          max_price: price + 50000,
+        }
+      }
+      this.$http.get(this.API.HOUSE.List, data).then(res => {
+        if(res.results) {
+          this.results = res.results
+        }
+      })
     },
   },
 }
