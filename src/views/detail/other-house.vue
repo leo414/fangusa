@@ -2,32 +2,14 @@
 <section id="OtherHouse">
   <div class="same_house">
     <h3 class="title">相似房源</h3>
-    <section class="house">
-      <img class="img" src="http://placehold.it/80x65" />
+    <router-link tag="div" :to="'/house/' + info.url_object_id" class="house" v-for="(info, index) in results" :key="index">
+      <img class="img" :src="info.front_image_url" />
       <div class="hd">
-        <h4 class="text_ellipsis theme_color">旧金山 三室两位独栋别墅</h4>
-        <small class="text_ellipsis">2015 年建造 | 190 平米</small>
-        <h4 class="price">$334,000（约￥50万）</h4>
+        <h4 class="text_ellipsis theme_color">{{info.city_name}} {{info.beds}}室{{info.baths}}卫 {{info.house_type}}</h4>
+        <small class="text_ellipsis">{{info.build_year}} 年建造 | {{parseInt(info.square *  0.093)}} 平米</small>
+        <h4 class="price">${{info.zestimate}}（约￥{{info.zestimate | toRMB_W}}万）</h4>
       </div>
-    </section>
-
-    <section class="house">
-      <img class="img" src="http://placehold.it/80x65" />
-      <div class="hd">
-        <h4 class="text_ellipsis theme_color">旧金山 三室两位独栋别墅</h4>
-        <small class="text_ellipsis">2015 年建造 | 190 平米</small>
-        <h4 class="price">$334,000（约￥50万）</h4>
-      </div>
-    </section>
-
-    <section class="house">
-      <img class="img" src="http://placehold.it/80x65" />
-      <div class="hd">
-        <h4 class="text_ellipsis theme_color">旧金山 三室两位独栋别墅</h4>
-        <small class="text_ellipsis">2015 年建造 | 190 平米</small>
-        <h4 class="price">$334,000（约￥50万）</h4>
-      </div>
-    </section>
+    </router-link>
   </div>
 
   <div class="recommend_house">
@@ -73,11 +55,44 @@
 
 export default {
   name: "OtherHouse",
+  props: {
+    cityName: {
+      type: String,
+      default: '',
+    },
+    price: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
       value1: 0,
+      results: [],
     }
-  }
+  },
+  watch:{
+    cityName(city_name) {
+      if(!city_name) return
+      this.fetchData()
+    },
+  },
+  methods: {
+    fetchData() {
+      const data = {
+        params: {
+          city_name: this.cityName,
+          min_price: this.price - 50000 >= 0 ? this.price - 50000 : 0,
+          max_price: this.price + 50000,
+        }
+      }
+      this.$http.get(this.API.HOUSE.List, data).then(res => {
+        if(res.results) {
+          this.results = res.results.slice(0, 3)
+        }
+      })
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -96,23 +111,31 @@ export default {
 }
 
 .house {
+  margin-bottom: 15px;
   width: 100%;
   height: 70px;
-  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 0;
 
   .img {
+    margin-right: 10px;
     width: 80px;
     height: 65px;
   }
 
   .hd {
-    margin-top: 10px;
+    width: 150px;
     display: inline-block;
     vertical-align: top;
     font-size: 12px;
 
-    .price {
+    small {
+      display: block;
       margin-top: 5px;
+    }
+
+    .price {
+      margin-top: 15px;
     }
   }
 }

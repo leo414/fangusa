@@ -25,7 +25,7 @@
   <div class="content_right">
     <h3 class="tr subtitle">估计月租金收入 ${{info.rent_estimate}} (约￥{{info.rent_estimate | toRMB}})</h3>
     <credit-computed :price="info.zestimate"></credit-computed>
-    <other-house />
+    <other-house :cityName="info.city_name" :price="info.zestimate" />
   </div>
 </section> 
 </template>
@@ -50,6 +50,12 @@ export default {
     return {
       info: {},
     }
+  },
+  watch: {
+    $route(to) {
+      // 点击相似房源或者推荐房源进入房子详情页时，刷新页面
+      location.reload()
+    },
   },
   mounted() {
     this.fetchData()
