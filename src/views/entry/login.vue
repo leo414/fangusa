@@ -53,17 +53,19 @@ export default {
         username,
         password
       }
-      this.$http.post(this.API.USER.Login, data).then(res => {
-        if(res.token) {
-          localStorage.token = res.token
-          // TODO 检查是否有参数，登出成功后，重定向到之前的页面
-          this.$router.push('/')
-        }
-      }).catch(error => {
-        if(error.non_field_errors) {
-          this.$message.error('用户名或密码错误！')
-        }
-      })
+      this.$http.post(this.API.USER.Login, data)
+        .then(res => {
+          if(res.token) {
+            localStorage.token = res.token
+            // TODO 检查是否有参数，登出成功后，重定向到之前的页面
+            this.$router.push('/')
+          }
+        })
+        .catch(error => {
+          if(error.non_field_errors) {
+            this.$message.error('用户名或密码错误！')
+          }
+        })
     },
   }
 }
