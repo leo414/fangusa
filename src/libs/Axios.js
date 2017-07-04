@@ -28,9 +28,6 @@ Axios.interceptors.request.use(config => {
 })
 
 Axios.interceptors.response.use(res => {
-  if(res.status !== 200) {
-    ShowMessage()
-  }
   return res.data
 },error => {
   if(error.response.status === 401) {

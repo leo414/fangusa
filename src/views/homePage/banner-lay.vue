@@ -4,7 +4,7 @@
       v-for="(banner, index) in bannerList" 
       :key="index" 
       @click.native="goDetail(banner.url_object_id)"
-      :style="background(banner.front_image_url)">
+      :style="background(banner.front_image_url)"
       class="banner_item">
     </el-carousel-item>
   </el-carousel>
