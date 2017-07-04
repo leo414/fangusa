@@ -7,6 +7,7 @@ export const API = {
   USER: {
     Login: 'login/',
     Fav: 'user_fav/',
+    Code: 'code/',
   },
 }
 
