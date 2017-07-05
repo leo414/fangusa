@@ -3,8 +3,6 @@ import axios from 'axios'
 // import qs from 'qs'
 import { Message } from 'element-ui'
 
-const ShowMessage = (message = '网络错误，请检查网络后尝试刷新！') => Message.error(message || '网络错误，请刷新重试！')
-
 const Axios = axios.create({
   baseURL: process.env.BASE_API,
   timeout: 10000,
@@ -19,7 +17,7 @@ Axios.interceptors.request.use(config => {
   //   config.data = qs.stringify(config.data);
   // }
   if (localStorage.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-    config.headers.Authorization = `JWT ${localStorage.token}`;
+    config.headers.Authorization = `JWT ${localStorage.token}`
   }
   return config
 },(error) =>{
@@ -30,9 +28,14 @@ Axios.interceptors.request.use(config => {
 Axios.interceptors.response.use(res => {
   return res.data
 },error => {
+  if(!error.response) return Promise.reject(error.response.data)
   if(error.response.status === 401) {
     // 未登录，跳转到登录页面
-    location.href = '/login'
+    // location.href = '/login'
+  } else if (error.response.status === 400) {
+    const { data } = error.response
+    const errorMsg = Object.keys(data).reduce((str, key) => str + data[key][0] + '      ', '')
+    Message.error(errorMsg.trim())
   }
   return Promise.reject(error.response.data)
 })
