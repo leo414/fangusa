@@ -24,7 +24,7 @@
         <span class="send_code gray" v-else>{{timeOut}} 秒后重新获取</span>
       </section>
     </div>
-    <el-button type="primary" size="large" class="login_btn">注册</el-button >
+    <el-button type="primary" @click="onRegister" size="large" class="login_btn">注册</el-button >
     <hr/>
 
     <p class="desc">社交媒体账号登录</p>
@@ -87,10 +87,37 @@ export default {
         account,
         send_type: this.send_type,
       }
-      // this.$http.post(this.API.USER.Code, Data).then(res => {
-      //   console.log(res)
-      // })
+      this.$http.post(this.API.USER.Code, Data).then(res => {
+        console.log(res)
+      }).catch(error => {
+        // TODO 到底返回哪个字段
+        this.$message.error(error)
+      })
       
+    },
+
+    onRegister() {
+      if(!password) {
+        return this.$message.warning('请填写密码！')
+      }
+
+      if(!code) {
+        return this.$message.warning('请填写验证码！')
+      }
+      
+      const Data = {
+        password: this.password,
+        username: this.account,
+        type: this.send_type,
+        code: this.code,
+      }
+      this.$http.post(this.API.USER.Register, Data).then(res => {
+        if(res.token) {
+          localStorage.token = res.token
+          // TODO 检查是否有参数，登出成功后，重定向到之前的页面
+          this.$router.push('/')
+        }
+      })
     },
   },
 }
