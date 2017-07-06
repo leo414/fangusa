@@ -53,7 +53,7 @@ export default {
         username,
         password
       }
-      this.$http.post(this.API.USER.Login, data)
+      this.$http.post(this.API.HOUSE.Login, data)
         .then(res => {
           if(res.token) {
             localStorage.token = res.token

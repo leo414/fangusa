@@ -87,7 +87,7 @@ export default {
         account,
         send_type: this.send_type,
       }
-      this.$http.post(this.API.USER.Code, Data).then(res => {
+      this.$http.post(this.API.HOUSE.Code, Data).then(res => {
         console.log(res)
       }).catch(error => {
         // TODO 到底返回哪个字段
@@ -111,7 +111,7 @@ export default {
         type: this.send_type,
         code: this.code,
       }
-      this.$http.post(this.API.USER.Register, Data).then(res => {
+      this.$http.post(this.API.HOUSE.Register, Data).then(res => {
         if(res.token) {
           localStorage.token = res.token
           // TODO 检查是否有参数，登出成功后，重定向到之前的页面

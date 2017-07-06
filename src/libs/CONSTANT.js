@@ -3,11 +3,12 @@ export const API = {
     List: 'house/',
     Rate: 'rate/1/',
     Trend: 'trend/',
+    Login: 'login/',
+    Code: 'code/',
+    Register: 'register/',
   },
   USER: {
-    Login: 'login/',
     Fav: 'user_fav/',
-    Code: 'code/',
   },
 }
 
