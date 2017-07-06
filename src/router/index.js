@@ -3,7 +3,8 @@ const Login = resolve => import('views/entry/login').then(module => resolve(modu
 const Register = resolve => import('views/entry/register').then(module => resolve(module))
 const ChangePd = resolve => import('views/entry/change-pd').then(module => resolve(module))
 const HouseDetail = resolve => import('views/detail/index').then(module => resolve(module))
-const SearchResult = resolve => import('views/searchResult/search-result').then(module => resolve(module))
+const User = resolve => import('views/user/index').then(module => resolve(module))
+const SearchResult = resolve => import('views/search-result/search-result').then(module => resolve(module))
 // const MapSearch = () => import('views/searchResult/MapSearch)
 
 const routers = [
@@ -14,6 +15,14 @@ const routers = [
     },
     name: 'Homepage',
     component: Homepage,
+  },
+    {
+    path: '/user',
+    meta: {
+      title: '个人中心'
+    },
+    name: 'Homepage',
+    component: User,
   },
   {
     path: '/login',

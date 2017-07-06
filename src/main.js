@@ -35,10 +35,12 @@ import {
   Pagination,
   Cascader,
   Tabs,
+  Radio,
   Message,
   TabPane,
 } from 'element-ui'
 Vue.use(Row)
+Vue.use(Radio)
 Vue.use(Col)
 Vue.use(Input)
 Vue.use(Switch)

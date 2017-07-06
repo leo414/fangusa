@@ -28,7 +28,8 @@ Axios.interceptors.response.use(res => {
 },error => {
   if(!error.response) return Promise.reject(error)
   if(error.response.status === 401) {
-    // 未登录，跳转到登录页面
+    // 未登录 or  token 过期，跳转到登录页面
+    localStorage.token = ''
     location.href = '/login'
   } else if (error.response.status === 400) {
     const { data } = error.response
