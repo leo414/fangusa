@@ -16,10 +16,16 @@
           <li><router-link to="#">联系我们</router-link></li>
         </ul>
       </el-col>
-      <el-col class="entry" :span="3">
+      <el-col class="entry" :span="3" v-if="!isLogin">
         <router-link to="/login">登录</router-link>
         <i class="i i-shugang" />
         <router-link to="/register">注册</router-link>
+      </el-col>
+
+      <el-col class="entry" :span="3" v-else>
+        <router-link to="/user">个人中心</router-link>
+        <i class="i i-shugang" />
+        <a @click.stop="logout">登出</a>
       </el-col>
     </el-row>
   </div>
@@ -32,6 +38,19 @@ export default {
   name: 'NavLay',
   data() {
     return {
+      isLogin: localStorage.token ? true : false,
+    }
+  },
+  watch: {
+    $route() {
+      this.isLogin = localStorage.token ? true : false
+    },
+  },
+  methods: {
+    logout() {
+      localStorage.token = ''
+      this.isLogin = false
+      this.$router.push('/login')
     }
   },
 }
