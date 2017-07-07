@@ -44,25 +44,30 @@
       <p class="account">
         邮&nbsp;&nbsp;&nbsp;&nbsp;箱：
         <el-button v-if="email" class="btn_text" size="large" type="text">{{email}}</el-button>
-        <el-button v-else  size="small" type="primary">绑定邮箱</el-button>
+        <el-button v-else size="small" type="primary" @click="updateAccount('绑定邮箱', 5)">绑定邮箱</el-button>
 
-        <el-button v-if="email" size="small" type="primary">更改邮箱</el-button>
+        <el-button v-if="email" size="small" type="primary" @click="updateAccount('更改邮箱', 5)">更改邮箱</el-button>
       </p>
 
       <p class="account">
         手机号：
         <el-button v-if="mobile" class="btn_text" size="large" type="text">{{mobile}}</el-button>
-        <el-button v-else  size="small" type="primary">绑定手机号</el-button>
+        <el-button v-else  size="small" type="primary" @click="updateAccount('绑定手机号', 4)">绑定手机号</el-button>
 
-        <el-button v-if="mobile" size="small" type="primary">更改手机号</el-button>
+        <el-button v-if="mobile" size="small" type="primary" @click="updateAccount('更改手机号', 4)">更改手机号</el-button>
       </p>
     </div>
 
-    <el-dialog :title="dialog.title" :visible.sync="dialog.isShow">
-      <section>
-        <el-input v-model="dialog.account" placeholder="请输入内容"></el-input>
-        <el-input v-model="dialog.code" placeholder="验证码"></el-input>
-        <el-button type="primary">发用验证码</el-button>
+    <el-dialog @close="onDialogClose" :title="dialog.title" :visible.sync="dialog.isShow">
+      <section class="dialog_container">
+        <el-input v-model="dialog.account" class="dialog_account" :placeholder="dialog.title"></el-input>
+        <el-input v-model="dialog.code"  class="dialog_code" placeholder="验证码"></el-input>
+        <el-button v-if="!dialog.disabled" type="primary" @click="sendCode">获取验证码</el-button>
+        <el-button v-else type="primary" :plain="true" :disabled="true">{{dialog.timeOut}}秒后重新获取</el-button>
+
+        <footer>
+          <el-button type="primary" size="large" class="dialog_submit" @click="onSunmitAccount">提交</el-button>          
+        </footer>
       </section>
     </el-dialog>
   </el-col>
@@ -92,6 +97,7 @@ export default {
       },
       dialog: {
         title: '',
+        send_type: null,
         account: '',
         code: '',
         timeOut: 60,
@@ -105,6 +111,9 @@ export default {
   },
   mounted() {
     this.fetchData()
+  },
+  created() {
+    this.timer = null
   },
   methods: {
     fetchData() {
@@ -152,8 +161,77 @@ export default {
       })
     },
 
+    updateAccount(title, send_type) {
+      this.dialog.title = title
+      this.dialog.send_type = send_type
+      this.dialog.isShow = true
+    },
+
+    sendCode() {
+      const {account, send_type} = this.dialog
+      if(!account) {
+        return this.$message.warning('请填写账号！')
+      }
+
+      const TelPattern = /^1[34578]\d{9}$/
+      const MailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+      
+      if(send_type === 4) { // 绑定 or 更改手机号
+        if(!TelPattern.test(account)) return this.$message.warning('手机号格式错误！')
+      } else if(send_type === 5) { // 绑定 or 更改邮箱
+        if(!MailPattern.test(account)) return this.$message.warning('邮箱格式错误！')
+      } else {
+        return this.$message.warning('发生错误，请刷新重试！')
+      }
+      
+      this.dialog.disabled = true
+      this.timer = setInterval(() => {
+        if(this.dialog.timeOut === 1) {
+          this.dialog.timeOut = 60
+          this.dialog.disabled = false
+          return clearInterval(this.timer)
+        }
+        this.dialog.timeOut -= 1
+      }, 1000)
+
+      const Data = {
+        account,
+        send_type,
+      }
+      this.$http.post(this.API.HOUSE.Code, Data).then(res => {
+        console.log(res)
+      }).catch(error => {
+        this.$message.error(error)
+      })
+    },
+
+    onDialogClose() {
+      clearInterval(this.timer)
+      this.dialog.timeOut = 60
+      this.dialog.disabled = false
+      this.dialog.account = ''
+    },
+
+    onSunmitAccount() {
+      if(!this.dialog.code) {
+        return this.$message.warning('请填写验证码！')
+      }
+      
+      const Data = {
+        account: this.dialog.account,
+        type: this.dialog.send_type,
+        code: this.dialog.code,
+      }
+      this.$http.post(this.API.USER.Bind, Data).then(res => {
+        // TODO待测试
+        this.$message.success('修改成功！')
+        this.fetchData()
+      })
+    },
+
     destroyed() {
       this.uploadImage.loading = false
+      clearInterval(this.timer)
     },
   },
 }
@@ -219,6 +297,24 @@ export default {
 
     .btn_text {
       margin-right: 40px;
+    }
+  }
+
+  .dialog_container {
+    width: 80%;
+
+    .dialog_account {
+      width: 250px;
+      margin-right: 30px;
+    }
+
+    .dialog_code {
+      width: 180px;
+    }
+
+    .dialog_submit {
+      margin-top: 20px;
+      width: 100px;
     }
   }
 

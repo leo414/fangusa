@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     sendCode() {
-      const {account} = this
+      const { account } = this
       if(!account) {
         return this.$message.warning('请填写手机号或邮箱！')
       }
@@ -118,6 +118,10 @@ export default {
           this.$router.push('/')
         }
       })
+    },
+
+    destroyed() {
+      clearInterval(this.timer)
     },
   },
 }

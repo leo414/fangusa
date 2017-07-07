@@ -10,6 +10,7 @@ export const API = {
   USER: {
     Fav: 'user_fav/',
     User: 'user/',
+    Bind: 'bind/',
   },
 }
 
