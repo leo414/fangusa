@@ -28,7 +28,7 @@
 
     <div class="input_group">
       <label>年龄</label>
-      <el-input size="large" class="input" v-model="age" placeholder="请输入内容"></el-input>
+      <el-input size="large" type="number" class="input" v-model.number="age" placeholder="请输入内容"></el-input>
     </div>
 
     <div class="radio_group">
@@ -37,7 +37,7 @@
     </div>
 
     <div class="save_btn_area">
-      <el-button class="save_btn fr" type="primary" size="large">保存</el-button>
+      <el-button class="save_btn fr" @click="patchUserInfo" type="primary" size="large">保存</el-button>
     </div>
 
     <div>
@@ -122,6 +122,7 @@ export default {
 
     // 开始上传
     checkToken() {
+      // TODO 检查 TOKEN 是否过期
       // this.$http.get(this.API.USER.User)
       this.uploadImage.loading = true
     },
@@ -138,6 +139,17 @@ export default {
     imageUploadedError(error) {
       this.uploadImage.loading = false
       this.$message.warning('上传错误，请刷新重试！')
+    },
+
+    patchUserInfo() {
+      const Data = {
+        name: this.name,
+        age: this.age,
+        gender: this.gender,
+      }
+      this.$http.patch(this.API.USER.User, Data).then(res => {
+        this.$message.success('修改成功！')
+      })
     },
 
     destroyed() {
