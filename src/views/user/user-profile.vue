@@ -111,6 +111,16 @@ export default {
   },
   mounted() {
     this.fetchData()
+    this.$http.post(this.API.OTHER.VerifyToken, {token: localStorage.token})
+      .then(res => {
+        if(res.token) {
+          // TODO
+        }
+      })
+      .catch(error => {
+        localStorage.token = ''
+        this.$router.push('/login')
+      })
   },
   created() {
     this.timer = null

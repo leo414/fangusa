@@ -12,6 +12,9 @@ export const API = {
     User: 'user/',
     Bind: 'bind/',
   },
+  OTHER: {
+    VerifyToken: 'verify_token/',
+  },
 }
 
 export const HOT_CITIES = [
