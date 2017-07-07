@@ -1,20 +1,11 @@
 <template>
   <div>
-    <h3 class="h3">收藏房源</h3>
-
-    <el-row :gutter="20" class="house_list">
+    <el-row :gutter="20" class="house_list" v-if="results.length">
       <el-col :span="8" v-for="(info, key) in results" :key="key">
-        <house-lay :info="info" />
+        <house-lay :info="info.house" />
       </el-col>
     </el-row>
-
-    <!--<el-pagination
-      class="pagination"
-      layout="prev, pager, next"
-      :page-size="30"
-      @current-change="onChagePage"
-      :total="total">
-    </el-pagination>-->
+    <p v-else>暂无收藏数据</p>
   </div>
 </template>
 
@@ -29,10 +20,22 @@ export default {
   data() {
     return {
       results: [],
-      pageCount: 1,
-      total: 0,
     }
   },
+  mounted() {
+    this.fetchData()
+  },
+
+  methods: {
+    fetchData() {
+      this.$http.get(this.API.USER.Fav).then(res => {
+        if(res.results) {
+          this.results = res.results
+          this.total = res.total
+        }
+      })
+    },
+  }  
 }
 </script>
 
