@@ -28,20 +28,6 @@ export default {
       seleted: 0,
     }
   },
-
-  mounted() {
-    this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.$http.get(this.API.USER.User).then(res => {
-        console.log(res)
-        if(res.results) {
-          // this.houseList = res.results
-        }
-      })
-    }
-  },
 }
 </script>
 

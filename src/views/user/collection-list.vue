@@ -8,13 +8,13 @@
       </el-col>
     </el-row>
 
-    <el-pagination
+    <!--<el-pagination
       class="pagination"
       layout="prev, pager, next"
       :page-size="30"
       @current-change="onChagePage"
       :total="total">
-    </el-pagination>
+    </el-pagination>-->
   </div>
 </template>
 
