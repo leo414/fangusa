@@ -1,11 +1,25 @@
 <template>
-<el-row class="user_profile_container" :gutter="30">
-  <el-col class="avatar" :span="8">
-    <img :src="image" alt="头像" />
-    <el-button type="primary" class="submit_avatar">上传头像</el-button>
+<el-row class="user_profile_container">
+  <el-col class="avatar" :span="8" v-loading.body="uploadImage.loading">
+    <img :src="uploadImage.image" alt="头像" />
+    <vue-core-image-upload
+      class="el-button el-button--primary el-button--small submit_avatar"
+      :crop="false"
+      inputOfFile="image"
+      @imageuploading="checkToken"
+      @imageuploaded="imageuploaded"
+      @errorhandle="imageUploadedError"
+      extensions="png,jpg"
+      text="上传头像"
+      :maxFileSize="10485760"
+      :max-file-size="5242880"
+      :headers="uploadImage.reqHeader"
+      :credentials="false"
+      :url="uploadImage.reqUrl">
+    </vue-core-image-upload>
   </el-col>
 
-  <el-col :span="16">
+  <el-col :span="16" style="padding-left: 20px;">
     <h3 class="h3">基本信息</h3>
     <div class="input_group">
       <label>姓名</label>
@@ -43,11 +57,22 @@
         <el-button v-if="mobile" size="small" type="primary">更改手机号</el-button>
       </p>
     </div>
+
+    <el-dialog :title="dialog.title" :visible.sync="dialog.isShow">
+      <section>
+        <el-input v-model="dialog.account" placeholder="请输入内容"></el-input>
+        <el-input v-model="dialog.code" placeholder="验证码"></el-input>
+        <el-button type="primary">发用验证码</el-button>
+      </section>
+    </el-dialog>
   </el-col>
 </el-row>
 </template>
 
 <script>
+import VueCoreImageUpload from 'vue-core-image-upload'
+import { API } from 'libs/Constant'
+
 export default {
   name: 'UserProfile',
   data() {
@@ -57,8 +82,26 @@ export default {
       gender: 'male',
       email: '',
       mobile: '',
-      image: '',
+      uploadImage: {
+        loading: false,
+        image: '',
+        reqUrl:  process.env.BASE_API + API.USER.User,
+        reqHeader: {
+          'Authorization':  `JWT ${localStorage.token}`,
+        },
+      },
+      dialog: {
+        title: '',
+        account: '',
+        code: '',
+        timeOut: 60,
+        disabled: false,
+        isShow: false,
+      },
     }
+  },
+  components: {
+    'vue-core-image-upload': VueCoreImageUpload,
   },
   mounted() {
     this.fetchData()
@@ -72,9 +115,33 @@ export default {
           this.gender = res.gender
           this.email = res.email
           this.mobile = res.mobile
-          this.image = res.image
+          this.uploadImage.image = res.image
         }
       })
+    },
+
+    // 开始上传
+    checkToken() {
+      // this.$http.get(this.API.USER.User)
+      this.uploadImage.loading = true
+    },
+
+    // 上传结束
+    imageuploaded(res) {
+      this.uploadImage.loading = false
+      if(res.image) {
+        this.uploadImage.image = res.image
+      }
+    },
+
+    // 上传失败
+    imageUploadedError(error) {
+      this.uploadImage.loading = false
+      this.$message.warning('上传错误，请刷新重试！')
+    },
+
+    destroyed() {
+      this.uploadImage.loading = false
     },
   },
 }

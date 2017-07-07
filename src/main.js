@@ -31,6 +31,7 @@ import {
   FormItem,
   Carousel,
   CarouselItem,
+  Loading,
   Tooltip, 
   Pagination,
   Cascader,
@@ -38,6 +39,7 @@ import {
   Radio,
   Message,
   TabPane,
+  Dialog,
 } from 'element-ui'
 Vue.use(Row)
 Vue.use(Radio)
@@ -57,7 +59,10 @@ Vue.use(Pagination)
 Vue.use(Cascader)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Dialog)
 Vue.prototype.$message = Message
+Vue.use(Loading.directive)
+Vue.prototype.$loading = Loading.service
 
 
 /**
