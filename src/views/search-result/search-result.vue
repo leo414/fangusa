@@ -11,6 +11,7 @@
     </el-row>
 
     <el-pagination
+      v-if="total > 30"
       class="pagination"
       layout="prev, pager, next"
       :page-size="30"
@@ -30,7 +31,6 @@ export default {
   data() {
     return {
       results: [],
-      pageCount: 1,
       total: 0,
     }
   },

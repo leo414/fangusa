@@ -1,4 +1,4 @@
-const Homepage = resolve => import('views/homePage/index').then(module => resolve(module))
+const Homepage = resolve => import('views/home-page/index').then(module => resolve(module))
 const Login = resolve => import('views/entry/login').then(module => resolve(module))
 const Register = resolve => import('views/entry/register').then(module => resolve(module))
 const ChangePd = resolve => import('views/entry/change-pd').then(module => resolve(module))
