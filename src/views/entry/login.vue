@@ -1,31 +1,33 @@
 <template lang="html">
-<section id="login">
-  <header class="header">
-    <router-link active-class="active" to="/login">登录</router-link>
-    <router-link active-class="active" to="/register">注册</router-link>
-  </header>
+<div>
+  <section class="login_container">
+    <header class="header">
+      <router-link active-class="active" to="/login">登录</router-link>
+      <router-link active-class="active" to="/register">注册</router-link>
+    </header>
 
-  <div class="content">
-    <div class="input_box">
-      <section class="account box">
-        <i class="i i-user" />
-        <input class="ipt" v-model.trim="username" type="text" placeholder="邮箱 / 手机号" />
-      </section>
+    <div class="content">
+      <div class="input_box">
+        <section class="account box">
+          <i class="i i-user" />
+          <input class="ipt" v-model.trim="username" type="text" placeholder="邮箱 / 手机号" />
+        </section>
 
-      <section class="password box">
-        <i class="i i-lock" />
-        <input class="ipt" v-model.trim="password"  @keyup.enter="onLogin" type="password" placeholder="密码" />
-      </section>
+        <section class="password box">
+          <i class="i i-lock" />
+          <input class="ipt" v-model.trim="password"  @keyup.enter="onLogin" type="password" placeholder="密码" />
+        </section>
+      </div>
+      <router-link to="/change_pd" class="fr theme_color">忘记密码？</router-link>
+      <el-button type="primary" size="large" @click="onLogin" class="login_btn">登录</el-button >
+
+      <hr/>
+
+      <p class="desc">社交媒体账号登录</p>
+      <el-button class="we_loign_btn"><i class="i-weixin i"></i>微信账号登录</el-button >
     </div>
-    <router-link to="/change_pd" class="fr theme_color">忘记密码？</router-link>
-    <el-button type="primary" size="large" @click="onLogin" class="login_btn">登录</el-button >
-
-    <hr/>
-
-    <p class="desc">社交媒体账号登录</p>
-    <el-button class="we_loign_btn"><i class="i-weixin i"></i>微信账号登录</el-button >
-  </div>
-</section>
+  </section>
+</div>  
 </template>
 
 <script>
@@ -74,7 +76,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
-#login {
+.login_container {
   width: 420px;
   margin: 60px auto;
   height: 480px;

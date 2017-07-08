@@ -5,8 +5,7 @@ const ChangePd = resolve => import('views/entry/change-pd').then(module => resol
 const HouseDetail = resolve => import('views/detail/index').then(module => resolve(module))
 const User = resolve => import('views/user/index').then(module => resolve(module))
 const SearchResult = resolve => import('views/search-result/search-result').then(module => resolve(module))
-const Map = resolve => import('views/search-result/map').then(module => resolve(module))
-
+const Map = resolve => import('views/search-result/map') .then(module => resolve(module))
 
 const routers = [
   {

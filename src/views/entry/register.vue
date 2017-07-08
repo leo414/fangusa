@@ -1,36 +1,38 @@
 <template lang="html">
-<section id="login">
-  <header class="header">
-    <router-link active-class="active" to="/login">登录</router-link>
-    <router-link active-class="active" to="/register">注册</router-link>
-  </header>
-
-  <div class="content">
-    <div class="input_box">
-      <section class="account box">
-        <i class="i i-user" />
-        <input class="ipt" type="text" v-model.trim="account" placeholder="邮箱 / 手机号" />
-      </section>
-
-      <section class="password box">
-        <i class="i i-lock" />
-        <input class="ipt" type="password" v-model.trim="password" placeholder="密码" />
-      </section>
-
-      <section class="code_box">
-        <i class="i i-code" />
-        <input class="ipt" type="tel" v-model.trim="code" placeholder="手机/邮箱 验证码" />
-        <a v-if="!isSendCodeIng" @click.stop="sendCode" class="send_code">获取验证码</a>
-        <span class="send_code gray" v-else>{{timeOut}} 秒后重新获取</span>
-      </section>
+<div>
+  <section class="register_container">
+    <header class="header">
+      <router-link active-class="active" to="/login">登录</router-link>
+      <router-link active-class="active" to="/register">注册</router-link>
+    </header>
+  
+    <div class="content">
+      <div class="input_box">
+        <section class="account box">
+          <i class="i i-user" />
+          <input class="ipt" type="text" v-model.trim="account" placeholder="手机号 / 邮箱" />
+        </section>
+  
+        <section class="password box">
+          <i class="i i-lock" />
+          <input class="ipt" type="password" v-model.trim="password" placeholder="密码" />
+        </section>
+  
+        <section class="code_box">
+          <i class="i i-code" />
+          <input class="ipt" type="tel" v-model.trim="code" placeholder="手机/邮箱 验证码" />
+          <a v-if="!isSendCodeIng" @click.stop="sendCode" class="send_code">获取验证码</a>
+          <span class="send_code gray" v-else>{{timeOut}} 秒后重新获取</span>
+        </section>
+      </div>
+      <el-button type="primary" @click="onRegister" size="large" class="login_btn">注册</el-button >
+      <hr/>
+  
+      <p class="desc">社交媒体账号登录</p>
+      <el-button class="we_loign_btn"><i class="i-weixin i"></i>微信账号登录</el-button >
     </div>
-    <el-button type="primary" @click="onRegister" size="large" class="login_btn">注册</el-button >
-    <hr/>
-
-    <p class="desc">社交媒体账号登录</p>
-    <el-button class="we_loign_btn"><i class="i-weixin i"></i>微信账号登录</el-button >
-  </div>
-</section>
+  </section>
+</div>
 </template>
 
 <script>
@@ -97,11 +99,11 @@ export default {
     },
 
     onRegister() {
-      if(!password) {
+      if(!this.password) {
         return this.$message.warning('请填写密码！')
       }
 
-      if(!code) {
+      if(!this.code) {
         return this.$message.warning('请填写验证码！')
       }
       
@@ -130,7 +132,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
-#login {
+.register_container {
   width: 420px;
   margin: 60px auto;
   height: 500px;

@@ -1,44 +1,144 @@
 <template lang="html">
-<section id="login">
-  <header class="header">
-    找回密码
-  </header>
+<div>
+  <section class="change_pd_container">
+    <header class="header">
+      <h3>找回密码</h3>
+    </header>
+  
+    <div class="content">
+      <div class="input_box">
+        <section class="account box">
+          <i class="i i-user" />
+          <input class="ipt" type="text" v-model.trim="account" placeholder="手机号 / 邮箱" />
+        </section>
+  
+        <section class="code_box">
+          <i class="i i-code" />
+          <input class="ipt" type="tel" v-model.trim="code" placeholder="手机/邮箱 验证码" />
+          <a v-if="!isSendCodeIng" @click.stop="sendCode" class="send_code">获取验证码</a>
+          <span class="send_code gray" v-else>{{timeOut}} 秒后重新获取</span>
+        </section>
 
-  <div class="content">
-    <div class="input_box">
-      <section class="account box">
-        <i class="i i-user" />
-        <input class="ipt" type="text" placeholder="邮箱 / 手机号" />
-      </section>
+        <section class="password box">
+          <i class="i i-lock" />
+          <input class="ipt" type="password" v-model.trim="password" placeholder="密码" />
+        </section>
 
-      <section class="password box">
-        <i class="i i-lock" />
-        <input class="ipt" type="password" placeholder="密码" />
-      </section>
-
-      <section class="code box">
-        <i class="i i-code" />
-        <input class="ipt" type="password" placeholder="手机/邮箱 验证码" />
-      </section>
+        <section class="password box">
+          <i class="i i-lock" />
+          <input class="ipt" type="password" v-model.trim="password_re" placeholder="确认密码" style="border-bottom: none;" />
+        </section>
+      </div>
+      <el-button class="login_btn" @click="onSubmit">提交</el-button >
     </div>
-    <el-button class="login_btn">提交</el-button >
-  </div>
-</section>
+  </section>
+</div>
 </template>
 
 <script>
 export default {
   name: 'ChangePd',
+  data() {
+    return {
+      account: '',
+      password: '',
+      password_re: '',
+      code: '',
+      send_type: 3,
+      timeOut: 60,
+      isSendCodeIng: false,
+    }
+  },
+  created() {
+    this.timer = null
+  },
+  methods: {
+    sendCode() {
+      const { account } = this
+      if(!account) {
+        return this.$message.warning('请填写手机号或邮箱！')
+      }
+
+      const TelPattern = /^1[34578]\d{9}$/
+      const MailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+      
+      if(!TelPattern.test(account)) {
+        if(!MailPattern.test(account)) {
+          return this.$message.warning('手机号或邮箱格式错误！')
+        }
+      }
+     
+      this.isSendCodeIng = true
+      this.timer = setInterval(() => {
+        if(this.timeOut === 1) {
+          this.timeOut = 60
+          this.isSendCodeIng = false
+          return clearInterval(this.timer)
+        }
+        this.timeOut -= 1
+      }, 1000)
+
+      const Data = {
+        account,
+        send_type: this.send_type,
+      }
+      this.$http.post(this.API.HOUSE.Code, Data).then(res => {
+        console.log(res)
+      }).catch(error => {
+        // TODO 到底返回哪个字段
+        this.$message.error(error)
+      })
+      
+    },
+
+    onSubmit() {
+      const {
+        account,
+        password,
+        password_re,
+        code,
+      } = this
+      if(!password) {
+        return this.$message.warning('请填写密码！')
+      }
+
+      if(!code) {
+        return this.$message.warning('请填写验证码！')
+      }
+
+      if(password !== password_re) {
+        return this.$message.warning('密码不一致！')
+      }
+      
+      const Data = {
+        password: password,
+        password_re: password_re,
+        username: account,
+        code: code,
+      }
+      this.$http.post(this.API.HOUSE.ResetPd, Data).then(res => {
+        if(res.token) {
+          localStorage.token = res.token
+          // TODO 检查是否有参数，登出成功后，重定向到之前的页面
+          this.$router.push('/')
+        }
+      })
+    },
+
+    destroyed() {
+      clearInterval(this.timer)
+    },
+  }  
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
-#login {
+.change_pd_container {
   width: 420px;
   margin: 60px auto;
-  height: 380px;
+  height: 400px;
   background: #fff;
 }
 
@@ -46,22 +146,7 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #324057;
   text-align: center;
-  color: #fff;
-
-  a {
-    display: inline-block;
-    width: 50%;
-    font-size: 16px;
-    text-align: center;
-    color: #fff;
-  }
-
-  .active {
-    color: #324057;
-    background: #fff;
-  }
 }
 
 .content {
@@ -101,8 +186,30 @@ export default {
     }
   }
 
-  .code .ipt {
-    border: none;
+  .gray { color: #333 !important; }
+
+  .code_box {
+    @extend .box;
+    font-size: 0;
+
+    .ipt {
+      display: inline-block;
+      width: 70%;
+      font-size: 16px;
+    }
+
+    .send_code {
+      display: inline-block;
+      vertical-align: top;
+      line-height: 50px;
+      width: 30%;
+      height: 50px;
+      border-left: 1px #ccc solid;
+      border-bottom: 1px #ccc solid;
+      text-align: center;
+      color: $theme_color;
+      font-size: 14px;
+    }
   }
 }
 
@@ -125,6 +232,17 @@ hr {
 
 .desc {
   text-align: center;
+}
+
+.we_loign_btn {
+  @extend .login_btn;
+  letter-spacing: 2px;
+  background: $we_color;
+
+  i {
+    margin-right: 20px;
+    font-size: 20px;
+  }
 }
 
 </style>

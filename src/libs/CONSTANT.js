@@ -6,6 +6,7 @@ export const API = {
     Login: 'login/',
     Code: 'code/',
     Register: 'register/',
+    ResetPd: 'password_re/',
   },
   USER: {
     Fav: 'user_fav/',
@@ -14,6 +15,7 @@ export const API = {
   },
   OTHER: {
     VerifyToken: 'verify_token/',
+    Article: 'article/',
   },
 }
 
