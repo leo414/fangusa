@@ -15,7 +15,7 @@
 <script>
 
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-mapboxgl.accessToken = 'pk.eyJ1IjoibGVvNDE0IiwiYSI6ImNpcmh5MGk2MTAxczFnNG5uYmN0NGQzcjQifQ.DeTBccB-w-ZqUAFsOusxZg'
+mapboxgl.accessToken = 'pk.eyJ1IjoiemF4bGN0IiwiYSI6ImNqNHVsODAwNjBrcXAycXI1cTVkdGU3ZHEifQ.0QfeJeP1LfAbm64_bYxj6A'
 
 export default {
   name: 'MapSearch',
@@ -27,7 +27,7 @@ export default {
   mounted() {
     const map = new mapboxgl.Map({
       container: 'map_box',
-      style: 'mapbox://styles/mapbox/light-v9'
+      style: 'mapbox://styles/zaxlct/cj2iaf2o9002b2rmqr8brbsez'
     })
   }
 }

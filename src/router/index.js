@@ -5,7 +5,8 @@ const ChangePd = resolve => import('views/entry/change-pd').then(module => resol
 const HouseDetail = resolve => import('views/detail/index').then(module => resolve(module))
 const User = resolve => import('views/user/index').then(module => resolve(module))
 const SearchResult = resolve => import('views/search-result/search-result').then(module => resolve(module))
-// const MapSearch = () => import('views/searchResult/MapSearch)
+const Map = resolve => import('views/search-result/map').then(module => resolve(module))
+
 
 const routers = [
   {
@@ -49,14 +50,14 @@ const routers = [
     component: ChangePd,
   },
 
-  // {
-  //   path: '/map_search',
-  //   meta: {
-  //     title: '地图搜索房源'
-  //   },
-  //   name: 'MapSearch',
-  //   component: MapSearch,
-  // },
+  {
+    path: '/map',
+    meta: {
+      title: '地图搜索房源'
+    },
+    name: 'Map',
+    component: Map,
+  },
 
   {
     path: '/house/:id',
