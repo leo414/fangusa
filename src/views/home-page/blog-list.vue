@@ -6,17 +6,8 @@
   </header>
 
   <el-row type="flex" justify="space-between" class="code-row-bg">
-    <el-col class="blog" :span="6">
-      <blog-lay />
-    </el-col>
-    <el-col class="blog" :span="6">
-      <blog-lay />
-    </el-col>
-    <el-col class="blog" :span="6">
-      <blog-lay />
-    </el-col>
-    <el-col class="blog" :span="6">
-      <blog-lay />
+    <el-col class="blog" v-for="(info, index) in results" :span="6" :key="index">
+      <blog-lay :info="info" />
     </el-col>
   </el-row>
 </div>
@@ -32,9 +23,21 @@ export default {
   },
   data() {
     return {
-      value2: 0,
+      results: [],
     }
-  }
+  },
+  mounted() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.$http.get(this.API.OTHER.Article).then(res => {
+        if(res.results) {
+          this.results = res.results
+        }
+      })
+    }
+  },
 }
 </script>
 

@@ -1,19 +1,18 @@
 <template lang="html">
 <section class="blog_layout">
-  <div class="img_box"></div>
+  <div class="img_box" :style="background"></div>
 
   <header class="header">
     <i class="i i-date" />
-    2017-12-02
+    {{info.add_time.substring(0, 10)}}
     <div class="label">
       <i class="i i-tag" />
-      <span class="theme_color">文章标签</span>
+      <span class="theme_color">{{info.tags[0] || ''}}</span>
+      <span class="theme_color">{{info.tags[1] || ''}}</span>
     </div>
   </header>
 
-  <h1 class="title">
-    文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题文章标题
-  </h1>
+  <h1 class="title text_ellipsis">{{info.title}}</h1>
   <p class="desc">
     测试内容  测试内容  测试内容  测试内容  测试内容  测试内容  测试内容  测试内容  测试内容
     测试内容  测试内容  测试内容  测试内容  测试内容
@@ -26,9 +25,9 @@
     </router-link>
 
     <section class="author_info">
-      <img class="face" src="http://placehold.it/50x50" alt="作者头像">
+      <img class="face" :src="info.author_image" alt="作者头像">
       <div class="info">
-        <h3>托尼张</h3>
+        <h4 class="text_ellipsis">{{info.author_name}}</h4>
         <i class="i i-user" />
         签约作者
       </div>
@@ -40,6 +39,21 @@
 <script>
 export default {
   name: 'BlogLayout',
+  props: {
+    info: {
+      type: Object,
+    }
+  },
+  computed: {
+    background() {
+      return {
+        backgroundImage: 'url('+ this.info.front_image +')',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }
+    }
+  },
 }
 </script>
 
