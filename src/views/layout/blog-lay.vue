@@ -12,11 +12,8 @@
     </div>
   </header>
 
-  <h1 class="title text_ellipsis">{{info.title}}</h1>
-  <p class="desc">
-    测试内容  测试内容  测试内容  测试内容  测试内容  测试内容  测试内容  测试内容  测试内容
-    测试内容  测试内容  测试内容  测试内容  测试内容
-  </p>
+  <h3 class="title text_ellipsis">{{info.title}}</h3>
+  <p class="desc">{{info.contect_bref}}</p>
 
   <footer class="footer">
     <router-link class="link" to="/">
@@ -92,19 +89,18 @@ export default {
 
 .title {
   margin: 10px 0;
-  height: 44px;
   font-size: 18px;
   color: #324057;
-  @include text-multiLine-ellipsis(2, 22px)
+  // @include text-multiLine-ellipsis(2, 22px)
 }
 
 .desc {
-  height: 60px;
+  height: auto;
   @include text-multiLine-ellipsis(3, 20px)
 }
 
 .footer {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 12px;
 
   i { font-size: 14px; }

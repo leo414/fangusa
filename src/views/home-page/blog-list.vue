@@ -33,7 +33,7 @@ export default {
     fetchData() {
       this.$http.get(this.API.OTHER.Article).then(res => {
         if(res.results) {
-          this.results = res.results
+          this.results = res.results.slice(0, 4)
         }
       })
     }

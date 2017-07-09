@@ -21,7 +21,7 @@ const routers = [
     meta: {
       title: '个人中心'
     },
-    name: 'Homepage',
+    name: 'User',
     component: User,
   },
   {
