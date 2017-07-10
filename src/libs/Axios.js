@@ -1,7 +1,9 @@
 require('es6-promise').polyfill()
 import axios from 'axios'
 import { Toast } from 'mint-ui'
+import { API } from '../libs/Constant'
 import Vue from 'vue'
+import _includes from 'lodash.includes'
 
 // 保存 Toast 事件，便于销毁
 let toast = null
@@ -20,20 +22,38 @@ const Axios = axios.create({
 })
 
 Axios.interceptors.request.use(config => {
+  const UrlLength = config.baseURL.length
+  const Pathname = config.url.slice(-(config.url.length - UrlLength))
+  // 只有用户的方面的 API 才需要添加 token
+  if (localStorage.token &&  _includes(API.USER, Pathname)) {
+    config.headers.Authorization = `JWT ${localStorage.token}`
+  }
   return config
-},(error) =>{
+},error => {
+  // 错误的传参 
   return Promise.reject(error)
 })
 
 Axios.interceptors.response.use(res => {
-  if(res.status !== 200) {
-    ShowMessage()
-  }
-
   return res.data
 },error => {
-  ShowMessage()
-  return Promise.reject(error)
+  if(!error.response) return Promise.reject(error)
+  if(error.response.status === 401) {
+    localStorage.token = ''
+    location.href = '/login'
+  } else if (error.response.status === 400) {
+    const { data } = error.response
+    const errorMsg = Object.keys(data).reduce((str, key) => str + data[key][0] + '      ', '')
+
+    const { config } = error.response
+    const UrlLength = config.baseURL.length
+    const Pathname = config.url.slice(-(config.url.length - UrlLength))
+
+    if(Pathname !== API.HOUSE.Login) {
+      ShowMessage(errorMsg.trim())
+    }
+  }
+  return Promise.reject(error.response.data)
 })
 
 // 组件销毁时清除 toast

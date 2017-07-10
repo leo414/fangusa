@@ -4,14 +4,14 @@
 
   <div class="form">
     <div class="input_box">
-      <input type="text" class="input" placeholder="手机号 / 邮箱" />
+      <input type="text" class="input" v-model.trim="username" placeholder="手机号 / 邮箱" />
     </div>
 
     <div class="input_box">
-      <input type="password" class="input" placeholder="请输入密码" />
+      <input type="password" class="input" v-model.trim="password" placeholder="请输入密码" />
     </div>
 
-    <mt-button class="btn submit" @click.native="handleClick" size="large" type="primary">登录</mt-button>
+    <mt-button class="btn submit" @click="onLogin" size="large" type="primary">登录</mt-button>
   </div>
 
   <div class="divide">
@@ -19,10 +19,10 @@
     <p class="divide_text">其他登录方式</p>
   </div>
 
-  <mt-button class="btn wexin" @click.native="handleClick" size="large" type="primary">微信登录</mt-button>
+  <mt-button class="btn wexin" @click="handleClick" size="large" type="primary">微信登录</mt-button>
 
   <footer class="footer">
-    <router-link class="forget_pd" to="/forget_password">忘记密码？</router-link>
+    <router-link class="forget_pd" to="/change_pd">忘记密码？</router-link>
     <div class="fr">
       <router-link to="/register">尚未注册？现在去注册</router-link>
     </div>
@@ -32,12 +32,49 @@
 </template>
 
 <script>
+import { Toast } from 'mint-ui'
 
 export default {
   name: "Login",
   data() {
     return {
+      username: '',
+      password: '',
+    }
+  },
+  methods: {
+    onLogin() {
+      const { username, password } = this
+      if(!username) {
+        Toast('请输入账号！')
+        return 
+      }
 
+      if(!password) {
+        Toast('请输入密码！')
+        return 
+      }
+      const data = {
+        username,
+        password
+      }
+      this.$http.post(this.API.HOUSE.Login, data)
+        .then(res => {
+          if(res.token) {
+            localStorage.token = res.token
+            // TODO 检查是否有参数，登出成功后，重定向到之前的页面
+            this.$router.push('/')
+          }
+        })
+        .catch(error => {
+          if(error.non_field_errors) {
+            Toast('用户名或密码错误！')
+          }
+        })
+    },
+
+    handleClick() {
+      // TODO
     }
   }
 }

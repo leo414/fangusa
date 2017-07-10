@@ -1,7 +1,21 @@
 export const API = {
   HOUSE: {
     List: 'house/',
-    Rate: 'rate/1/'
+    Rate: 'rate/1/',
+    Trend: 'trend/',
+    Login: 'login/',
+    Code: 'code/',
+    Register: 'register/',
+    ResetPd: 'password_re/',
+  },
+  USER: {
+    Fav: 'user_fav/',
+    User: 'user/',
+    Bind: 'bind/',
+  },
+  OTHER: {
+    VerifyToken: 'verify_token/',
+    Article: 'article/',
   },
 }
 

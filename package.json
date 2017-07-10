@@ -15,6 +15,7 @@
     "es6-promise": "^4.1.1",
     "fastclick": "^1.0.6",
     "lodash.debounce": "^4.0.8",
+    "lodash.includes": "^4.3.0",
     "mint-ui": "^2.2.7",
     "vue": "^2.3.4",
     "vue-multiselect": "^2.0.0-beta.15",

@@ -40,7 +40,6 @@ Vue.component(Switch.name, Switch)
 Vue.component(Range.name, Range)
 Vue.component(Field.name, Field)
 Vue.component(Button.name, Button)
-
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false

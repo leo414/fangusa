@@ -17,25 +17,12 @@
       <input type="password" class="input"  v-model.trim="password" placeholder="请输入密码" />
     </div>
 
-    <mt-button class="btn submit" @click="onRegister" size="large" type="primary">注册</mt-button>
-    <p class="aside">
-      <i class="i i-agree theme_color" />
-      注册即为同意美国（fangusa.com）用户协议
-    </p>
-  </div>
-
-  <div class="divide">
-    <hr class="hr" />
-    <p class="divide_text">其他注册方式</p>
-  </div>
-
-  <mt-button class="btn wexin" size="large" type="primary">微信登录</mt-button>
-
-  <footer class="footer">
-    <div class="fr">
-      <router-link to="/login">已有账号立即登录</router-link>
+    <div class="input_box">
+      <input type="password" class="input"  v-model.trim="password_re" placeholder="请确认密码" />
     </div>
-  </footer>
+
+    <mt-button class="btn submit" @click="onSubmit" size="large" type="primary">提交</mt-button>
+  </div>
 </section>
 
 </template>
@@ -49,8 +36,9 @@ export default {
     return {
       account: '',
       password: '',
+      password_re: '',
       code: '',
-      send_type: 1,
+      send_type: 3,
       timeOut: 60,
       isSendCodeIng: false,
     }
@@ -76,13 +64,6 @@ export default {
         }
       }
       
-      if(TelPattern.test(account)) {
-        // 手机号
-        this.send_type = 1
-      } else if (MailPattern.test(account)) {
-        // 邮箱
-        this.send_type = 2
-      }
       this.isSendCodeIng = true
       this.timer = setInterval(() => {
         if(this.timeOut === 1) {
@@ -106,26 +87,37 @@ export default {
       
     },
 
-    onRegister() {
-      if(!this.password) {
+    onSubmit() {
+      const {
+        account,
+        password,
+        password_re,
+        code,
+      } = this
+      if(!password) {
         return Toast('请填写密码！')
       }
 
-      if(!this.code) {
+      if(!code) {
         return Toast('请填写验证码！')
+      }
+
+      if(password !== password_re) {
+        return Toast('密码不一致！')
       }
       
       const Data = {
-        password: this.password,
-        username: this.account,
-        type: this.send_type,
-        code: this.code,
+        password: password,
+        password_re: password_re,
+        username: account,
+        code: code,
       }
-      this.$http.post(this.API.HOUSE.Register, Data).then(res => {
+      this.$http.post(this.API.HOUSE.ResetPd, Data).then(res => {
         if(res.token) {
           localStorage.token = res.token
           // TODO 检查是否有参数，登出成功后，重定向到之前的页面
-          this.$router.push('/')
+          Toast('修改成功！')
+          setTimeout(() => this.$router.push('/'), 800) 
         }
       })
     },
