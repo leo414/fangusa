@@ -6,6 +6,7 @@ const HouseDetail = resolve => import('views/detail/index').then(module => resol
 const User = resolve => import('views/user/index').then(module => resolve(module))
 const SearchResult = resolve => import('views/search-result/search-result').then(module => resolve(module))
 const Map = resolve => import('views/search-result/map') .then(module => resolve(module))
+const Article = resolve => import('views/article/article') .then(module => resolve(module))
 
 const routers = [
   {
@@ -74,6 +75,15 @@ const routers = [
     },
     name: 'SearchResult',
     component: SearchResult,
+  },
+
+  {
+    path: '/article/:id',
+    meta: {
+      title: '文章'
+    },
+    name: 'Article',
+    component: Article,
   },
 ]
 export default routers
