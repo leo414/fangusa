@@ -1,5 +1,5 @@
 <template lang="html">
-<section class="service_list container">
+<section class="service_list container" v-once>
   <h2 class="title">一站式服务</h2>
   <el-row class="table">
     <el-col :span="6" class="box">

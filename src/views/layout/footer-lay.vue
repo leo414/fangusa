@@ -1,5 +1,5 @@
 <template lang="html">
-<footer id="footer" class="bg_white_container">
+<footer id="footer" class="bg_white_container" v-once>
   <div class="container">
     <el-row class="top">
       <el-col :span="8">

@@ -1,5 +1,5 @@
 <template lang="html">
-<div class="container" id="partner">
+<div class="container" id="partner" v-once>
   <h2 class="h2">
     合作伙伴
   </h2>

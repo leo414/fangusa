@@ -1,5 +1,5 @@
 <template lang="html">
-<section class="blog_layout">
+<router-link tag="article" :to="'/article/' + info.id" class="blog_layout">
   <div class="img_box" :style="background"></div>
 
   <header class="header">
@@ -30,7 +30,7 @@
       </div>
     </section>
   </footer>
-</section>
+</router-link>
 </template>
 
 <script>
@@ -63,6 +63,7 @@ export default {
   padding: 10px;
   font-size: 12px;
   background: #fff;
+  cursor: pointer;
 }
 
 .img_box {
@@ -72,8 +73,6 @@ export default {
   padding: 10px;
   width: 100%;
   height: 150px;
-  background: url('http://placehold.it/228x150') center center no-repeat;
-  background-size: cover;
 }
 
 .header {
