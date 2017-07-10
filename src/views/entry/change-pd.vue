@@ -120,7 +120,8 @@ export default {
         if(res.token) {
           localStorage.token = res.token
           // TODO 检查是否有参数，登出成功后，重定向到之前的页面
-          this.$router.push('/')
+          this.$message.success('修改成功！')
+          setTimeout(() => this.$router.push('/'), 800) 
         }
       })
     },

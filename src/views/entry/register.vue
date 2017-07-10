@@ -20,7 +20,7 @@
   
         <section class="code_box">
           <i class="i i-code" />
-          <input class="ipt" type="tel" v-model.trim="code" placeholder="手机/邮箱 验证码" />
+          <input class="ipt" type="tel" v-model.trim="code" placeholder="验证码" />
           <a v-if="!isSendCodeIng" @click.stop="sendCode" class="send_code">获取验证码</a>
           <span class="send_code gray" v-else>{{timeOut}} 秒后重新获取</span>
         </section>
