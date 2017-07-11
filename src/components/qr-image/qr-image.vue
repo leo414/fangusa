@@ -11,7 +11,7 @@ export default {
   props: {
     // 房源的 url_object_id 
     houseId: {
-      required: true,
+      default: '',
       type: String,
     }
   },

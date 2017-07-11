@@ -6,7 +6,7 @@
       <el-button @click="LinkTo(info.vr_url)" size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
       <el-button size="small" class="mark"><i class="i i-star" /> 加入收藏</el-button>
       <el-tooltip placement="top" effect="light">
-        <QrImage slot="content" houseId="url_object_id"></QrImage>
+        <QrImage slot="content" :houseId="info.url_object_id"></QrImage>
         <el-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</el-button>
       </el-tooltip>
       <span class="fr price">
@@ -108,6 +108,30 @@ export default {
     margin-bottom: 10px; 
     font-size: 16px;
   }
+
+  .vr {
+    margin-left: 10px;
+    margin-bottom: 6px;
+    vertical-align: middle;
+    background: $btn_color;
+    color: #fff;
+    border: none;
+    font-size: 12px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .mark {
+    @extend .vr;
+    background: $theme_color;
+  }
+
+  .wechat {
+    @extend .vr;
+    background: $we_color;
+  }
 }
 
 .price {
@@ -126,28 +150,4 @@ export default {
   }
 }
 
-.vr {
-  margin-left: 10px;
-  margin-bottom: 6px;
-  vertical-align: middle;
-  background: $btn_color;
-  color: #fff;
-  border: none;
-  font-size: 12px;
-
-  &:hover {
-    color: #fff;
-  }
-}
-
-
-.mark {
-  @extend .vr;
-  background: $theme_color;
-}
-
-.wechat {
-  @extend .vr;
-  background: $we_color;
-}
 </style>
