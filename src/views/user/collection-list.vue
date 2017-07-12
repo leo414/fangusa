@@ -2,34 +2,34 @@
   <div class="collection_box">
     <h3 class="h3">收藏的房源信息</h3>
     <div class="collection_list" v-if="results.length">
-      <el-row class="collection" :gutter="20" v-for="(info, index) in results" :key="index">
+      <el-row class="collection" :gutter="20" v-for="(info, index) in houseList" :key="index">
         <el-col :span="7" class="item">
-          <div class="img" @click="linkDetail(info.house.url_object_id)" :style="background(info.house.front_image_url)"></div>
+          <div class="img" @click="linkDetail(info.url_object_id)" :style="background(info.front_image_url)"></div>
         </el-col>
 
         <el-col :span="11" class="item">
           <div class="item">
             <h3 class="name theme_color text_ellipsis">
-              {{info.house.city_name}}
-              {{info.house.beds}}室{{info.house.baths}}卫 {{info.house.house_type}}
+              {{info.city_name}}
+              {{info.beds}}室{{info.baths}}卫 {{info.house_type}}
             </h3>
 
-            <el-button v-if="info.house.vr_url" @click="LinkTo(info.house.vr_url)" size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
+            <el-button v-if="info.vr_url" @click="LinkTo(info.vr_url)" size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
             <el-button size="small" class="mark"><i class="i i-star" /> 加入收藏</el-button>
             <el-tooltip placement="top" effect="light">
-              <QrImage slot="content" :houseId="info.house.url_object_id"></QrImage>
+              <QrImage slot="content" :houseId="info.url_object_id"></QrImage>
               <el-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</el-button>
             </el-tooltip>
 
-            <span class="desc">{{info.house.build_year}} 年建造 | {{parseInt(info.house.square *  0.093)}} 平米</span>
+            <span class="desc">{{info.build_year}} 年建造 | {{parseInt(info.square *  0.093)}} 平米</span>
           </div>
         </el-col>
 
         <el-col :span="6" class="item">
           <div class="item fr">
             <h3 class="price">
-              ${{info.house.zestimate}}
-              约￥{{info.house.zestimate | toRMB_W}} 万
+              ${{info.zestimate}}
+              约￥{{info.zestimate | toRMB_W}} 万
             </h3>
             
             <p class="rent">
@@ -67,7 +67,6 @@ export default {
       this.$http.get(this.API.USER.Fav).then(res => {
         if(res.results) {
           this.results = res.results
-          this.total = res.total
         }
       })
     },
@@ -88,7 +87,13 @@ export default {
         backgroundPosition: 'center',
       }
     },
-  }  
+  },
+
+  computed: {
+    houseList() {
+      return this.results.map(result => result.house)
+    }
+  },
 }
 </script>
 
