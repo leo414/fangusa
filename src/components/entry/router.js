@@ -1,6 +1,7 @@
 const Login = resolve => import('./Login.vue').then(module => resolve(module))
 const Register = resolve => import('./Register.vue').then(module => resolve(module))
 const ChangePd = resolve => import('./change-pd.vue').then(module => resolve(module))
+const BindAccount = resolve => import('./bind-account.vue').then(module => resolve(module))
 
 export default [
   {
@@ -27,5 +28,14 @@ export default [
     },
     name: 'ChangePd',
     component: ChangePd,
+  },
+
+  {
+    path: '/bind',
+    meta: {
+      title: '更新账号'
+    },
+    name: 'BindAccount',
+    component: BindAccount,
   },
 ]
