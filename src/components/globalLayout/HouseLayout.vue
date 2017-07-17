@@ -1,7 +1,8 @@
 <template>
 <router-link :to="'/house/' + info.url_object_id" tag="div" class="house_layout"  :style="background">
   <span class="time">{{info.add_time.substring(0, 10)}}</span>
-  <i class="star i i-star" />
+  <i v-if="!info.delete_id" class="star i i-star" @click.stop="userFav(info.url_object_id)"></i>
+  <i class="star i i-star-full" @click.stop="deleteHouse(info.delete_id)"></i>
 
   <div class="info">
     <span class="tag">推荐房源</span>
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import { FavMixin } from '../../mixins/mixins'
 
 export default {
   name: "HouseLayout",
@@ -32,6 +34,7 @@ export default {
       default: {},
     },
   },
+  mixins: [FavMixin],
   data() {
     return {
 
@@ -46,6 +49,13 @@ export default {
         backgroundPosition: 'center',
       }
     }
+  },
+  methods: {
+    deleteHouse(id) {
+      this.$http.delete(this.API.USER.Fav + id + '/').then(res => {
+        location.reload()
+      })
+    },
   },
 }
 </script>
