@@ -13,6 +13,10 @@ Vue.use(VueAwesomeSwiper)
 Vue.component(VeLine.name, VeLine)
 Vue.config.productionTip = false
 
+import VueQriously from 'vue-qriously'
+Vue.use(VueQriously)
+
+
 /**
  * Element UI 
  */

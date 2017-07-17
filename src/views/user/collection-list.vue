@@ -2,7 +2,7 @@
   <div class="collection_box">
     <h3 class="h3">收藏的房源信息</h3>
     <div class="collection_list" v-if="results.length">
-      <el-row class="collection" :gutter="20" v-for="(info, index) in houseList" :key="index">
+      <el-row class="collection" v-for="(info, index) in houseList" :key="index">
         <el-col :span="7" class="item">
           <div class="img" @click="linkDetail(info.url_object_id)" :style="background(info.front_image_url)"></div>
         </el-col>
@@ -27,7 +27,7 @@
 
         <el-col :span="6" class="item">
           <div class="item fr">
-            <h3 class="price">
+            <h3 class="price tr">
               ${{info.zestimate}}
               约￥{{info.zestimate | toRMB_W}} 万
             </h3>
@@ -124,6 +124,8 @@ export default {
   background: #fff;
 
   .item {
+    padding-left: 10px;
+    vertical-align: top;
     height: 160px;
     background: 'cover';
 
