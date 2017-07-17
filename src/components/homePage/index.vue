@@ -22,6 +22,7 @@
 <script>
 import Search from './Search'
 import HouseLayout from '../globalLayout/HouseLayout'
+import { Indicator } from 'mint-ui'
 
 export default {
   name: 'HomePage',
@@ -42,6 +43,7 @@ export default {
     }
   },
   mounted() {
+    Indicator.open()    
     this.fetchData()
   },
 
@@ -68,6 +70,7 @@ export default {
           this.houseList = [...this.houseList, ...res.results]
           this.count = res.count
           if(this.loading) this.loading = false
+          Indicator.close()
         }
       })
     },
