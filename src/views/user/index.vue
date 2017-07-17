@@ -23,10 +23,17 @@ export default {
     CollectionList,
   },
   data() {
+    let { seleted = 0 } = this.$route.query
+    seleted = Number(seleted)
     return {
       activeName: 'user',
-      seleted: 0,
+      seleted,
     }
+  },
+  watch: {
+    seleted(seleted) {
+      this.$router.push({path: '/user', query: {seleted}})
+    },
   },
 }
 </script>
