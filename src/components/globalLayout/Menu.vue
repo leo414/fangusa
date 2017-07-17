@@ -2,13 +2,15 @@
 <div id="menu">
   <i @click.stop="showMenu = true;" class="i i-menu" />
   <div v-if="showMenu" @click.stop="switchMask" :class="[showMenu ? 'fade_toggle' : '', 'mask_transition']" />
-  <section :class="[showMenu ? 'slide_toggle' : '', 'menu_layout']">
-    <div class="face"></div>
-    <div class="entry">
+  <section :class="[showMenu ? 'slide_toggle' : '', 'menu_layout', 'tc']">
+    <div v-if="!userInfo.image" class="face"></div>
+    <img v-else :src="userInfo.image || 'http://placehold.it/120x120'" alt="" class="face" />
+    <div class="entry" v-if="!isLogin">
       <router-link to="/login" class="tr pr10">登录</router-link>
       <span>|</span>
       <router-link to="/register" class="tl pl10">注册</router-link>
     </div>
+
     <nav class="nav">
       <router-link to="/">首页</router-link>
       <router-link to="/users">个人设置</router-link>
@@ -24,7 +26,15 @@
 export default {
   name: "Menu",
   data() {
+    let userInfo = {
+      image: '',
+    }
+    if(localStorage.userInfo) {
+      userInfo = JSON.parse(localStorage.userInfo)
+    }
     return {
+      userInfo,
+      isLogin: Boolean(localStorage.token),
       showMenu: false,
     }
   },
@@ -83,15 +93,13 @@ export default {
   height: 120px;
   display: inline-block;
   border-radius: 50%;
-  background: url(http://placehold.it/120x120) center no-repeat;
-  background-size: cover;
 }
 
 .entry {
+  margin-top: 20px;
   width: 100%;
   height: 50px;
   line-height: 50px;
-  margin-top: 20px;
   font-size: 20px;
   color: #3a3a3a;
 

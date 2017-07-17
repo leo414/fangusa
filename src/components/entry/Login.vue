@@ -19,7 +19,7 @@
     <p class="divide_text">其他登录方式</p>
   </div>
 
-  <mt-button class="btn wexin" @click="handleClick" size="large" type="primary">微信登录</mt-button>
+  <mt-button class="btn wexin" @click="wxLogin" size="large" type="primary">微信登录</mt-button>
 
   <footer class="footer">
     <router-link class="forget_pd" to="/change_pd">忘记密码？</router-link>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { Toast } from 'mint-ui'
+import { Toast, Indicator } from 'mint-ui'
 
 export default {
   name: "Login",
@@ -54,6 +54,7 @@ export default {
         Toast('请输入密码！')
         return 
       }
+      Indicator.open()
       const data = {
         username,
         password
@@ -62,20 +63,32 @@ export default {
         .then(res => {
           if(res.token) {
             localStorage.token = res.token
+            this.$http.get(this.API.USER.User).then(res => {
+              if(res) {
+                localStorage.userInfo = JSON.stringify(res)
+              }
+              Indicator.close()
+            })
+
             // TODO 检查是否有参数，登出成功后，重定向到之前的页面
             this.$router.push('/')
           }
         })
         .catch(error => {
+          Indicator.close()
           if(error.non_field_errors) {
             Toast('用户名或密码错误！')
           }
         })
     },
 
-    handleClick() {
-      // TODO
-    }
+    wxLogin() {
+
+    },
+  },
+
+  destroyed() {
+    Indicator.close()
   }
 }
 </script>

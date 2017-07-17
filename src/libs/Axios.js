@@ -40,6 +40,7 @@ Axios.interceptors.response.use(res => {
   if(!error.response) return Promise.reject(error)
   if(error.response.status === 401) {
     localStorage.token = ''
+    localStorage.userInfo = ''
     location.href = '/login'
   } else if (error.response.status === 400) {
     const { data } = error.response
