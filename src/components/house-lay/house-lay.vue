@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../scss/variables.scss';
+@import '../../scss/variables';
 
 .city_layout {
   height: auto;

@@ -20,6 +20,7 @@ export default {
     }
   },
   mounted() {
+    this.fullLoading = this.$loading({fullscreen: true})
     this.fetchData()
   },
   methods: {
@@ -27,8 +28,9 @@ export default {
       this.$http.get(this.API.HOUSE.List + '?banner=2').then(res => {
         if(res.results) {
           this.bannerList = res.results
+          this.fullLoading.close()
         }
-      })
+      }).catch(() => this.fullLoading.close())
     },
     background(img) {
       return {
