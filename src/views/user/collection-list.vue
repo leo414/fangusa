@@ -15,7 +15,7 @@
             </h3>
 
             <el-button v-if="info.vr_url" @click="LinkTo(info.vr_url)" size="small" class="vr"><i class="i i-vr" /> VR 看房</el-button>
-            <el-button size="small" class="mark"><i class="i i-star" /> 加入收藏</el-button>
+            <el-button @click="deleteHouse(info.id)" class="mark">取消收藏</el-button>
             <el-tooltip placement="top" effect="light">
               <QrImage slot="content" :houseId="info.url_object_id"></QrImage>
               <el-button size="small" class="wechat"><i class="i i-weixin" /> 微信分享</el-button>
@@ -87,11 +87,20 @@ export default {
         backgroundPosition: 'center',
       }
     },
+
+    deleteHouse(id) {
+      this.$http.delete(this.API.USER.Fav + id + '/').then(res => {
+        location.reload()
+      })
+    },
   },
 
   computed: {
     houseList() {
-      return this.results.map(result => result.house)
+      return this.results.map(result => {
+        result.house.id = result.id
+        return result.house
+      })
     }
   },
 }

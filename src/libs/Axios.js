@@ -14,7 +14,7 @@ Axios.interceptors.request.use(config => {
   const UrlLength = config.baseURL.length
   const Pathname = config.url.slice(-(config.url.length - UrlLength))
   // 只有用户的方面的 API 才需要添加 token
-  if (localStorage.token &&  _includes(API.USER, Pathname)) {
+  if ((localStorage.token && _includes(API.USER, Pathname)) || config.method === 'delete') {
     config.headers.Authorization = `JWT ${localStorage.token}`
   }
   return config
