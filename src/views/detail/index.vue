@@ -58,6 +58,7 @@ export default {
     },
   },
   mounted() {
+    this.fullLoading = this.$loading({fullscreen: true})
     this.fetchData()
   },
   methods: {
@@ -70,9 +71,13 @@ export default {
     fetchData() {
       this.$http.get(this.API.HOUSE.List + this.$route.params.id + '/').then(res => {
         if(res) {
+          if(!res.image_urls) {
+            res.image_urls = [res.front_image_url]
+          }
           this.info = res
+          this.fullLoading.close()
         }
-      })
+      }).catch(() => this.fullLoading.close())
     },
   },
 }
