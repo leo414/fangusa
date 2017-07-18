@@ -13,7 +13,7 @@
           <li><router-link to="#">一站式服务</router-link></li>
           <li><router-link to="#">精品看房团</router-link></li>
           <li><router-link to="#">博客</router-link></li>
-          <li><router-link to="#">联系我们</router-link></li>
+          <li><router-link to="/contact">联系我们</router-link></li>
         </ul>
       </el-col>
       <el-col class="entry" :span="3" v-if="!isLogin">

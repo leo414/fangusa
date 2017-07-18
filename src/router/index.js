@@ -1,3 +1,5 @@
+import StaticPageRoutes from 'views/static-page/router'
+
 const Homepage = resolve => import('views/home-page/index').then(module => resolve(module))
 const Login = resolve => import('views/entry/login').then(module => resolve(module))
 const Register = resolve => import('views/entry/register').then(module => resolve(module))
@@ -9,6 +11,8 @@ const Map = resolve => import('views/search-result/map') .then(module => resolve
 const Article = resolve => import('views/article/article') .then(module => resolve(module))
 
 const routers = [
+  ...StaticPageRoutes,
+  
   {
     path: '/',
     meta: {

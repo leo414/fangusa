@@ -111,6 +111,7 @@ export default {
 
 .collection_box {
   width: 100%;
+  min-height: 300px;
 
   .h3 {
     padding-left: 20px;

@@ -88,10 +88,10 @@
 
   <div class="contact_us">
     <h1 class="h1">联系我们</h1>
-    欢迎联系房美国 （fangusa.com），请选择以下方式：<br/>
-    联系方式1：xxx<br/>
-    联系方式2：xxx<br/>
-    联系方式3： xxx
+    <p class="summay">欢迎联系房美国 （fangusa.com），请选择以下方式：</p>
+    <p class="summay">联系方式1：xxx</p>
+    <p class="summay">联系方式2：xxx</p>
+    <p class="summay">联系方式3： xxx</p>
     <h3 class="h3">直接填写以下表格联系我们：</h3>
     <el-row type="flex" justify="space-between" class="code-row-bg mb-20">
       <el-col :span="7"><el-input v-model="value1" size="large" placeholder="你的姓名" /></el-col>
@@ -184,6 +184,10 @@ export default {
   button {
     margin-top: 20px;
     width: 120px;
+  }
+
+  .summay {
+    line-height: 18px;
   }
 }
 </style>
