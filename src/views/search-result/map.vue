@@ -15,7 +15,14 @@
 <script>
 import EarthQuakes from './earthquakes.json'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiemF4bGN0IiwiYSI6ImNqNHVsODAwNjBrcXAycXI1cTVkdGU3ZHEifQ.0QfeJeP1LfAbm64_bYxj6A'
+
+//const bounds = [
+//  [596.77734375, 43.96119063892024],
+//  [645.556640625, 25.562265014427492]
+//];
 
 export default {
   name: 'MapSearch',
@@ -30,6 +37,7 @@ export default {
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [-103.59179687498357, 40.66995747013945],
       zoom: 4,
+      //maxBounds: bounds,
     })
 
     map.on('load', function() {
@@ -51,7 +59,7 @@ export default {
             property: "point_count",
             type: "interval",
             stops: [
-              [0, "#51bbd6"],
+              [0, "#4caa00"],
               [100, "#f1f075"],
               [750, "#f28cb1"],
             ]
@@ -64,7 +72,7 @@ export default {
               [100, 30],
               [750, 40]
             ]
-          }
+          },
         }
       });
 
@@ -76,7 +84,7 @@ export default {
         layout: {
           "text-field": "{point_count_abbreviated}",
           "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-          "text-size": 12
+          "text-size": 12,
         }
       });
 
@@ -86,14 +94,37 @@ export default {
         source: "earthquakes",
         filter: ["!has", "point_count"],
         paint: {
-          "circle-color": "#11b4da",
+          "circle-color": "#4caa00",
           "circle-radius": 4,
           "circle-stroke-width": 1,
           "circle-stroke-color": "#fff"
         }
       });
+
+
     });
+
+    // 放大缩小组件
+    map.addControl(new mapboxgl.NavigationControl(), "bottom-left")
+
+    // 搜索组件
+    map.addControl(new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken
+    }))
+
+    // popup
+    var popup = new mapboxgl.Popup({closeOnClick: false})
+      .setLngLat([-96, 37.8])
+      .setHTML('<h1>Hello World!</h1>')
+      .addTo(map);
+
+    map.on('moveend', function() {})
+    map.on('click', function() {})
+    map.on('mousemove', function() {})
+    map.on('mouseleave', function() {})
   }
+
+//  Ee.fitBounds([[-122.88402953065821, 47.28804747047616], [-121.6909601587165, 47.95779596908454]], {
 }
 </script>
 
