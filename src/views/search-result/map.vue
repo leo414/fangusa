@@ -4,6 +4,7 @@
       <el-col :span="16" class="map_container">
         <div id="map_box"></div>
       </el-col>
+
       <el-col :span="8" class="house_list">
         <div class="house_list"></div>
       </el-col>
@@ -22,7 +23,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiemF4bGN0IiwiYSI6ImNqNHVsODAwNjBrcXAycXI1cTVkd
 //const bounds = [
 //  [596.77734375, 43.96119063892024],
 //  [645.556640625, 25.562265014427492]
-//];
+//]
 
 export default {
   name: 'MapSearch',
@@ -40,14 +41,14 @@ export default {
       //maxBounds: bounds,
     })
 
-    map.on('load', function() {
+    map.on('load', () => {
       map.addSource("earthquakes", {
         type: "geojson",
         data: EarthQuakes,
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
-      });
+      })
 
       map.addLayer({
         id: "clusters",
@@ -74,7 +75,7 @@ export default {
             ]
           },
         }
-      });
+      })
 
       map.addLayer({
         id: "cluster-count",
@@ -86,7 +87,7 @@ export default {
           "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
           "text-size": 12,
         }
-      });
+      })
 
       map.addLayer({
         id: "unclustered-point",
@@ -99,10 +100,8 @@ export default {
           "circle-stroke-width": 1,
           "circle-stroke-color": "#fff"
         }
-      });
-
-
-    });
+      })
+    })
 
     // 放大缩小组件
     map.addControl(new mapboxgl.NavigationControl(), "bottom-left")
@@ -113,35 +112,36 @@ export default {
     }))
 
     // popup
-    var popup = new mapboxgl.Popup({closeOnClick: false})
+    const popup = new mapboxgl.Popup({closeOnClick: false})
       .setLngLat([-96, 37.8])
       .setHTML('<h1>Hello World!</h1>')
-      .addTo(map);
+      .addTo(map)
 
-    map.on('moveend', function() {})
-    map.on('click', function() {})
-    map.on('mousemove', function() {})
-    map.on('mouseleave', function() {})
-  }
+    map.on('moveend', e => this.onMapMoveend(e))
+    map.on('click', e => this.onClickMap(e))
+  },
+  methods: {
+    onMapMoveend(e) {
+      console.log(e)
+    },
 
-//  Ee.fitBounds([[-122.88402953065821, 47.28804747047616], [-121.6909601587165, 47.95779596908454]], {
+    onClickMap(e) {
+      console.log(e)
+    },
+  },
 }
 </script>
 
-<style>
+<style lang="sass" scoped>
+.map_container
+  height: 800px;
+  box-sizing: content-box
 
-.map_container {
-  height: 600px;
-  box-sizing: content-box;
-}
+#map_box
+  height: 800px;
+  box-sizing: content-box
 
-#map_box {
-  height: 600px;
-  box-sizing: content-box;
-}
-
-.house_list {
+.house_list
   height: 500px;
-  background: #fff;
-}
+  background: #fff
 </style>
