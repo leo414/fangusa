@@ -15,6 +15,7 @@
 
 <script>
 import EarthQuakes from './earthquakes.json'
+import Geojson from './geojson'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
@@ -98,7 +99,7 @@ export default {
           "circle-color": "#4caa00",
           "circle-radius": 4,
           "circle-stroke-width": 1,
-          "circle-stroke-color": "#fff"
+          "circle-stroke-color": "#000"
         }
       })
     })
@@ -111,14 +112,29 @@ export default {
       accessToken: mapboxgl.accessToken
     }))
 
-    // popup
-    const popup = new mapboxgl.Popup({closeOnClick: false})
-      .setLngLat([-96, 37.8])
-      .setHTML('<h1>Hello World!</h1>')
-      .addTo(map)
 
     map.on('moveend', e => this.onMapMoveend(e))
     map.on('click', e => this.onClickMap(e))
+
+//     add markers to map
+//    Geojson.features.forEach(function(marker) {
+//      // create a DOM element for the marker
+//      var el = document.createElement('div');
+//      el.innerText = 'dwadawdawdw'
+//      el.className = 'marker';
+//      el.style.backgroundImage = 'url(https://placekitten.com/g/' + marker.properties.iconSize.join('/') + '/)';
+//      el.style.width = marker.properties.iconSize[0] + 'px';
+//      el.style.height = marker.properties.iconSize[1] + 'px';
+//
+//      el.addEventListener('click', function () {
+//        window.alert(marker.properties.message);
+//      });
+//
+//      // add marker to map
+//      new mapboxgl.Marker(el)
+//        .setLngLat(marker.geometry.coordinates)
+//        .addTo(map)
+//    })
   },
   methods: {
     onMapMoveend(e) {
@@ -134,14 +150,14 @@ export default {
 
 <style lang="sass" scoped>
 .map_container
-  height: 800px;
+  height: 700px;
   box-sizing: content-box
 
 #map_box
-  height: 800px;
+  height: 700px;
   box-sizing: content-box
 
 .house_list
-  height: 500px;
+  height: 700px;
   background: #fff
 </style>

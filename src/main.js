@@ -18,12 +18,10 @@ Vue.use(VueQriously)
 
 
 /**
- * Element UI 
+ * Element UI
  */
-import 'element-ui/lib/theme-default/index.css'
-
-import { 
-  Row, 
+import {
+  Row,
   Col,
   Input,
   Switch,
@@ -36,7 +34,7 @@ import {
   Carousel,
   CarouselItem,
   Loading,
-  Tooltip, 
+  Tooltip,
   Pagination,
   Cascader,
   Tabs,
