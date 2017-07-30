@@ -1,7 +1,7 @@
 <template lang="html">
 <section id="hot_city_container" class="container">
   <h2 class="h2">热门城市</h2>
-  <el-carousel indicator-position="outside" height="700px" :autoplay="true">
+  <el-carousel indicator-position="outside" height="700px">
     <el-carousel-item>
       <el-row type="flex" justify="space-between">
         <el-col

@@ -1,15 +1,15 @@
 <template lang="html">
   <div class="new_house container">
     <h2 class="h2">{{title}}</h2>
-
-    <swiper :options="swiperOption">
-      <swiper-slide v-for="(house, index) in houseList" :key="index">
-        <house-lay :info="house" />
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
-    </swiper>
+    <el-carousel indicator-position="outside" height="410px" :autoplay="false">
+      <el-carousel-item v-for="(house, index) in houseList" :key="index">
+        <el-row :gutter="20">
+          <el-col :span="8" v-for="(info, index2) in house" :key="index2">
+            <house-lay :info="info"></house-lay>
+          </el-col>
+        </el-row>
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 
@@ -27,15 +27,6 @@ export default {
   data() {
     return {
       houseList: [],
-      swiperOption: {
-        pagination: '.swiper-pagination',
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-        paginationClickable: true,
-        spaceBetween: 20,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-      },
     }
   },
   mounted() {
@@ -45,7 +36,13 @@ export default {
     fetchData() {
       this.$http.get(this.API.HOUSE.List).then(res => {
         if(res.results) {
-          this.houseList = res.results
+          let data = res.results.slice(0, 9)
+          let houseList = []
+          while(data.length > 0) {
+            houseList.push(data.splice(0, 3))
+          }
+          // 对房源数据进行分组，三个一组
+          this.houseList = houseList
         }
       })
     }
