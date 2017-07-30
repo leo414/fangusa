@@ -1,51 +1,76 @@
 <template lang="html">
-<section id="hot_city_container" class="container">
+<section id="hot_city_container" class="container" :autoplay="true">
   <h2 class="h2">热门城市</h2>
-  <el-carousel indicator-position="outside" height="700px">
+  <el-carousel indicator-position="outside" height="700px" >
     <el-carousel-item>
       <el-row type="flex" justify="space-between">
-        <el-col
-          v-for="(img, index) in img_list.slice(0,3)" :key="index"
-          class="city"
-          :style="img.style"
-          @click.native="goFilter(img.text)"
-          :span="8">
-          {{img.text}}
+        <el-col :span="8" v-for="(img, index) in img_list.slice(0,3)" :key="index">
+          <router-link :to="'/result?country=' + img.text" class="category-card">
+            <section class="category-card__wrapper">
+              <div class="category-card__tint">
+                <div
+                  class="city category-card__image"
+                  :style="img.style"
+                >
+                  {{img.text}}
+                </div>
+              </div>
+            </section>
+          </router-link>
         </el-col>
       </el-row>
 
       <el-row type="flex" justify="space-between">
-        <el-col
-          v-for="(img, index) in img_list.slice(3,6)" :key="index"
-          class="city"
-          :style="img.style"
-          @click.native="goFilter(img.text)"
-          :span="8">
-          {{img.text}}
+        <el-col :span="8" v-for="(img, index) in img_list.slice(3,6)" :key="index">
+          <router-link :to="'/result?country=' + img.text" class="category-card">
+            <section class="category-card__wrapper">
+              <div class="category-card__tint">
+                <div
+                  class="city category-card__image"
+                  :style="img.style"
+                >
+                  {{img.text}}
+                </div>
+              </div>
+            </section>
+          </router-link>
+
         </el-col>
       </el-row>
     </el-carousel-item>
 
     <el-carousel-item>
       <el-row type="flex" justify="space-between">
-        <el-col
-          v-for="(img, index) in img_list.slice(6,9)" :key="index"
-          class="city"
-          :style="img.style"
-          @click.native="goFilter(img.text)"
-          :span="8">
-          {{img.text}}
+        <el-col :span="8" v-for="(img, index) in img_list.slice(6,9)" :key="index">
+          <router-link :to="'/result?country=' + img.text" class="category-card">
+            <section class="category-card__wrapper">
+               <div class="category-card__tint">
+                 <div
+                   class="city category-card__image"
+                   :style="img.style"
+                 >
+                  {{img.text}}
+                 </div>
+              </div>
+            </section>
+          </router-link>
         </el-col>
       </el-row>
 
       <el-row type="flex" justify="space-between">
-        <el-col
-          v-for="(img, index) in img_list.slice(9,12)" :key="index"
-          class="city"
-          :style="img.style"
-          @click.native="goFilter(img.text)"
-          :span="8">
-          {{img.text}}
+        <el-col :span="8" v-for="(img, index) in img_list.slice(9,12)" :key="index">
+          <router-link :to="'/result?country=' + img.text" class="category-card">
+            <section class="category-card__wrapper">
+               <div class="category-card__tint">
+                 <div
+                   class="city category-card__image"
+                   :style="img.style"
+                 >
+                  {{img.text}}
+                 </div>
+              </div>
+            </section>
+          </router-link>
         </el-col>
       </el-row>
     </el-carousel-item>
@@ -136,17 +161,73 @@ export default {
   padding: 20px 0;
 }
 
+.category-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden !important;
+  cursor: pointer;
+}
+
+.category-card__wrapper {
+  overflow: hidden !important;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.category-card__tint {
+  width: 330px;
+  height: 330px;
+  overflow: hidden !important;
+  -webkit-mask-image: -webkit-radial-gradient(circle,#fff,#000);
+}
+
 .city {
   margin-bottom: 28px;
   width: 330px;
-  height: 330px;
   line-height: 330px;
   text-align: center;
   color: #fff;
-  font-size: 40px;
   font-weight: bold;
-  overflow: hidden;
-  cursor: pointer;
+  overflow: hidden !important;
   text-shadow: 1px 1px rgba(0,0,0,.3);
+}
+
+.category-card:hover .category-card__image, .category-card:focus .category-card__image, .category-card:active .category-card__image {
+  -webkit-transform: scale(1.12);
+  -moz-transform: scale(1.12);
+  -ms-transform: scale(1.12);
+  -o-transform: scale(1.12);
+  transform: scale(1.12);
+  font-size: 38px;
+}
+
+.category-card__image {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: -webkit-transform .35s;
+  -moz-transition: -moz-transform .35s;
+  transition: transform .35s;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #EFF2F5;
+  font-size: 36px;
+}
+
+.category-card:hover .category-card__tint:after, .category-card:focus .category-card__tint:after, .category-card:active .category-card__tint:after {
+  opacity: .4;
+  background-color: #282C35;
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
 }
 </style>
