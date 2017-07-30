@@ -2,7 +2,7 @@
 <div class="blog_list container">
   <header class="header">
     <h2 class="h2 fl">博客</h2>
-    <el-button class="more_articles" size="small">更多文章</el-button>
+    <el-button class="more_articles">更多文章</el-button>
   </header>
 
   <el-row type="flex" justify="space-between" class="code-row-bg">

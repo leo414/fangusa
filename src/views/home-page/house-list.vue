@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="new_house container">
-    <h2 class="h2">{{title}}</h2>
+    <h2 class="h2">
+      {{title}}
+      <el-button class="fr">更多房源</el-button>
+    </h2>
     <el-carousel indicator-position="outside" height="410px" :autoplay="false">
       <el-carousel-item v-for="(house, index) in houseList" :key="index">
         <el-row :gutter="20">
