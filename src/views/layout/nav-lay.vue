@@ -61,7 +61,6 @@ export default {
 
 #nav {
   height: 70px;
-  overflow: hidden;
   line-height: 70px;
   font-size: 16px;
 
@@ -85,6 +84,8 @@ export default {
 }
 
 .logo {
+  position: relative;
+  left: -100px;
   padding: 10px;
 
   img {

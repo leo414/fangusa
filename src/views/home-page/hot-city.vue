@@ -1,12 +1,12 @@
 <template lang="html">
 <section id="hot_city_container" class="container">
   <h2 class="h2">热门城市</h2>
-  <swiper :options="swiperOption" class="swiper">
-    <swiper-slide>
+  <el-carousel indicator-position="outside" height="700px" :autoplay="true">
+    <el-carousel-item>
       <el-row type="flex" justify="space-between">
         <el-col
           v-for="(img, index) in img_list.slice(0,3)" :key="index"
-          class="city" 
+          class="city"
           :style="img.style"
           @click.native="goFilter(img.text)"
           :span="8">
@@ -17,20 +17,21 @@
       <el-row type="flex" justify="space-between">
         <el-col
           v-for="(img, index) in img_list.slice(3,6)" :key="index"
-          class="city" 
-          :style="img.style" 
+          class="city"
+          :style="img.style"
           @click.native="goFilter(img.text)"
           :span="8">
           {{img.text}}
         </el-col>
       </el-row>
-    </swiper-slide>
-    <swiper-slide>
+    </el-carousel-item>
+
+    <el-carousel-item>
       <el-row type="flex" justify="space-between">
         <el-col
           v-for="(img, index) in img_list.slice(6,9)" :key="index"
-          class="city" 
-          :style="img.style" 
+          class="city"
+          :style="img.style"
           @click.native="goFilter(img.text)"
           :span="8">
           {{img.text}}
@@ -40,18 +41,15 @@
       <el-row type="flex" justify="space-between">
         <el-col
           v-for="(img, index) in img_list.slice(9,12)" :key="index"
-          class="city" 
+          class="city"
           :style="img.style"
-          @click.native="goFilter(img.text)" 
+          @click.native="goFilter(img.text)"
           :span="8">
           {{img.text}}
         </el-col>
       </el-row>
-    </swiper-slide>
-    <div class="swiper-pagination" slot="pagination"></div>
-    <div class="swiper-button-prev" slot="button-prev"></div>
-    <div class="swiper-button-next" slot="button-next"></div>
-  </swiper>
+    </el-carousel-item>
+  </el-carousel>
 </section>
 </template>
 
@@ -118,17 +116,6 @@ export default {
     })
     img_list.forEach(item => item.style = background(item.name))
     return {
-      swiperOption: {
-        pagination: '.swiper-pagination',
-        direction : 'vertical',
-        height: 700,
-        slidesPerView: 1,
-        loop : true,
-        paginationClickable: true,
-        spaceBetween: 20,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-      },
       img_list,
     }
   },
@@ -143,16 +130,6 @@ export default {
 <style lang="scss" scoped>
 #hot_city_container {
   margin-top: 20px;
-}
-
-.swiper {
-  height: 700px;
-}
-
-.swiper-pagination {
-  left: 48%;
-  top: 95%;
-  display: flex;
 }
 
 .h2 {
