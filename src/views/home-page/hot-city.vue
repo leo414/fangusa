@@ -165,12 +165,12 @@ export default {
   position: relative;
   display: block;
   width: 100%;
-  overflow: hidden !important;
+  overflow: hidden;
   cursor: pointer;
 }
 
 .category-card__wrapper {
-  overflow: hidden !important;
+  overflow: hidden;
   position: relative;
   margin-bottom: 20px;
 }
@@ -178,7 +178,7 @@ export default {
 .category-card__tint {
   width: 330px;
   height: 330px;
-  overflow: hidden !important;
+  overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(circle,#fff,#000);
 }
 
@@ -189,7 +189,7 @@ export default {
   text-align: center;
   color: #fff;
   font-weight: bold;
-  overflow: hidden !important;
+  overflow: hidden;
   text-shadow: 1px 1px rgba(0,0,0,.3);
 }
 
